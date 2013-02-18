@@ -1,5 +1,11 @@
 @import url('bootstrap-responsive.less')  url('responsive.less');
 
+/* {
+    border: 1px dashed blue;
+    
+}
+*/
+
 .clearfix {
   *zoom: 1;
 }
@@ -226,8 +232,17 @@ a:focus {
 }
 .row {
   margin-left: -20px;
+  margin-bottom: 20px;
   *zoom: 1;
 }
+
+.row2 {
+  margin-left: -20px;
+  margin-bottom: 20px;
+  *zoom: 1;
+  margin: auto;
+}
+
 .row:before,
 .row:after {
   display: table;
