@@ -13,12 +13,12 @@
    ========================================================================== */
 
 body {
-    padding-top: 60px;
+    padding-top: 95px;
     padding-bottom: 0px;
     background-image: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/homebackground_icon.jpg');
 	background-position: center;
 	background-attachment: inherit;
-	background-repeat: no-repeat;
+	background-repeat: repeat-x;
 }
 
 .navbar-form.pull-right {
@@ -48,6 +48,11 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 } /*Shadow around NavBar*/
 
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 940px !important; 
+}
 
 .home-section1 {
 	.vertical{ 
@@ -87,47 +92,53 @@ body {
 
 
 .home-section2 {
-	background: #f8b8a1;
-	.vertical_horizontal{
-		/* Combining the horizontal and vertical centering! */
-		margin: auto; /* Adjusted by Matt*/
-		height: 210px;
-		width: 940px;
-		display: table;
-		.centered {
-			/* Vertical centering! */
-			vertical-align: middle;
-			display: table-cell;
-			p {
-				/* Horizontal centering */
-				width: 600px;
-				margin: auto;
-			}
-			img{
-				/* Horizontal centering */
-				display: block;
-				margin: 0 auto;
-			}
-			h1 	{ /*Why?*/
-			  	font-size: 72px;
-			  	line-height: 1;
-			  	letter-spacing: -1px;
-			  	color: #487a97;
-			  	font-family: Myriad Web Pro;
-			  	font-style: italic;
-			  	font-weight: normal;
-			  	text-align: center;
-			}
-			h2 { /*We value the important of teach delayed gratification*/
-				font-size: 36px;
-			  	line-height: 1;
-			  	letter-spacing: -1px;
-			  	color: #404040;
-			  	font-family: Myriad Pro;
-			  	font-style: normal;
-			  	font-weight: normal;
-			  	text-align: center;
-			  	padding-top: 10px;
+	background: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/section2bar_pattern.png');
+	background-repeat: repeat;
+	.top-bottom-pattern {
+		background: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/middlebartop_pattern.png'), url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/middlebarbottom_pattern.png');
+		background-repeat: repeat-x, repeat-x;
+		background-position: top, bottom;
+		.vertical_horizontal{
+			/* Combining the horizontal and vertical centering! */
+			margin: auto; /* Adjusted by Matt*/
+			height: 210px;
+			width: 940px;
+			display: table;
+			.centered {
+				/* Vertical centering! */
+				vertical-align: middle;
+				display: table-cell;
+				p {
+					/* Horizontal centering */
+					width: 600px;
+					margin: auto;
+				}
+				img{
+					/* Horizontal centering */
+					display: block;
+					margin: 0 auto;
+				}
+				h1 	{ /*Why?*/
+				  	font-size: 72px;
+				  	line-height: 1;
+				  	letter-spacing: -1px;
+				  	color: #487a97;
+				  	font-family: Myriad Web Pro;
+				  	font-style: italic;
+				  	font-weight: normal;
+				  	text-align: center;
+				}
+				h2 { /*We value the important of teach delayed gratification*/
+					font-size: 36px;
+				  	line-height: 1;
+				  	letter-spacing: -1px;
+				  	color: #404040;
+				  	font-family: Myriad Pro;
+				  	font-style: normal;
+				  	font-weight: normal;
+				  	text-align: center;
+				  	padding-top: 10px;
+				}
 			}
 		}
 	}
@@ -152,68 +163,81 @@ body {
 				margin: 0 auto;
 			}
 			h1 	{ /*How does it work?*/
-				margin-bottom: 0;
-			  	font-size: 60px;
+			  	font-size: 72px;
 			  	line-height: 1;
 			  	letter-spacing: -1px;
-			  	color: inherit;
-			  	margin-left: 60px;
+			  	color: #487a97;
+			  	font-family: Myriad Pro;
 			  	font-weight: normal;
+			  	text-align: center;
+			  	margin-bottom: 50px;
 			}
 			a 	{
 			  	margin-right: 60px;
+			}
+			.three-icons {
+				list-style: none;
+				li {
+					display: block;
+					float: left;
+					margin: 0px 32px;
+				}
 			}
 		}
 	}
 }/* Applies font adjustments to h1 & a (button) inside section 1 */
 
 .home-footer {
-	background: #b6b7b6;
+	background-image: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/footer_pattern.png');
+	background-attachment: inherit;
+	background-repeat: repeat;
+	.rainbow-bar{
 	background-image: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/rainbowbar_icon.jpg');
 	background-position: top;
 	background-attachment: inherit;
 	background-repeat: repeat-x;
-	.vertical{ 
-		height: 170px;
-		width: 940px;
-		margin: auto;
-		display: table; 
-		.centered {
-			display: table-cell;
-			vertical-align: middle;
-			img {
-				margin: 0 auto;
-				top: 0px;
-			}
-			h1 	{ /*buhloon | 2013*/
-			  	font-size: 27px;
-			  	line-height: 1;
-			  	letter-spacing: -1px;
-			  	color: #404040;
-			  	margin-left: 20px;
-			  	float: left;
-			  	font-family: Myriad Pro;
-			  	font-weight: normal;
+		.vertical{ 
+			height: 150px;
+			width: 940px;
+			margin: auto;
+			display: table; 
+			.centered {
+				display: table-cell;
+				vertical-align: middle;
+				img {
+					margin: 0 auto;
+					top: 0px;
+				}
+				h1 	{ /*buhloon | 2013*/
+				  	font-size: 27px;
+				  	line-height: 1;
+				  	letter-spacing: -1px;
+				  	color: #404040;
+				  	margin-left: 20px;
+				  	float: left;
+				  	font-family: Myriad Pro;
+				  	font-weight: normal;
 
-			}
-			.footer-links { /*About Contact Privacy*/
-				list-style: none;
-				li {
-					font-size: 20px;
-					font-family: Myriad Pro;
-					float: right;
-					padding: 10px 15px;
-					a {
-						color: #404040;
-					}
-					a:hover {
-						color: #858585;
-						text-decoration: none;
+				}
+				.footer-links { /*About Contact Privacy*/
+					list-style: none;
+					li {
+						font-size: 20px;
+						font-family: Myriad Pro;
+						float: right;
+						padding: 10px 15px;
+						a {
+							color: #404040;
+						}
+						a:hover {
+							color: #858585;
+							text-decoration: none;
+						}
 					}
 				}
 			}
 		}
-	}
+	}	
 }
 
 

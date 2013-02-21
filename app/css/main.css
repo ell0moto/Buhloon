@@ -5217,12 +5217,12 @@ a.badge:focus {
    MAIN
    ========================================================================== */
 body {
-  padding-top: 60px;
+  padding-top: 95px;
   padding-bottom: 0px;
   background-image: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/homebackground_icon.jpg');
   background-position: center;
   background-attachment: inherit;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
 }
 .navbar-form.pull-right {
   margin-top: 50px;
@@ -5251,6 +5251,11 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 /*Shadow around NavBar*/
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 940px !important;
+}
 .home-section1 .vertical {
   /* There are many ways of positioning things vertically, but this is the easiest. It does have a drawback of not working in old IE versions. Furthermore another method for images would be setting it on the background instead. */
 
@@ -5300,9 +5305,15 @@ body {
 }
 /*LESS by Roger*//* Applies font adjustments to h1 & a (button) inside section 1 */
 .home-section2 {
-  background: #f8b8a1;
+  background: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/section2bar_pattern.png');
+  background-repeat: repeat;
 }
-.home-section2 .vertical_horizontal {
+.home-section2 .top-bottom-pattern {
+  background: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/middlebartop_pattern.png'), url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/middlebarbottom_pattern.png');
+  background-repeat: repeat-x, repeat-x;
+  background-position: top, bottom;
+}
+.home-section2 .top-bottom-pattern .vertical_horizontal {
   /* Combining the horizontal and vertical centering! */
 
   margin: auto;
@@ -5312,25 +5323,25 @@ body {
   width: 940px;
   display: table;
 }
-.home-section2 .vertical_horizontal .centered {
+.home-section2 .top-bottom-pattern .vertical_horizontal .centered {
   /* Vertical centering! */
 
   vertical-align: middle;
   display: table-cell;
 }
-.home-section2 .vertical_horizontal .centered p {
+.home-section2 .top-bottom-pattern .vertical_horizontal .centered p {
   /* Horizontal centering */
 
   width: 600px;
   margin: auto;
 }
-.home-section2 .vertical_horizontal .centered img {
+.home-section2 .top-bottom-pattern .vertical_horizontal .centered img {
   /* Horizontal centering */
 
   display: block;
   margin: 0 auto;
 }
-.home-section2 .vertical_horizontal .centered h1 {
+.home-section2 .top-bottom-pattern .vertical_horizontal .centered h1 {
   /*Why?*/
 
   font-size: 72px;
@@ -5342,7 +5353,7 @@ body {
   font-weight: normal;
   text-align: center;
 }
-.home-section2 .vertical_horizontal .centered h2 {
+.home-section2 .top-bottom-pattern .vertical_horizontal .centered h2 {
   /*We value the important of teach delayed gratification*/
 
   font-size: 36px;
@@ -5380,40 +5391,53 @@ body {
 .home-section3 .vertical .centered h1 {
   /*How does it work?*/
 
-  margin-bottom: 0;
-  font-size: 60px;
+  font-size: 72px;
   line-height: 1;
   letter-spacing: -1px;
-  color: inherit;
-  margin-left: 60px;
+  color: #487a97;
+  font-family: Myriad Pro;
   font-weight: normal;
+  text-align: center;
+  margin-bottom: 50px;
 }
 .home-section3 .vertical .centered a {
   margin-right: 60px;
 }
+.home-section3 .vertical .centered .three-icons {
+  list-style: none;
+}
+.home-section3 .vertical .centered .three-icons li {
+  display: block;
+  float: left;
+  margin: 0px 32px;
+}
 /* Applies font adjustments to h1 & a (button) inside section 1 */
 .home-footer {
-  background: #b6b7b6;
+  background-image: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/footer_pattern.png');
+  background-attachment: inherit;
+  background-repeat: repeat;
+}
+.home-footer .rainbow-bar {
   background-image: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/rainbowbar_icon.jpg');
   background-position: top;
   background-attachment: inherit;
   background-repeat: repeat-x;
 }
-.home-footer .vertical {
-  height: 170px;
+.home-footer .rainbow-bar .vertical {
+  height: 150px;
   width: 940px;
   margin: auto;
   display: table;
 }
-.home-footer .vertical .centered {
+.home-footer .rainbow-bar .vertical .centered {
   display: table-cell;
   vertical-align: middle;
 }
-.home-footer .vertical .centered img {
+.home-footer .rainbow-bar .vertical .centered img {
   margin: 0 auto;
   top: 0px;
 }
-.home-footer .vertical .centered h1 {
+.home-footer .rainbow-bar .vertical .centered h1 {
   /*buhloon | 2013*/
 
   font-size: 27px;
@@ -5425,21 +5449,21 @@ body {
   font-family: Myriad Pro;
   font-weight: normal;
 }
-.home-footer .vertical .centered .footer-links {
+.home-footer .rainbow-bar .vertical .centered .footer-links {
   /*About Contact Privacy*/
 
   list-style: none;
 }
-.home-footer .vertical .centered .footer-links li {
+.home-footer .rainbow-bar .vertical .centered .footer-links li {
   font-size: 20px;
   font-family: Myriad Pro;
   float: right;
   padding: 10px 15px;
 }
-.home-footer .vertical .centered .footer-links li a {
+.home-footer .rainbow-bar .vertical .centered .footer-links li a {
   color: #404040;
 }
-.home-footer .vertical .centered .footer-links li a:hover {
+.home-footer .rainbow-bar .vertical .centered .footer-links li a:hover {
   color: #858585;
   text-decoration: none;
 }
