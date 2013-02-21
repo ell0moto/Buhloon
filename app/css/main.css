@@ -5449,6 +5449,9 @@ body {
   font-family: Myriad Pro;
   font-weight: normal;
 }
+.home-footer .rainbow-bar .vertical .centered h1 span {
+  font-size: 15px;
+}
 .home-footer .rainbow-bar .vertical .centered .footer-links {
   /*About Contact Privacy*/
 
