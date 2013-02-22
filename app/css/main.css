@@ -5256,6 +5256,7 @@ body {
 .navbar-fixed-bottom .container {
   width: 940px !important;
 }
+/* Stops expanding navbar*/
 .home-section1 .vertical {
   /* There are many ways of positioning things vertically, but this is the easiest. It does have a drawback of not working in old IE versions. Furthermore another method for images would be setting it on the background instead. */
 
@@ -5304,6 +5305,80 @@ body {
   margin-right: 60px;
 }
 /*LESS by Roger*//* Applies font adjustments to h1 & a (button) inside section 1 */
+#myCarousel {
+  /* Applies background & height to Carousel & adjusts carousel indicators */
+
+  background-image: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/sunburtstop_icon.png');
+  background-position: bottom;
+  background-attachment: inherit;
+  background-repeat: no-repeat;
+  height: 420px;
+  width: 940px;
+}
+#myCarousel .carousel-indicators {
+  right: 40px;
+}
+.item {
+  /* Carousel */
+
+}
+.item .vertical {
+  height: 420px;
+  width: 940px;
+  display: table;
+  margin: auto;
+}
+.item .vertical .centered {
+  display: table-cell;
+  vertical-align: middle;
+}
+.item .vertical .centered img {
+  /* Centers the Carousel */
+
+  margin: 0 auto;
+}
+.item .vertical .centered h1 {
+  /*A tool to encourage children*/
+
+  margin-left: 95px;
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit;
+  margin-left: 60px;
+  color: #404040;
+}
+.carousel-control {
+  /* Adjusts 'button' of carousel */
+
+  top: 50%;
+  width: 120px;
+  height: 50px;
+  font-size: 17px;
+}
+.carousel-control.right {
+  /* Adjusts vertical placement & text inside 'button' of carousel */
+
+  right: 90px;
+}
+.carousel-control.right p {
+  line-height: 80%;
+  text-align: center;
+  margin: 8px 5px 0px;
+}
+.container,
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 940px !important;
+}
+/* Stops carousel from expanding */
+.carousel {
+  /* Removes bottom margin from Carousel*/
+
+  margin-bottom: 0px;
+}
 .home-section2 {
   background: url('file:///C:/Users/ellomtto/Documents/GitHub/Buhloon/app/images/section2bar_pattern.png');
   background-repeat: repeat;
