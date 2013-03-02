@@ -1,5 +1,9 @@
 {
-  "require": {
-    "leafo/lessphp": "0.3.8"
-  }
+	"require": {
+		"leafo/lessphp": "0.3.8",
+		"polycademy/citemplating": "*"
+	},
+	"config": {
+		"bin-dir": "bin/"
+  	}
 }

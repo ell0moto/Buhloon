@@ -74,5 +74,10 @@ define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
 define('SHOW_DEBUG_BACKTRACE', TRUE);
 
 
+/*For sparks and Legacy Codeigniter Libraries*/
+
+define('EXT', '.php');
+
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

@@ -1,5 +1,5 @@
 {
-    "hash": "340618991221fb81a993e2f8495f9b8d",
+    "hash": "51ec5effe58a01a3d364d31a7cdda853",
     "packages": [
         {
             "name": "leafo/lessphp",
@@ -15,7 +15,6 @@
                 "reference": "v0.3.8",
                 "shasum": ""
             },
-            "time": "2012-08-18 19:16:09",
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -35,7 +34,39 @@
                 }
             ],
             "description": "lessphp is a compiler for LESS written in PHP.",
-            "homepage": "http://leafo.net/lessphp/"
+            "homepage": "http://leafo.net/lessphp/",
+            "time": "2012-08-18 19:16:09"
+        },
+        {
+            "name": "polycademy/citemplating",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Polycademy/CiTemplating.git",
+                "reference": "1.0.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Polycademy/CiTemplating/zipball/1.0.3",
+                "reference": "1.0.3",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "WTFPL"
+            ],
+            "description": "Simple Templating Static Helper Class for Codeigniter Provides Partials and Layouts - Convention over configuration",
+            "keywords": [
+                "codeigniter",
+                "templating"
+            ],
+            "time": "2013-02-17 07:10:44"
         }
     ],
     "packages-dev": null,

@@ -1,0 +1,9 @@
+*/config/development
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+vendor/*
+bin/*
+.c9revisions/*
+tools/*
