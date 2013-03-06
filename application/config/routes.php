@@ -64,6 +64,7 @@
 |
 */
 
+$route['home/create'] = 'home/create';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 
