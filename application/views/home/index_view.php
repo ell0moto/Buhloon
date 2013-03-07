@@ -20,7 +20,7 @@
                     <div class="vertical">
                         <div class="centered">
                                 <!-- Start of forms -->
-                                <?= form_open($form_destination, array('class' => 'form-horizontal')) ?>
+                            <?= form_open($form_destination, array('class' => 'form-horizontal')) ?>
                                 <fieldset>
                                     <div class="control-group">
                                         <div class="controls">

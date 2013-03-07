@@ -66,7 +66,7 @@ $config['join']['groups'] = 'group_id';
  | Becareful how high you set max_rounds, I would do your own testing on how long it takes
  | to encrypt with x rounds.
  */
-$config['hash_method']    = 'sha1';	// IMPORTANT: Make sure this is set to either sha1 or bcrypt
+$config['hash_method']    = 'bcrypt';	// IMPORTANT: Make sure this is set to either sha1 or bcrypt
 $config['default_rounds'] = 8;		// This does not apply if random_rounds is set to true
 $config['random_rounds']  = FALSE;
 $config['min_rounds']     = 5;
@@ -81,21 +81,21 @@ $config['max_rounds']     = 9;
  | The controller should check this function and act
  | appropriately. If this variable set to 0, there is no maximum.
  */
-$config['site_title']                 = "Example.com";       // Site Title, example.com
-$config['admin_email']                = "admin@example.com"; // Admin Email, admin@example.com
+$config['site_title']                 = "buhloon.com";       // Site Title, example.com
+$config['admin_email']                = "matthew.alexander.maher@gmail.com"; // Admin Email, admin@example.com
 $config['default_group']              = 'members';           // Default group, use name
 $config['admin_group']                = 'admin';             // Default administrators group, use name
-$config['identity']                   = 'email';             // A database column which is used to login with
+$config['identity']                   = 'username';             // A database column which is used to login with
 $config['min_password_length']        = 8;                   // Minimum Required Length of Password
 $config['max_password_length']        = 20;                  // Maximum Allowed Length of Password
 $config['email_activation']           = FALSE;               // Email Activation for registration
 $config['manual_activation']          = FALSE;               // Manual Activation for registration
 $config['remember_users']             = TRUE;                // Allow users to be remembered and enable auto-login
 $config['user_expire']                = 86500;               // How long to remember the user (seconds). Set to zero for no expiration
-$config['user_extend_on_login']       = FALSE;               // Extend the users cookies everytime they auto-login
-$config['track_login_attempts']       = FALSE;               // Track the number of failed login attempts for each user or ip.
+$config['user_extend_on_login']       = TRUE;               // Extend the users cookies everytime they auto-login
+$config['track_login_attempts']       = TRUE;               // Track the number of failed login attempts for each user or ip.
 $config['maximum_login_attempts']     = 3;                   // The maximum number of failed login attempts.
-$config['lockout_time']               = 600;                 // The number of miliseconds to lockout an account due to exceeded attempts
+$config['lockout_time']               = 60000;                 // The number of miliseconds to lockout an account due to exceeded attempts
 $config['forgot_password_expiration'] = 0;                   // The number of miliseconds after which a forgot password request will expire. If set to 0, forgot password requests will not expire.
 
 

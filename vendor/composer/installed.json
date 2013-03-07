@@ -69,5 +69,51 @@
             "codeigniter",
             "templating"
         ]
+    },
+    {
+        "name": "jamierumbelow/pigeon",
+        "version": "v0.2.0",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/jamierumbelow/pigeon.git",
+            "reference": "v0.2.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/jamierumbelow/pigeon/zipball/v0.2.0",
+            "reference": "v0.2.0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.1"
+        },
+        "time": "2012-09-25 08:53:19",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "libraries/pigeon.php"
+            ]
+        },
+        "notification-url": "http://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jamie Rumbelow",
+                "email": "jamie@jamierumbelow.net",
+                "homepage": "http://jamierumbelow.net"
+            }
+        ],
+        "description": "Intelligent, elegant routing for CodeIgniter",
+        "homepage": "https://github.com/jamierumbelow/pigeon",
+        "keywords": [
+            "codeigniter",
+            "rest",
+            "routes",
+            "routing"
+        ]
     }
 ]

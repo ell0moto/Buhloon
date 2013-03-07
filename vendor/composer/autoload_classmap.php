@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Pigeon' => $baseDir . '/vendor/jamierumbelow/pigeon/libraries/pigeon.php',
     'Template' => $baseDir . '/vendor/polycademy/citemplating/src/Template.php',
     'lessc' => $baseDir . '/vendor/leafo/lessphp/lessc.inc.php',
     'lessc_formatter_classic' => $baseDir . '/vendor/leafo/lessphp/lessc.inc.php',

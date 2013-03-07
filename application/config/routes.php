@@ -64,7 +64,12 @@
 |
 */
 
-$route['home/create'] = 'home/create';
+Pigeon::map(function($r){
+    $r->route('posts/(:num)', 'posts/show/$1');
+});
+
+$route = Pigeon::draw();
+
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 

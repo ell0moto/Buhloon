@@ -27,9 +27,9 @@ class User_model extends CI_Model {
 
 	   $query = $this->db->get();
 
-	   if($query->num_rows() == 1) //returns the number of rows from the query
+	   if($query->num_rows() == 1) //num_rows() returns the number of rows from the query
 	   {
-	     return $query->result();
+	     return $query->result(); //result() returns the query result as an array of objects
 	   }
 	   else
 	   {
