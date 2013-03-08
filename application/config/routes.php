@@ -65,7 +65,15 @@
 */
 
 Pigeon::map(function($r){
-    $r->route('posts/(:num)', 'posts/show/$1');
+
+	$r->resources('posts');
+	
+	//SESSION ROUTES
+	$r->get('sessions/new', 'home/index');
+	$r->post('sessions', 'home/login');
+	//$r->delete('sessions', 'user_sessions/logout');
+	$r->get('sessions/logout', 'main/logout'); //FALLBACK BECAUSE WE DONT HAVE AJAX YET
+
 });
 
 $route = Pigeon::draw();

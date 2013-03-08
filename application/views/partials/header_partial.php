@@ -54,13 +54,24 @@
                                 </ul>
                             </li>
                         </ul> -->
-                        <!-- <form class="navbar-form pull-right"> -->
+                        <? if(!$this->ion_auth->logged_in()): ?> <!-- Condition statement showing login or text -->
                         <?= form_open($form_destination, array('class' => 'navbar-form pull-right')) ?>
-                            <input class="span2" type="text" name="check_username" placeholder="User Name">
-                            <input class="span2" type="password" name="check_password" placeholder="Password">
+                        <?= ($login_messages) ? $login_messages : false?>
+                            <input class="span2" type="text" name="username" placeholder="User Name">
+                            <input class="span2" type="password" name="password" placeholder="Password">
                             <button type="submit" class="btn">Sign in</button>
                         </form>
-                    <!-- </div> -->
+                        <? else: ?>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right">
+                                <li><a href="#add-new" data-toggle="modal">Add New</a></li>
+                                <li><a href="#">Activity</a></li>
+                                <li><a href="<?= base_url() ?>/main/logout">Logout</a></li>
+                                <!-- <li><a href="#contact">Contact</a></li> -->
+                            </ul>
+                        </div> 
+                        <? endif; ?>
+                    </div>
                 </div>
             </div>
         </div>

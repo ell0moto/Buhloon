@@ -5226,8 +5226,16 @@ body {
 }
 .navbar-form.pull-right {
   margin-top: 50px;
+  /* Moves User name, Password, Sign in to the bottom of NavBar*/
+
 }
-/* Moves User name, Password, Sign in to the bottom of NavBar*/
+.navbar-form.pull-right p {
+  color: #a3a3a3;
+  font-family: Myriad Pro;
+  margin: 10px;
+  float: left;
+  font-style: italic;
+}
 .navbar-inner {
   background-color: #cde4f1;
   background-image: none;
@@ -6693,3 +6701,5 @@ body {
     overflow: visible !important;
   }
 }
+
+/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */

@@ -20,13 +20,13 @@
                     <div class="vertical">
                         <div class="centered">
                                 <!-- Start of forms -->
-                            <?= form_open($form_destination, array('class' => 'form-horizontal')) ?>
+                            <?= form_open($form_destination2, array('class' => 'form-horizontal')) ?>
                                 <fieldset>
                                     <div class="control-group">
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-user"></i></span>
-                                                <input type="text" id="form_username" name="set_username" placeholder="Enter a username" />
+                                                <input type="text" id="form_username" name="username" placeholder="Enter a username" />
                                             </div>
                                         </div>
                                     </div>
@@ -34,12 +34,13 @@
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-lock"></i></span>
-                                                <input type="text" id="form_password" name="set_password" placeholder="Enter a password" />
+                                                <input type="password" id="form_password" name="password" placeholder="Enter a password" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-actions"> <!-- button -->
                                         <button type="submit" class="btn btn-primary" name="submit">Register</button>
+                                        <?= ($login_messages2) ? $login_messages : false?>
                                     </div>
                                 </fieldset>
                             </form>
