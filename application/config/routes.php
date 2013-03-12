@@ -69,10 +69,10 @@ Pigeon::map(function($r){
 	$r->resources('posts');
 	
 	//SESSION ROUTES
-	$r->get('sessions/new', 'home/index');
-	$r->post('sessions', 'home/login');
+	$r->post('sessions', 'sessions/login');
+	$r->post('sessions/register', 'sessions/register');
 	//$r->delete('sessions', 'user_sessions/logout');
-	$r->get('sessions/logout', 'main/logout'); //FALLBACK BECAUSE WE DONT HAVE AJAX YET
+	$r->get('sessions/logout', 'sessions/logout'); //FALLBACK BECAUSE WE DONT HAVE AJAX YET
 
 });
 

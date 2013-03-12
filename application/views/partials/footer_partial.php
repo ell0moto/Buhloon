@@ -32,21 +32,68 @@
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
 
+    <!-- Rewards Modal -->
+    <div id="rewards" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Specific rewards<span>  (enter details for each form)</span></h3>
+        </div>
+        <div class="modal-body">
+                            <?= form_open($form_destination_reward, array('class' => 'form-horizontal', 'id' => 'add-new-forms')) ?>
+                            <!-- <form id="add-new-forms" class="form-horizontal" accept-charset="utf-8" method="post" action="#"> -->
+                                <fieldset>
+                                    <div class="control-group">
+                                        <div class="controls controls-row">
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-gift"></i></span>
+                                                <input type="text" name="title" placeholder="Name of reward" />
+                                                <span class="help-inline or-span"></span>
+                                            </div>
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-tags"></i></span>
+                                                <input type="text" name="ribbon_cost" placeholder="Number of ribbins for reward" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                    <div class="modal-footer">
+                                        <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
+                                        <button class="btn btn-primary" type='submit' value='true' name='submit' aria-hidden="true">Create reward</button>
+                                    </div>
+                            </form>
+        </div>
+    </div> <!-- End of model -->
+
+    <!-- Activity Modal -->
+    <div id="activity" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Activity<span>  (choose to accept or decline activities)</span></h3>
+        </div>
+        <div class="modal-body">
+            <!-- Insert dynamic content -->
+        </div>
+        <div class="modal-footer">
+            <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
+            <!-- <button class="btn btn-primary" class="close" data-dismiss="modal" aria-hidden="true">Create reward</button> -->
+        </div>
+    </div> <!-- End of model -->
+
             <!-- Add New Modal -->
     <div id="add-new" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Add new task<span> (enter details for each form)</span></h3>
+            <h3 id="myModalLabel">Add new goal<span>  (enter details for each form)</span></h3>
         </div>
         <div class="modal-body">
-            
-                            <form id="add-new-forms" class="form-horizontal" accept-charset="utf-8" method="post" action="#">
+                            <?= form_open($form_destination_plan, array('class' => 'form-horizontal', 'id' => 'add-new-forms')) ?>
+                            <!-- <form id="add-new-forms" class="form-horizontal" accept-charset="utf-8" method="post" action="#"> -->
                                 <fieldset>
                                     <div class="control-group">
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-tag"></i></span>
-                                                <input type="text" id="form_username" name="username" placeholder="Name of task" />
+                                                <input type="text" id="form_username" name="title" placeholder="Name of task" />
                                             </div>
                                         </div>
                                     </div>
@@ -54,7 +101,7 @@
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-list-alt"></i></span>
-                                                <input type="text" id="form_password" name="password" placeholder="Short description" />
+                                                <input type="text" id="form_password" name="description" placeholder="Short description" />
                                             </div>
                                         </div>
                                     </div>
@@ -62,10 +109,10 @@
                                         <div class="controls controls-row">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-user"></i></span>
-                                                <input type="text" id="form_password" name="password" placeholder="New user" />
+                                                <input type="text" id="form_password" name="name" placeholder="New user" />
                                                 <span class="help-inline or-span"> Or </span>
                                             </div>
-                                            <select id="form_service" name="service" >
+                                            <select id="form_service" name="service" > <!-- Will need to work on with dynamic content -->
                                                 <option> Ben </option>
                                                 <option> Sally </option>
                                                 <option selected="selected">Existing user</option>
@@ -75,7 +122,7 @@
                                     <div class="control-group">
                                         <label class="control-label iterations-label" for="form_progress"> Iterations to acheive goal </label>
                                             <div class="controls">
-                                                <select id="form_service" class="iterations-form" name="service" >
+                                                <select id="form_service" class="iterations-form" name="iteration" >
                                                     <option selected="selected"> 1 </option>
                                                     <option> 2 </option>
                                                     <option> 3 </option>
@@ -93,14 +140,14 @@
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-gift"></i></span>
-                                                <input type="text" id="form_password" name="password" placeholder="Specific Reward (or leave blank)" />
+                                                <input type="text" id="form_password" name="specific_reward" placeholder="Specific reward (or leave blank)" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label ribbins-label" for="form_progress"> Ribbins to reward </label>
+                                        <label class="control-label ribbins-label" for="form_progress"> Ribbins on completion </label>
                                             <div class="controls">
-                                                <select id="form_service" class="iterations-form" name="service" >
+                                                <select id="form_service" class="iterations-form" name="no_ribbon" >
                                                     <option selected="selected"> 1 </option>
                                                     <option> 2 </option>
                                                     <option> 3 </option>
@@ -116,13 +163,13 @@
                                     </div>
 
                                 </fieldset>
+                                <div class="modal-footer">
+                                    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
+                                    <button class="btn btn-primary" type='submit' value='true' name='submit' aria-hidden="true">Create goal</button>
+                                </div>
                             </form>
+        </div>
 
-        </div>
-        <div class="modal-footer">
-            <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
-            <button class="btn btn-primary" class="close" data-dismiss="modal" aria-hidden="true">Create task</button>
-        </div>
     </div> <!-- End of model -->
 
     </body>

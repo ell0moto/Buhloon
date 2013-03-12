@@ -55,7 +55,7 @@
                             </li>
                         </ul> -->
                         <? if(!$this->ion_auth->logged_in()): ?> <!-- Condition statement showing login or text -->
-                        <?= form_open($form_destination, array('class' => 'navbar-form pull-right')) ?>
+                        <?= form_open($form_destination_login, array('class' => 'navbar-form pull-right')) ?>
                         <?= ($login_messages) ? $login_messages : false?>
                             <input class="span2" type="text" name="username" placeholder="User Name">
                             <input class="span2" type="password" name="password" placeholder="Password">
@@ -64,9 +64,10 @@
                         <? else: ?>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right">
+                                <li><a href="#rewards" data-toggle="modal">Rewards</a></li>
                                 <li><a href="#add-new" data-toggle="modal">Add New</a></li>
-                                <li><a href="#">Activity</a></li>
-                                <li><a href="<?= base_url() ?>/main/logout">Logout</a></li>
+                                <li><a href="#activity" data-toggle="modal">Activity</a></li>
+                                <li><a href="<?= base_url() ?>/sessions/logout">Logout</a></li>
                                 <!-- <li><a href="#contact">Contact</a></li> -->
                             </ul>
                         </div> 
