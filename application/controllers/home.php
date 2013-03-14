@@ -23,13 +23,13 @@ class Home extends CI_Controller {
 
 		// if (first section = true) display (first section 'login message') else (first section = false)
 		$login_messages = ($this->session->flashdata('message')) ? $this->session->flashdata('message') : false;
-		$login_messages2 = ($this->session->flashdata('message2')) ? $this->session->flashdata('message') : false;
+		$login_messages2 = ($this->session->flashdata('message2')) ? $this->session->flashdata('message2') : false;
 
 		$this->view_data += array(
 			'form_destination_login' 	=> base_url() . 'sessions/login',
 			'form_destination_register' => base_url() . 'sessions/register',
 			'login_messages'	=> $login_messages,
-			'login_messages2'	=> $login_messages2,
+			'login_messages2'	=> $login_messages2
 		);
 
 		Template::compose('index', $this->view_data, 'default');

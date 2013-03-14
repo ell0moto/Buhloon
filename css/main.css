@@ -5228,13 +5228,15 @@ body {
   margin-top: 50px;
   /* Moves User name, Password, Sign in to the bottom of NavBar*/
 
-}
-.navbar-form.pull-right p {
-  color: #a3a3a3;
-  font-family: Myriad Pro;
-  margin: 10px;
-  float: left;
-  font-style: italic;
+  /*		p {
+			color: #a3a3a3;
+			font-family: Myriad Pro;
+			margin: 10px;
+			float: left;
+			font-style: italic;
+		}*/
+  /*Was used to style error messages*/
+
 }
 .navbar-inner {
   background-color: #cde4f1;
@@ -5245,7 +5247,7 @@ body {
 }
 /* Changes NavBar color & removes gradient */
 .navbar .brand {
-  margin-left: 0px;
+  margin-left: -20px;
 }
 /* Moves logo slightly to the right */
 .navbar-inner {
@@ -5265,6 +5267,22 @@ body {
   width: 940px !important;
 }
 /* Stops expanding navbar*/
+.alert {
+  position: absolute;
+  width: 889px;
+}
+.alert p {
+  display: inline;
+}
+/* Positions alert box */
+.alert-success {
+  position: absolute;
+  width: 889px;
+}
+.alert-success p {
+  display: inline;
+}
+/* Positions alert box */
 .home-section1 .vertical {
   /* There are many ways of positioning things vertically, but this is the easiest. It does have a drawback of not working in old IE versions. Furthermore another method for images would be setting it on the background instead. */
 

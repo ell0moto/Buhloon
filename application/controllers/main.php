@@ -24,14 +24,12 @@ class Main extends CI_Controller {
 		}
 
 		// if (first section = true) display (first section 'login message') else (first section = false)
-		$login_messages = ($this->session->flashdata('message')) ? $this->session->flashdata('message') : false;
-		$login_messages2 = ($this->session->flashdata('message')) ? $this->session->flashdata('message') : false;
+		$login_messages3 = ($this->session->flashdata('message')) ? $this->session->flashdata('message') : false;
 
 		$this->view_data += array(
 			'form_destination_reward' 	=> base_url() . 'incentive/create',
-			'form_destination_plan' => base_url() . 'operation/add',
-			'login_messages'	=> $login_messages,
-			'login_messages2'	=> $login_messages2,
+			'form_destination_plan' => base_url() . 'operation/create',
+			'login_messages3'	=> $login_messages3,
 		);
 
 		Template::compose('index', $this->view_data, 'default');

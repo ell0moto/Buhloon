@@ -12,7 +12,7 @@ class Operation extends CI_Controller {
 
     }
 
-    public function add() 
+    public function create() 
     {
 		$title = $this->input->post('title');
 		$description = $this->input->post('description');
@@ -30,26 +30,24 @@ class Operation extends CI_Controller {
 
 		if($this->form_validation->run() == true)
 		{
+			// Form validation successful
 
 			$user_id = $this->ion_auth->get_user_id();
+			// Send input to children_model, receives children_id required for plan_model.
+			$children_id = $this->children_model->add_child($user_id, $name); 
 
-			$this->children_model->add_child($user_id, $name); //sends input to children_model for processing
-
-			$query = $this->children_model->get_child($user_id, $name); //receives output back from children_model
-			if (!empty($query))									
+			if (!empty($children_id))									
 			{
-				
-				$firstkey = $query['0']; //Due to the way the array comes in from children_model
-				$children_id = $firstkey['id'];
-
+				//  Children_model returned a id to children_id successfully
 				$this->plan_model->add_plan($user_id, $children_id, $title, $description, $iteration, $specific_reward, $no_ribbon);
 				redirect('main');
+			}else{
+
+				// Children_id unccessful
+				//put in a error message 
+
 			}
 
-			//put in a error message 
-			FB::log($query, 'Please work');
-			FB::log($children_id, 'One more time');
-		
 		}else{
 
 			// //form validation not successful

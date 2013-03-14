@@ -25,7 +25,6 @@ class Sessions extends CI_Controller {
 			
 				//login successful
 				redirect('main');
-				return $username;
 
 			}else{
 			
@@ -57,20 +56,20 @@ class Sessions extends CI_Controller {
 			if($this->ion_auth->register($username, $password)){ //login input is ran to the ionAuth 'login' model & returns a boolean. 
 			
 				//registration successful
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
+				$this->session->set_flashdata('message2', $this->ion_auth->messages());
 				redirect('home');
 			}else{
 			
 				//registration not successful
-				//$this->session->set_flashdata('message2', $this->ion_auth->errors());
+				$this->session->set_flashdata('message', $this->ion_auth->errors());
 				redirect($this->input->server('HTTP_REFERER'));
 			}
 		
 		}else{
 
 			//form validation not successful
-			//$errors = trim(validation_errors()); //there's a bug in set_flashdata which dies when there's newline whitespace, we're just trimming it here to prevent any errors
-			//$this->session->set_flashdata('message2', $errors);
+			$errors = trim(validation_errors()); //there's a bug in set_flashdata which dies when there's newline whitespace, we're just trimming it here to prevent any errors
+			$this->session->set_flashdata('message', $errors);
 			redirect($this->input->server('HTTP_REFERER'));
 		}
     }

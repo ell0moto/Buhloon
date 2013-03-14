@@ -46,12 +46,12 @@
                                         <div class="controls controls-row">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-gift"></i></span>
-                                                <input type="text" name="title" placeholder="Name of reward" />
+                                                <input type="text" name="title" placeholder="Reward name" />
                                                 <span class="help-inline or-span"></span>
                                             </div>
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-tags"></i></span>
-                                                <input type="text" name="ribbon_cost" placeholder="Number of ribbins for reward" />
+                                                <input type="text" name="ribbon_cost" placeholder="Number of ribbons for reward" />
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
     <div id="activity" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Activity<span>  (choose to accept or decline activities)</span></h3>
+            <h3 id="myModalLabel">Activity<span>  (oversee what has been happening)</span></h3>
         </div>
         <div class="modal-body">
             <!-- Insert dynamic content -->
@@ -93,7 +93,7 @@
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-tag"></i></span>
-                                                <input type="text" id="form_username" name="title" placeholder="Name of task" />
+                                                <input type="text" id="form_username" name="title" placeholder="Name of goal" />
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label iterations-label" for="form_progress"> Iterations to acheive goal </label>
+                                        <label class="control-label iterations-label" for="form_progress"> Steps before achieving goal </label>
                                             <div class="controls">
                                                 <select id="form_service" class="iterations-form" name="iteration" >
                                                     <option selected="selected"> 1 </option>
@@ -145,7 +145,7 @@
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label ribbins-label" for="form_progress"> Ribbins on completion </label>
+                                        <label class="control-label ribbins-label" for="form_progress"> Ribbons on completion </label>
                                             <div class="controls">
                                                 <select id="form_service" class="iterations-form" name="no_ribbon" >
                                                     <option selected="selected"> 1 </option>

@@ -1,7 +1,19 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
- <div class="container">
+<div class="container">
         <div id="myCarousel" class="carousel slide" data-interval="0"> <!-- Carousel -->
+            <? if($login_messages): ?>
+                <div class="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Opps!</strong> <?= ($login_messages) ?>
+                </div>
+            <? elseif($login_messages2): ?>
+                <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Success!</strong> <?= ($login_messages2) ?>
+                </div>
+            <? else: ?>
+            <? endif; ?>
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -52,8 +64,8 @@
       <!-- Carousel nav -->
             <!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a> -->
             <a class="carousel-control right" href="#myCarousel" data-slide="next"><p>Get started</p><p> it's free &rsaquo;</p></a>
-        </div>
-    </div> <!-- End of Carousel -->
+        </div>  <!-- End of Carousel -->
+    </div>
 
     <div class="home-section2"> <!-- Start of second section -->
         <div class="top-bottom-pattern">
@@ -78,3 +90,4 @@
             </div>
         </div>
     </div> <!-- End of third section -->
+
