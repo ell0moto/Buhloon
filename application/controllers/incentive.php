@@ -22,12 +22,10 @@ class Incentive extends CI_Controller {
 		if($this->form_validation->run() == true){
 			
 			$user_id = $this->ion_auth->get_user_id();
-
 			$this->reward_model->post_reward($title, $ribbon_cost, $user_id);
 			
 			redirect('main');
 
-		
 		}else{
 
 			// //form validation not successful

@@ -33,17 +33,17 @@ class Operation extends CI_Controller {
 			// Form validation successful
 
 			$user_id = $this->ion_auth->get_user_id();
-			// Send input to children_model, receives children_id required for plan_model.
-			$children_id = $this->children_model->add_child($user_id, $name); 
+			// Send input to children_model, receives child_id required for plan_model.
+			$child_id = $this->children_model->add_child($user_id, $name); 
 
-			if (!empty($children_id))									
+			if (!empty($child_id))									
 			{
-				//  Children_model returned a id to children_id successfully
-				$this->plan_model->add_plan($user_id, $children_id, $title, $description, $iteration, $specific_reward, $no_ribbon);
+				//  Children_model returned an id to $child_id successfully
+				$this->plan_model->add_plan($user_id, $child_id, $title, $description, $iteration, $specific_reward, $no_ribbon);
 				redirect('main');
 			}else{
 
-				// Children_id unccessful
+				// Child_id unccessful
 				//put in a error message 
 
 			}

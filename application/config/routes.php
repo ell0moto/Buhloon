@@ -66,13 +66,23 @@
 
 Pigeon::map(function($r){
 
-	$r->resources('posts');
+	$r->route('api', false, function($r) {
+
+	$r->resources('rest'); //Remove 'posts' and lists all the controllers
 	
 	//SESSION ROUTES
 	$r->post('sessions', 'sessions/login');
 	$r->post('sessions/register', 'sessions/register');
 	//$r->delete('sessions', 'user_sessions/logout');
 	$r->get('sessions/logout', 'sessions/logout'); //FALLBACK BECAUSE WE DONT HAVE AJAX YET
+
+	$r->get('migrate', 'migrate/index');
+	$r->get('migrate/revert', 'migrate/revert');
+
+	
+	});
+
+	$r->route('(.*)', 'home#index');
 
 });
 

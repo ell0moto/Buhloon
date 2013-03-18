@@ -29,7 +29,29 @@ class Children_model extends CI_Model {
 		$result = $query->row_array();
 		return $result['id'];
 		
-	} 
+	}
+
+	public function get_child($user_id, $child_id, $single=FALSE) {
+	  	
+	  	$this->db->select(); 
+		$this->db->where('user_id', $user_id);
+		$this->db->where('id', $child_id);
+		$query=$this->db->get('children');
+	  	$result = $query->result_array();
+	  		if($single) {
+	    	return $result[0];
+	  		}
+	  		return $result;
+	}
+
+	public function delete_child($table, $user_id, $child_id) {
+  		
+  		$this->db->where('user_id', $user_id)
+  		$this->db->where('id', $child_id)
+  		$this->db->delete($table);
+  		return $this->db->affected_rows();
+	}
+
 
 	public function name_check($user_id, $name) // Helper function
 	{	
@@ -44,5 +66,6 @@ class Children_model extends CI_Model {
 			}
 		}
 	}
+
 
 }
