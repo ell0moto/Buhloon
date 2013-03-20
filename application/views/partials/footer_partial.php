@@ -39,7 +39,7 @@
             <h3 id="myModalLabel">Specific rewards<span>  (enter details for each form)</span></h3>
         </div>
         <div class="modal-body">
-                            <?= form_open($form_destination_reward, array('class' => 'form-horizontal', 'id' => 'add-new-forms')) ?>
+                            <form class = "form-horizontal" id = "add-new-forms">
                             <!-- <form id="add-new-forms" class="form-horizontal" accept-charset="utf-8" method="post" action="#"> -->
                                 <fieldset>
                                     <div class="control-group">
@@ -86,7 +86,7 @@
             <h3 id="myModalLabel">Add new goal<span>  (enter details for each form)</span></h3>
         </div>
         <div class="modal-body">
-                            <?= form_open($form_destination_plan, array('class' => 'form-horizontal', 'id' => 'add-new-forms')) ?>
+                            <form class="form-horizontal" id = "add-new-forms" >
                             <!-- <form id="add-new-forms" class="form-horizontal" accept-charset="utf-8" method="post" action="#"> -->
                                 <fieldset>
                                     <div class="control-group">

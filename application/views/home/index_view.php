@@ -2,7 +2,7 @@
 
 <div class="container">
         <div id="myCarousel" class="carousel slide" data-interval="0"> <!-- Carousel -->
-            <? if($login_messages): ?>
+<!--             <? if($login_messages): ?>
                 <div class="alert">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Opps!</strong> <?= ($login_messages) ?>
@@ -13,7 +13,7 @@
                 <strong>Success!</strong> <?= ($login_messages2) ?>
                 </div>
             <? else: ?>
-            <? endif; ?>
+            <? endif; ?> -->
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -32,7 +32,7 @@
                     <div class="vertical">
                         <div class="centered">
                                 <!-- Start of forms -->
-                            <?= form_open($form_destination_register, array('class' => 'form-horizontal')) ?>
+                            <form class="form-horizontal">
                                 <fieldset>
                                     <div class="control-group">
                                         <div class="controls">
@@ -52,7 +52,6 @@
                                     </div>
                                     <div class="form-actions"> <!-- button -->
                                         <button type="submit" class="btn btn-primary" name="submit">Register</button>
-                                        <?= ($login_messages2) ? $login_messages : false?>
                                     </div>
                                 </fieldset>
                             </form>

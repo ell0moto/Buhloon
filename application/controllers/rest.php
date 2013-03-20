@@ -24,19 +24,13 @@ class Rest extends CI_Controller{
 		if($query) {
 
 			foreach ($query as &$course) {
-
 				$course = output_message_mapper($course);
 			}
-
-			$output = $query;
+				$output = $query;
 
 		}else{
 
 			$this->output->set_status_header('404');
-
-			/**
-			*
-			**/
 
 			$output = array(
 				'error' => 'something went horribly wrong'
@@ -47,11 +41,21 @@ class Rest extends CI_Controller{
 
 	} 
 
-	 // Gets one 'item'
+	// Gets one 'item'
 	public function show($id) {
 
+		$query = $this->Rest_model->read($id);		
 		
+		if($query){
+			$output = $query;
+		}else{
+
+		}
+		
+		Template::compose(false, $output, 'json');
+
 	}
+
 	public function create() {}
 	public function update($id) {}
 	public function delete($id) {}

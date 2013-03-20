@@ -2,16 +2,14 @@
 
 class Sessions extends CI_Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
 
 		$this->load->library('form_validation');
 
     }
 
-    public function login() 
-    {
+    public function login() {
 
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
@@ -43,8 +41,8 @@ class Sessions extends CI_Controller {
 	}
 
 
-    public function register() 
-    {
+    public function register() {
+
     	$username = $this->input->post('username');
 		$password = $this->input->post('password');
 	
@@ -76,11 +74,20 @@ class Sessions extends CI_Controller {
 
     //log a user with the id of $id
 	//make sure to authenticate the request that the person actually owns the $id
-	public function logout(){
+	public function logout() {
 	
 		$this->ion_auth->logout();
 		redirect('home');
-	
+	}
+
+	public function index() {}
+	public function create() {}
+	public function show($id) {}
+	public function update($id) {}
+	public function delete($id) {}
+
+	protected function authenticated(){
+	//check if person was authenticated
 	}
 
 }

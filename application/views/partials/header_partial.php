@@ -55,7 +55,7 @@
                             </li>
                         </ul> -->
                         <? if(!$this->ion_auth->logged_in()): ?> <!-- Condition statement showing login or header text -->
-                        <?= form_open($form_destination_login, array('class' => 'navbar-form pull-right')) ?>
+                        <form class = "navbar-form pull-right" >
                             <input class="span2" type="text" name="username" placeholder="User Name">
                             <input class="span2" type="password" name="password" placeholder="Password">
                             <button type="submit" class="btn">Sign in</button>

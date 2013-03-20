@@ -68,9 +68,19 @@ Pigeon::map(function($r){
 
 	$r->route('api', false, function($r) {
 
-	$r->resources('rest'); //Remove 'posts' and lists all the controllers
+	$r->resources('rest'); //This is an example controller
+
+
+	// $r->resources('main');
+
+	// $r->resources('sessions'); //for registering & loggin in
+	// $r->resources('operations'); //for childrens goals
+	// $r->resources('incentives'); //for rewards
+
+
 	
 	//SESSION ROUTES
+	// first paramater 'URL', second 'controller method'
 	$r->post('sessions', 'sessions/login');
 	$r->post('sessions/register', 'sessions/register');
 	//$r->delete('sessions', 'user_sessions/logout');
@@ -83,6 +93,8 @@ Pigeon::map(function($r){
 	});
 
 	$r->route('(.*)', 'home#index');
+	//$r->route('(:any)', 'home#index');
+	//$r->route('(:any)/(:any)', 'home#index');
 
 });
 

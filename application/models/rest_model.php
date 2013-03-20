@@ -44,4 +44,23 @@ class Rest_model extends CI_Model {
 
 		return $data;
 	}
+
+	public function read($id) {
+
+		$query = $this->dummy_data;
+		
+		if($query){
+
+			foreach($query as $key => $values) {
+			if ($values['id'] == $id) {
+			return $values;
+				}
+			}
+
+		}else{
+
+			return false;
+		}
+	}
+
 }
