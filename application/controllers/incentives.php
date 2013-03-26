@@ -7,7 +7,23 @@ class Incentives extends CI_Controller {
 		$this->load->model('reward_model');
     }
 
-    public function index() {}
+    public function index() {
+
+    	$data['user_id'] = $this->ion_auth->get_user_id(); 
+		$query = $this->reward_model->get_reward($data);
+
+		if($query){
+			$output = output_message_mapper($query);
+		}else{
+			$this->output->set_status_header('404');
+			$output = array(
+				'error'			=> output_message_mapper($this->reward_model->get_errors()),
+			);
+		}
+		
+		Template::compose(false, $output, 'json');
+
+    }
 
     public function create() {
 
@@ -35,31 +51,15 @@ class Incentives extends CI_Controller {
 
 	}
 
-	public function show() {
-
-		$data['user_id'] = $this->ion_auth->get_user_id(); 
-		$query = $this->reward_model->get_reward($data);
-
-		if($query){
-			$output = output_message_mapper($query);
-		}else{
-			$this->output->set_status_header('404');
-			$output = array(
-				'error'			=> output_message_mapper($this->reward_model->get_errors()),
-			);
-		}
-		
-		Template::compose(false, $output, 'json');
-
-	}
+	public function show($id) {}
 
 	public function update($id) {}
 
-	public function delete($id) {
+	public function delete($data) {
 
 		$this->authenticated();
 
-		$query = $this->reward_model->delete_reward($id);
+		$query = $this->reward_model->delete_reward($data);
 
 		if($query){
 			$output = array(

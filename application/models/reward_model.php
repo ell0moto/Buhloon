@@ -22,8 +22,8 @@ class Reward_model extends CI_Model {
 				'NotEmpty',
 				'Number',
 			),
-			'title' => array(
-				'set_label:Title',
+			'title_of_reward' => array(
+				'set_label:Rewards title',
 				'NotEmpty',
 				'AlphaNumericSpace',
 				'MinLength:3',
@@ -74,7 +74,7 @@ class Reward_model extends CI_Model {
 			$data = array(
 				'id'				=> $id,
 				'user_id'			=> $row->user_id,
-				'title'				=> $row->title,
+				'title_of_reward'	=> $row->title_of_reward,
 				'ribbon_cost'		=> $row->ribbon_cost,
 			);
 			return $data;

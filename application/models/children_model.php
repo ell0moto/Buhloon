@@ -22,8 +22,8 @@ class Children_model extends CI_Model {
 				'NotEmpty',
 				'Number',
 			),
-			'name' => array(
-				'set_label:Name',
+			'name_of_child' => array(
+				'set_label:Childs Name',
 				'NotEmpty',
 				'AlphaNumericSpace',
 				'MinLength:3',
@@ -45,7 +45,7 @@ class Children_model extends CI_Model {
 
 			$query = $this->db->insert('children', $data);
 
-				if(!$query){
+				if(!$query) {
 	 
 		            $msg = $this->db->_error_message();
 		            $num = $this->db->_error_number();
@@ -63,47 +63,40 @@ class Children_model extends CI_Model {
 	        return $this->db->insert_id();
 		}
 
-		// Retireves unique id from database, and returns id
+		// Retrieves unique id from database, and returns id
 		$this->db->select('id'); 
 		$this->db->where('user_id', $data['user_id']); 
-		$this->db->where('name', $data['name']); 
+		$this->db->where('name_of_child', $data['name_of_child']); 
 		$query = $this->db->get('children');
-		$result = $query->row_array();
-		return $result['id'];
 
-	}
 
-	public function get_child_name($data) {
+			if(!$query) {
+	 
+		       	$msg = $this->db->_error_message();
+		        $num = $this->db->_error_number();
+		        $last_query = $this->db->last_query();
+					
+		        log_message('error', 'Problem retireving child id: ' . $msg . ' (' . $num . '), using this query: "' . $last_query . '"');
+					
+				$this->errors = array(
+					'database'	=> 'Problem retireving child id.',
+					);
+					
+		        return false;
 
-		$result = $this->get_children($data);
+	        }else{
 
-		foreach($result as $key => $values) {
-			if ($values['id'] == $data['child_id']) {
-			return $values['name']; //Will need to return as an array
-			}else{
-				return false;
-			}
-		}
+	        	$result = $query->row_array();
+				return $result['id'];
+	        }
+
 	}
 
 	public function get_child($data) {
-
-		$result = $this->get_children($data);
-
-		foreach($result as $key => $values) {
-			if ($values['id'] == $data['child_id']) {
-			return $values; //Will need to return as an array
-			}else{
-				return false;
-			}
-		}
-	}
-
-	public function get_children($data) {
 	  	
 	  	$this->db->select(); 
 		$this->db->where('user_id', $data['user_id']);
-		// $this->db->where('id', $data['child_id']);
+		$this->db->where('id', $data['child_id']);
 		$query=$this->db->get('children');
 		
 		if($query->num_rows() > 0){
@@ -111,7 +104,7 @@ class Children_model extends CI_Model {
 			$data = array(
 				'id'				=> $id,
 				'user_id'			=> $row->user_id,
-				'name'				=> $row->name,
+				'name_of_child'		=> $row->name_of_child,
 				'total_ribbon'		=> $row->total_ribbon,
 				'spent_ribbon'		=> $row->spent_ribbon,
 				'net_ribbon'		=> $row->net_ribbon,
@@ -126,7 +119,7 @@ class Children_model extends CI_Model {
 		}
 	}
 
-	public function delete_child($data) {
+	public function delete_child($data) { //May not be required
   		
   		$this->db->where('user_id', $data['user_id'])
   		$this->db->where('id', $data['child_id'])
@@ -151,7 +144,7 @@ class Children_model extends CI_Model {
 
   		// Runs loop to search for particular value, if found returns that value
 		foreach($result as $key => $values) {
-			if ($values['name'] == $data['name']) {
+			if ($values['name_of_child'] == $data['name_of_child']) {
 			return true;
 			}else{
 				return false;

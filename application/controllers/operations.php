@@ -8,19 +8,20 @@ class Operations extends CI_Controller {
 		$this->load->model('children_model');
     }
 
-    public function index() { //gets specific plan with child name
+    public function index() { //gets specific plan
 
-    	$query['child_name'] = $this->children_model->get_child_name($data);
-    	$query[''] = $this->plan_model->get_plan($data);
+		$data['user_id'] = $this->ion_auth->get_user_id(); 
+    	$query = $this->plan_model->get_plan($data);
 
     	if($query){
-			foreach($query as &$course){
+			foreach($query as &$course){ //Will need to be modified as $course gets processed by message mapper
 				$course = output_message_mapper($course);
 			}
 			$output = $query;
 		}else{
 			$this->output->set_status_header('404');
 			$output = array(
+				'error'			=> output_message_mapper($this->children_model->get_errors()),
 				'error'			=> output_message_mapper($this->plan_model->get_errors()),
 			);
 		}
@@ -85,7 +86,27 @@ class Operations extends CI_Controller {
 	}
 
 	public function update($id) {}
-	public function delete($id) {}
+
+	public function delete($data) {
+
+		$this->authenticated();
+
+		$query = $this->plan_model->delete_plan($data);
+
+		if($query){
+			$output = array(
+				'status'		=> 'Deleted',
+				'resourceId'	=> $query,
+			);
+		}else{
+			$this->output->set_status_header('400');
+			$output = array(
+				'error'			=> output_message_mapper($this->plan_model->get_errors()),
+			);
+		}
+		
+		Template::compose(false, $output, 'json');
+	}
 
 	protected function authenticated(){
 	//check if person was authenticated

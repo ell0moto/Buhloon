@@ -27,8 +27,15 @@ class Plan_model extends CI_Model {
 				'NotEmpty',
 				'Number',
 			),
-			'title' => array(
-				'set_label:Title',
+			'name_of_child' => array(
+				'set_label:Childs Name',
+				'NotEmpty',
+				'AlphaNumericSpace',
+				'MinLength:3',
+				'MaxLength:40',
+			),
+			'title_of_plan' => array(
+				'set_label:Plans title',
 				'NotEmpty',
 				'AlphaNumericSpace',
 				'MinLength:3',
@@ -41,8 +48,8 @@ class Plan_model extends CI_Model {
 				'MinLength:3',
 				'MaxLength:140',
 			),
-			'iteration' => array(
-				'set_label:Iteration',
+			'total_iteration' => array(
+				'set_label:Iterations',
 				'NotEmpty',
 				'Number',
 				'NumRange:0,20',
@@ -58,6 +65,12 @@ class Plan_model extends CI_Model {
 				'NotEmpty',
 				'Number',
 				'NumRange:0,20',
+			),
+			'active' => array(
+				'set_label:Active',
+				'NotEmpty',
+				'Number',
+				'NumRange:0,1',
 			),
 		));
 
@@ -93,7 +106,8 @@ class Plan_model extends CI_Model {
 	  	
 	  	$this->db->select(); 
 		$this->db->where('user_id', $data['user_id']);
-		$this->db->where('child_id', $data['child_id']);
+		$this->db->where('child_id', $data['child_id']); //Will need to be redesigned for get plan specific to child and get plan for user_id only
+		$this->db->where('active'), $data); //Modify to get plans with 0 and 1 active or plans with 1 active.
 		$query=$this->db->get('plan');
 
 		if($query->num_rows() > 0){
@@ -102,12 +116,14 @@ class Plan_model extends CI_Model {
 				'id'				=> $id,
 				'user_id'			=> $row->user_id,
 				'child_id'			=> $row->child_id,
-				'title'				=> $row->title,
+				'name_of_child'		=> $row->name_of_child,
+				'title_of_plan'		=> $row->title_of_plan,
 				'description'		=> $row->description,
-				'iteration'			=> $row->iteration,
+				'total_iteration'	=> $row->total_iteration,
 				'progress'			=> $row->progress,
 				'specific_reward'	=> $row->specific_reward,
 				'no_ribbon'			=> $row->no_ribbon,
+				'active'			=> $row->active,
 			);
 			return $data;
 		}else{
@@ -115,6 +131,92 @@ class Plan_model extends CI_Model {
 				'database'	=> 'Could not find specified plan.',
 			);
 			return false;
+		}
+	}
+
+	public function update_plan($id, $data){ //update progress of plan
+	
+		$this->validator->setup_rules(array(
+			'user_id' => array(
+				'set_label:User Id',
+				'Number',
+			),
+			'child_id' => array(
+				'set_label:Child Id',
+				'Number',
+			),
+			'progress' => array(
+				'set_label:Active',
+				'Number',
+				'NumRange:0,1',
+			),
+		));
+		
+		if(!$this->validator->is_valid($data)){
+		
+			$this->errors = $this->validator->get_errors();
+			return false;
+			
+		}
+		
+  		$this->db->where('id', $data['id']);
+  		$this->db->where('user_id', $data['user_id']);
+  		$this->db->where('child_id', $data['child_id']);
+		$this->db->update('plan', $data);
+		
+		//greated or equal to zero (means update worked)
+		if($this->db->affected_rows() > 0){
+		
+			return true;
+		
+		}else{
+			
+			$this->errors = array(
+				'database'	=> 'Nothing to update.',
+			);
+            return false;
+		
+		}
+	
+	}
+
+	public function soft_delete_plan($data) { //Update plan to be no longer active
+
+		$this->validator->setup_rules(array(
+			'user_id' => array(
+				'set_label:User Id',
+				'Number',
+			),
+			'child_id' => array(
+				'set_label:Child Id',
+				'Number',
+			),
+			'active' => array(
+				'set_label:Active',
+				'Number',
+				'NumRange:0,1',
+			),
+		));
+		
+		if(!$this->validator->is_valid($data)){
+		
+			$this->errors = $this->validator->get_errors();
+			return false;
+			
+		}
+  		
+  		$this->db->where('id', $data['id']);
+  		$this->db->where('user_id', $data['user_id']);
+  		$this->db->where('child_id', $data['child_id']);
+		$this->db->update('plan', $data);
+  		
+  		if($this->db->affected_rows() > 0){
+			return true;
+		}else{
+			$this->errors = array(
+				'database'	=> 'Nothing to delete.',
+			);
+            return false;
 		}
 	}
 
