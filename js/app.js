@@ -59,6 +59,7 @@ app.run([
 	function($rootScope, $cookies, $http){
 	
 		//XSRF INTEGRATION
+		/*
 		$rootScope.$watch(
 			function(){
 				return $cookies[serverVars.csrfCookieName];
@@ -67,6 +68,7 @@ app.run([
 				$http.defaults.headers.common['X-XSRF-TOKEN'] = $cookies[serverVars.csrfCookieName];
 			}
 		);
+		*/
 		
 		//XHR ERROR HANDLER
 		
