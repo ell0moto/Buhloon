@@ -13,8 +13,8 @@ angular.module('Home.Controllers.Index', [])
 		'$scope',
 		function($scope) {
 			$scope.data = 'Hello';
+			console.log('something');
 		}
 
 	]);
 
-	

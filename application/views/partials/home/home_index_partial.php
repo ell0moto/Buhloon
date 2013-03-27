@@ -2,7 +2,8 @@
 
 
         <div id="myCarousel" class="carousel slide" data-interval="0"> <!-- Carousel -->
-
+        
+        <!-- Missing content -->
 
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>

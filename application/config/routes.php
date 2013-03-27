@@ -68,14 +68,15 @@ Pigeon::map(function($r){
 
 	$r->route('api', false, function($r) {
 
-	$r->resources('rest'); //This is an example controller
+	// $r->resources('rest'); //This is an example controller
 
 
-	// $r->resources('main');
+	$r->resources('main');
+	$r->resources('sessions'); //for registering & loggin in
+	$r->resources('operations'); //for childrens goals
+	$r->resources('incentives'); //for rewards
+	$r->resources('dummy');
 
-	// $r->resources('sessions'); //for registering & loggin in
-	// $r->resources('operations'); //for childrens goals
-	// $r->resources('incentives'); //for rewards
 
 
 	

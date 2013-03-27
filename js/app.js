@@ -1,7 +1,8 @@
 'use strict';
 
-var app = angular.module('App',[
-	'Controllers'
+var app = angular.module('App', [
+	'Controllers',
+
 
 ]);
 
@@ -9,16 +10,18 @@ angular.module('Controllers', [
 	'Home.Controllers',
 ]);
 
-console.log('place');
-
 //router
 app.config(
 	[
 		'$routeProvider',
 		'$locationProvider',
-		function ($routerProvider, $locationProvider) {
-			//time for routering!
-			$routerProvider
+		function ($routeProvider, $locationProvider) {
+
+			//HTML5 mode URLS I believe it removes /#/ hashbang
+			$locationProvider.html5Mode (true).hashPrefix('!');
+
+			//Routing
+			$routeProvider
 				.when(
 					'/', 
 					{
@@ -26,6 +29,7 @@ app.config(
 						controller:'HomeIndexCtrl'
 					}
 				)
+
 				.otherwise(
 					{
 						redirectTo: '/'

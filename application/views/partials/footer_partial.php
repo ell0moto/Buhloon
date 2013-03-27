@@ -17,6 +17,15 @@
 
         <!-- client side templates -->
         <? Template::partial('home/home_index'); ?>
+
+
+        <!-- Pass in PHP variables to Javascript -->
+        <script>
+            var serverVars = {
+                baseUrl: '<?= base_url() ?>',
+                csrfCookieName: '<?= $this->config->item('cookie_prefix') . $this->config->item('csrf_cookie_name') ?>'
+            };
+        </script>
         
         <!-- Java script. "ajax.googleapis" is where google hosts jQuery files as it is faster that way -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -25,9 +34,12 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
         <script>window.angular || document.write('<script src="js/vendor/angular.min.js"><\/script>')</script>
-
+        
+        <script src="js/vendor/angular-resource.min.js"></script>
+        <script src="js/vendor/angular-cookies.min.js"></script>
         <script src="js/app.js"></script>
-        <script src="js/controllers/Home.Controller.js"></script>
+        <script src="js/controllers/Home.Controllers.js"></script>
+
 
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
