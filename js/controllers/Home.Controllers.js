@@ -1,20 +1,15 @@
 'use strict';
 
-//Page level controllers
-//Can have multiple mini controllers, simlar to methods
-
+//Page Level Controller
+//Can have multiple mini controllers, similar to methods
 angular.module('Home.Controllers', ['Home.Controllers.Index']);
 
-//Define the default index "method" for the Home.Controllers
+//Define the default index "method" for the the Home.Controllers
 //Called HomeIndexCtrl
-
 angular.module('Home.Controllers.Index', [])
-	.controllers('HomeIndexCtrl', [
+	.controller('HomeIndexCtrl', [
 		'$scope',
-		function($scope) {
-			$scope.data = 'Hello';
-			console.log('something');
+		function($scope){
+			$scope.data = 'HELLO!';
 		}
-
 	]);
-
