@@ -6,12 +6,13 @@ var app = angular.module('App', [
 	'Services',
 	'Directives',
 	'ngResource',
-	'ngCookies'
+	'ngCookies',
 ]);
 
 //Define all the page level controllers (Application Logic)
 angular.module('Controllers', [
-	'Home.Controllers'
+	'Home.Controllers',
+	'Dummy.Controllers'
 ]);
 //Define all shared services (Interaction with Backend)
 angular.module('Services', [
@@ -42,6 +43,13 @@ app.config(
 						controller: 'HomeIndexCtrl'
 					}
 				)
+				.when(
+					'/dummy',
+					{
+						templateUrl: 'dummy_index.html',
+						controller: 'DummyIndexCtrl'
+					}
+				)
 				.otherwise(
 					{
 						redirectTo: '/'
@@ -59,7 +67,7 @@ app.run([
 	function($rootScope, $cookies, $http){
 	
 		//XSRF INTEGRATION
-		/*
+		
 		$rootScope.$watch(
 			function(){
 				return $cookies[serverVars.csrfCookieName];
@@ -68,7 +76,7 @@ app.run([
 				$http.defaults.headers.common['X-XSRF-TOKEN'] = $cookies[serverVars.csrfCookieName];
 			}
 		);
-		*/
+		
 		
 		//XHR ERROR HANDLER
 		
