@@ -1,5 +1,10 @@
 'use strict';
 
+/* ==========================================================================
+   BOOTSTRAPPER
+   ========================================================================== */
+
+//app is an module that is dependent on several top level modules
 var app = angular.module('App', [
 	'Controllers',
 	'Filters',
@@ -14,17 +19,27 @@ angular.module('Controllers', [
 	'Home.Controllers',
 	'Dummy.Controllers'
 ]);
+
 //Define all shared services (Interaction with Backend)
 angular.module('Services', [
+	'Dummy.Service'
 ]);
+
 //Define all shared directives (UI Logic)
 angular.module('Directives', [
 ]);
+
 //Define all shared filters (UI Filtering)
 angular.module('Filters', [
 ]);
 
-//router
+
+
+/* ==========================================================================
+   ROUTER
+   ========================================================================== */
+
+//Define all routes here and which page level controller should handle them
 app.config(
 	[
 		'$routeProvider',
@@ -59,6 +74,11 @@ app.config(
 		}
 	]
 );
+
+
+/* ==========================================================================
+   GLOBAL FEATURES
+   ========================================================================== */
 
 app.run([
 	'$rootScope',

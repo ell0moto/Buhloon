@@ -156,9 +156,9 @@
     </div> <!-- End of model -->
 
 
-        <!-- client side templates -->
+        <!-- Client Side Templates -->
         <? Template::partial('home/home_index'); ?>
-        <? Template::partial('dummy/dummy_index'); ?>
+        <? Template::partial('dummy/dummy_index') ?>
 
         <!-- Pass in PHP variables to Javascript -->
         <script>
@@ -168,7 +168,6 @@
             };
         </script>
         
-        <!-- Java script. "ajax.googleapis" is where google hosts jQuery files as it is faster that way -->
     	<!-- Vendor Javascripts -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
@@ -178,9 +177,19 @@
 		<script src="js/vendor/angular-resource.min.js"></script>
 		<script src="js/vendor/angular-cookies.min.js"></script>
         
+        <!-- AngularJS Front Controller, Bootstrap and Router -->
         <script src="js/app.js"></script>
+
+        <!-- Page Level Controllers -->
         <script src="js/controllers/Home.Controllers.js"></script>
         <script src="js/controllers/Dummy.Controllers.js"></script>
+
+        <!-- Reusable Services -->
+        <script src="js/services/Dummy.Service.js"></script>
+
+        <!-- Reusable Directives -->
+
+        <!-- Reusable Filters -->
 
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

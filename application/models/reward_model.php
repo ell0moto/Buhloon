@@ -65,18 +65,19 @@ class Reward_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
-	public function get_reward($data) {
+	public function get_reward() { //modified argument
 	
-		$query = $this->db->get_where('reward', array('user_id' => $data['user_id']));
+		$query = $this->db->get_where('reward', array('user_id' => '9')); //modified ID number
 		
 		if($query->num_rows() > 0){
-			$row = $query->row();
-			$data = array(
-				'id'				=> $id,
-				'user_id'			=> $row->user_id,
-				'title_of_reward'	=> $row->title_of_reward,
-				'ribbon_cost'		=> $row->ribbon_cost,
-			);
+			foreach ($query->result() as $row) {
+				$data[] = array( //[] makes a dynamic array so that it's an array of an array
+
+					'user_id'			=> $row->user_id,
+					'title_of_reward'	=> $row->title_of_reward,
+					'ribbon_cost'		=> $row->ribbon_cost,
+				);
+			}
 			return $data;
 		}else{
 			$this->errors = array(
@@ -89,18 +90,18 @@ class Reward_model extends CI_Model {
 
 	public function delete_reward($data) {
   		
-  		$this->db->where('id', $data['id'])
-  		$this->db->where('user_id', $data['user_id'])
-  		$this->db->delete('reward');
+  // 		$this->db->where('id', $data['id'])
+  // 		$this->db->where('user_id', $data['user_id'])
+  // 		$this->db->delete('reward');
   		
-  		if($this->db->affected_rows() > 0){
-			return true;
-		}else{
-			$this->errors = array(
-				'database'	=> 'Nothing to delete.',
-			);
-            return false;
-		}
+  // 		if($this->db->affected_rows() > 0){
+		// 	return true;
+		// }else{
+		// 	$this->errors = array(
+		// 		'database'	=> 'Nothing to delete.',
+		// 	);
+  //           return false;
+		// }
 	}
 
 	public function get_errors() {

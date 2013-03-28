@@ -9,18 +9,21 @@ class Incentives extends CI_Controller {
 
     public function index() {
 
-    	$data['user_id'] = $this->ion_auth->get_user_id(); 
-		$query = $this->reward_model->get_reward($data);
+    	// $data['user_id'] = $this->ion_auth->get_user_id(); 
+		$query = $this->reward_model->get_reward();
 
 		if($query){
-			$output = output_message_mapper($query);
+			foreach($query as &$reward) { //foreach loop required because input is multiple result array.
+				$reward = output_message_mapper($reward);
+			}
+				$output = $query;
 		}else{
 			$this->output->set_status_header('404');
 			$output = array(
 				'error'			=> output_message_mapper($this->reward_model->get_errors()),
 			);
 		}
-		
+
 		Template::compose(false, $output, 'json');
 
     }
