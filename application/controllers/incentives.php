@@ -18,84 +18,91 @@ class Incentives extends CI_Controller {
 			foreach($query as &$reward) { //foreach loop required because input is multiple result array.
 				$reward = output_message_mapper($reward);
 			}
-				$output = $query;
+				$content = $query;
+				$code = 'success';
+				$redirect = '';
 		}else{
 			$this->output->set_status_header('404');
-			$output = array(
-				'error'			=> output_message_mapper($this->reward_model->get_errors()),
-			);
+			$content = output_message_mapper($this->reward_model->get_errors());
+			$code = 'error';
+			$redirect = '';
 		}
-		// FB::log($output);
+
+		$output = array( //Client Side .query is expecting an array, that is why we have done it like this.
+			'content' => $content,
+			'code' => $code,
+			'redirect' => $redirect,
+			);
+		
 		Template::compose(false, $output, 'json');
 
     }
 
-    public function create($data) {
+    public function create() {
 
-    	$this->authenticated($data);
+    	// $this->authenticated($data);
 
 		$data = $this->input->json(false, true);
 		$data = input_message_mapper($data); // takes camelcased keys and removes prefix and turns them into snake_case
 
-		$data['user_id'] = $this->ion_auth->get_user_id(); 	// retrieves user id, then inputs it into $data array
+		// $data['user_id'] = $this->ion_auth->get_user_id(); 	// retrieves user id, then inputs it into $data array
 		$query = $this->reward_model->post_reward($data);
 
 		if($query){
-			$output = array(
-				'status'		=> 'Created',
-				'resourceId'	=> $query,
-			);
+
+			$content = $query;
+			$code = 'success';
+			$redirect = '';
+
 		}else{
+
 			$this->output->set_status_header('400');
-			$output = array(
-				'error'			=> output_message_mapper($this->reward_model->get_errors()),
-			);
+
+			$content = output_message_mapper($this->reward_model->get_errors());
+			$code = 'error';
+			$redirect = '';
 		}
+
+		$output = array(
+			'content' => $content,
+			'code' => $code,
+			'redirect' => $redirect,
+			);
 		
 		Template::compose(false, $output, 'json');
 
 	}
 
-	public function show($id) {
-
-		// $data['user_id'] = $this->ion_auth->get_user_id(); 
-		$query = $this->reward_model->get_reward($id);
-
-		if($query){
-			foreach($query as &$reward) { //foreach loop required because input is multiple result array.
-				$reward = output_message_mapper($reward);
-			}
-				$output = $query;
-		}else{
-			$this->output->set_status_header('404');
-			$output = array(
-				'error'			=> output_message_mapper($this->reward_model->get_errors()),
-			);
-		}
-		// FB::log($output);
-		Template::compose(false, $output, 'json');
-
-    }
+	public function show($id) {}
 
 	public function update($id) {}
 
-	public function delete($data) {
+	public function delete($id) {
 
-		$this->authenticated();
+		// $this->authenticated();
 
-		$query = $this->reward_model->delete_reward($data);
+		$query = $this->reward_model->delete_reward($id);
 
 		if($query){
-			$output = array(
-				'status'		=> 'Deleted',
-				'resourceId'	=> $query,
-			);
+
+			$content = $query;
+			$code = 'success';
+			$redirect = '';
+
 		}else{
+
 			$this->output->set_status_header('400');
-			$output = array(
-				'error'			=> output_message_mapper($this->reward_model->get_errors()),
-			);
+
+			$content = output_message_mapper($this->reward_model->get_errors());
+			$code = 'error';
+			$redirect = '';
 		}
+
+		$output = array(
+			'content' => $content,
+			'code' => $code,
+			'redirect' => $redirect,
+			);
 		
 		Template::compose(false, $output, 'json');
 	}

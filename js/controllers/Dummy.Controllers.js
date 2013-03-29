@@ -9,7 +9,7 @@ angular.module('Dummy.Controllers.Index', [])
 		function($scope, DummyServ){
 			$scope.data = 'Rewards!';
 			
-			DummyServ.query(
+			DummyServ.query( //get all (with specific id)
 				{
 					// id:'9',
 				},
@@ -19,6 +19,18 @@ angular.module('Dummy.Controllers.Index', [])
 				},
 				function(response){
 					console.log('OH NO AN ERROR!'); //this comes from the failure function
+				}
+			);
+
+			DummyServ.save( //create
+				{}, //parameter passes in through URL
+				{
+					userId:'',
+					titleOfReward: '',
+					ribbonCost: '',
+				},
+				function(response){
+					console.log(response, '<- SAVE');
 				}
 			);
 

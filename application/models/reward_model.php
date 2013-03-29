@@ -18,7 +18,7 @@ class Reward_model extends CI_Model {
 		
 		$this->validator->setup_rules(array(
 			'user_id' => array(
-				'set_label:User Id',
+				'set_label:User ID',
 				'NotEmpty',
 				'Number',
 			),
@@ -89,10 +89,10 @@ class Reward_model extends CI_Model {
 		
 	}
 
-	public function delete_reward($data) {
+	public function delete_reward($id) {
   		
-  // 		$this->db->where('id', $data['id'])
-  		// $this->db->where('user_id', $data['user_id'])
+  		$this->db->where('id', $id);
+  		// $this->db->where('user_id', $data['user_id']):
   		$this->db->delete('reward');
   		
   		if($this->db->affected_rows() > 0){
@@ -103,6 +103,7 @@ class Reward_model extends CI_Model {
 			);
             return false;
 		}
+
 	}
 
 	public function get_errors() {

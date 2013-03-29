@@ -159,6 +159,7 @@
         <!-- Client Side Templates -->
         <? Template::partial('home/home_index'); ?>
         <? Template::partial('dummy/dummy_index') ?>
+        <? Template::partial('incentives/incentives_index') ?>
 
         <!-- Pass in PHP variables to Javascript -->
         <script>
@@ -183,9 +184,11 @@
         <!-- Page Level Controllers -->
         <script src="js/controllers/Home.Controllers.js"></script>
         <script src="js/controllers/Dummy.Controllers.js"></script>
+        <script src="js/controllers/Incentives.Controllers.js"></script>
 
         <!-- Reusable Services -->
         <script src="js/services/Dummy.Service.js"></script>
+        <script src="js/services/Incentives.Service.js"></script>
 
         <!-- Reusable Directives -->
 

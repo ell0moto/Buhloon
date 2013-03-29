@@ -10,28 +10,18 @@ var app = angular.module('App', [
 	'Filters',
 	'Services',
 	'Directives',
-	'ngResource',
-	'ngCookies',
+	'ngResource', //for RESTful resources
+	'ngCookies'
 ]);
 
 //Define all the page level controllers (Application Logic)
-angular.module('Controllers', [
-	'Home.Controllers',
-	'Dummy.Controllers'
-]);
-
+angular.module('Controllers', []);
 //Define all shared services (Interaction with Backend)
-angular.module('Services', [
-	'Dummy.Service'
-]);
-
+angular.module('Services', []);
 //Define all shared directives (UI Logic)
-angular.module('Directives', [
-]);
-
+angular.module('Directives', []);
 //Define all shared filters (UI Filtering)
-angular.module('Filters', [
-]);
+angular.module('Filters', []);
 
 
 
@@ -55,14 +45,21 @@ app.config(
 					'/',
 					{
 						templateUrl: 'home_index.html',
-						controller: 'HomeIndexCtrl'
+						controller: 'HomeIndexCtrl',
 					}
 				)
 				.when(
 					'/dummy',
 					{
 						templateUrl: 'dummy_index.html',
-						controller: 'DummyIndexCtrl'
+						controller: 'DummyIndexCtrl',
+					}
+				)
+				.when(
+					'/incentives',
+					{
+						templateUrl: 'incentives_index.html',
+						controller: 'IncentivesIndexCtrl',
 					}
 				)
 				.otherwise(

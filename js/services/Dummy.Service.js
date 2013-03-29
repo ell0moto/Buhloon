@@ -7,7 +7,7 @@ angular.module('Dummy.Service', [])
 		'$resource',
 		function($resource){
 			
-			return $resource('api/incentives/:id', //id comes in a paramater
+			return $resource('api/dummy/:id', //id comes in a paramater
 				{},//default paramenters for the resource object, left empy a this stage
 				{
 					update:{ //custom method
