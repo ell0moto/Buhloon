@@ -7,22 +7,19 @@ angular.module('Dummy.Controllers.Index', [])
 		'$scope',
 		'DummyServ',
 		function($scope, DummyServ){
-			$scope.data = 'Rewards';
+			$scope.data = 'Rewards!';
 			
 			DummyServ.query(
-				{},
+				{
+					// id:'9',
+				},
 				function(response){
 					$scope.dummyData = response;
-
-
+					console.log(response, '<- QUERY');
+				},
+				function(response){
+					console.log('OH NO AN ERROR!'); //this comes from the failure function
 				}
-				// function(response){
-				// 	if(typeof response.data.error !== 'undefined'){
-				// 		$scope.dummyError = response.data.error.database;
-				// 	}else{
-				// 		$scope.dummyError = 'Uh oh something did not work!';
-				// 	}
-				// }
 			);
 
 			// DummyServ.get(

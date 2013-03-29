@@ -3,8 +3,8 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Name of Reward</th>
-				<th>No of Ribbons</th>
+				<th>Reward</th>
+				<th>Ribbon cost</th>
 			</tr>
 		</thead>
 		<tbody>

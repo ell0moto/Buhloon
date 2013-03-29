@@ -11,7 +11,7 @@ angular.module('Dummy.Service', [])
 				{},//default paramenters for the resource object, left empy a this stage
 				{
 					update:{ //custom method
-						method: 'PUT',
+						method: 'PUT', //THIS METHOD DOESN'T EXIST BY DEFAULT
 					}
 				}
 			);
