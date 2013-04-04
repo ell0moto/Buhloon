@@ -17,24 +17,24 @@ class Plan_model extends CI_Model {
 	public function add_plan($data) {
 		
 		$this->validator->setup_rules(array(
-			'user_id' => array(
+			'userId' => array(
 				'set_label:User Id',
 				'NotEmpty',
 				'Number',
 			),
-			'child_id' => array(
+			'childId' => array(
 				'set_label:Child Id',
 				'NotEmpty',
 				'Number',
 			),
-			'name_of_child' => array(
+			'nameOfChild' => array(
 				'set_label:Childs Name',
 				'NotEmpty',
 				'AlphaNumericSpace',
 				'MinLength:3',
 				'MaxLength:40',
 			),
-			'title_of_plan' => array(
+			'titleOfPlan' => array(
 				'set_label:Plans title',
 				'NotEmpty',
 				'AlphaNumericSpace',
@@ -48,19 +48,19 @@ class Plan_model extends CI_Model {
 				'MinLength:3',
 				'MaxLength:140',
 			),
-			'total_iteration' => array(
+			'totalIteration' => array(
 				'set_label:Iterations',
 				'NotEmpty',
 				'Number',
 				'NumRange:0,20',
 			),
-			'specific_reward' => array(
+			'specificReward' => array(
 				'set_label:Specific Reward',
 				'AlphaNumericSpace',
 				'MinLength:3',
 				'MaxLength:20',
 			),
-			'no_ribbon' => array(
+			'noRibbon' => array(
 				'set_label:Number of Ribbons',
 				'NotEmpty',
 				'Number',
@@ -105,8 +105,8 @@ class Plan_model extends CI_Model {
 	public function get_plan($data) {
 	  	
 	  	$this->db->select(); 
-		$this->db->where('user_id', $data['user_id']);
-		$this->db->where('child_id', $data['child_id']); //Will need to be redesigned for get plan specific to child and get plan for user_id only
+		$this->db->where('userId', $data['userId']);
+		$this->db->where('childId', $data['childId']); //Will need to be redesigned for get plan specific to child and get plan for userId only
 		$this->db->where('active'), $data); //Modify to get plans with 0 and 1 active or plans with 1 active.
 		$query=$this->db->get('plan');
 
@@ -114,15 +114,15 @@ class Plan_model extends CI_Model {
 			$row = $query->row();
 			$data = array(
 				'id'				=> $id,
-				'user_id'			=> $row->user_id,
-				'child_id'			=> $row->child_id,
-				'name_of_child'		=> $row->name_of_child,
-				'title_of_plan'		=> $row->title_of_plan,
+				'userId'			=> $row->userId,
+				'childId'			=> $row->childId,
+				'nameOfChild'		=> $row->nameOfChild,
+				'titleOfPlan'		=> $row->titleOfPlan,
 				'description'		=> $row->description,
-				'total_iteration'	=> $row->total_iteration,
+				'totalIteration'	=> $row->totalIteration,
 				'progress'			=> $row->progress,
-				'specific_reward'	=> $row->specific_reward,
-				'no_ribbon'			=> $row->no_ribbon,
+				'specificReward'	=> $row->specificReward,
+				'noRibbon'			=> $row->noRibbon,
 				'active'			=> $row->active,
 			);
 			return $data;
@@ -137,11 +137,11 @@ class Plan_model extends CI_Model {
 	public function update_plan($id, $data){ //update progress of plan
 	
 		$this->validator->setup_rules(array(
-			'user_id' => array(
+			'userId' => array(
 				'set_label:User Id',
 				'Number',
 			),
-			'child_id' => array(
+			'childId' => array(
 				'set_label:Child Id',
 				'Number',
 			),
@@ -160,8 +160,8 @@ class Plan_model extends CI_Model {
 		}
 		
   		$this->db->where('id', $data['id']);
-  		$this->db->where('user_id', $data['user_id']);
-  		$this->db->where('child_id', $data['child_id']);
+  		$this->db->where('userId', $data['userId']);
+  		$this->db->where('childId', $data['childId']);
 		$this->db->update('plan', $data);
 		
 		//greated or equal to zero (means update worked)
@@ -183,11 +183,11 @@ class Plan_model extends CI_Model {
 	public function soft_delete_plan($data) { //Update plan to be no longer active
 
 		$this->validator->setup_rules(array(
-			'user_id' => array(
+			'userId' => array(
 				'set_label:User Id',
 				'Number',
 			),
-			'child_id' => array(
+			'childId' => array(
 				'set_label:Child Id',
 				'Number',
 			),
@@ -206,8 +206,8 @@ class Plan_model extends CI_Model {
 		}
   		
   		$this->db->where('id', $data['id']);
-  		$this->db->where('user_id', $data['user_id']);
-  		$this->db->where('child_id', $data['child_id']);
+  		$this->db->where('userId', $data['userId']);
+  		$this->db->where('childId', $data['childId']);
 		$this->db->update('plan', $data);
   		
   		if($this->db->affected_rows() > 0){
@@ -223,8 +223,8 @@ class Plan_model extends CI_Model {
 	public function delete_plan($data) {
   		
   		$this->db->where('id', $data['id'])
-  		$this->db->where('user_id', $data['user_id'])
-  		$this->db->where('child_id', $data['child_id'])
+  		$this->db->where('userId', $data['userId'])
+  		$this->db->where('childId', $data['childId'])
   		$this->db->delete('plan');
 
   		if($this->db->affected_rows() > 0){

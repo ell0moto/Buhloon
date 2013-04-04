@@ -17,19 +17,19 @@ class Reward_model extends CI_Model {
 	public function post_reward($data) {
 		
 		$this->validator->setup_rules(array(
-			'user_id' => array(
+			'userId' => array(
 				'set_label:User ID',
 				'NotEmpty',
 				'Number',
 			),
-			'title_of_reward' => array(
+			'titleOfReward' => array(
 				'set_label:Rewards title',
 				'NotEmpty',
 				'AlphaNumericSpace',
 				'MinLength:3',
 				'MaxLength:40',
 			),
-			'ribbon_cost' => array(
+			'ribbonCost' => array(
 				'set_label:Ribbon Cost',
 				'NotEmpty',
 				'Number',
@@ -67,16 +67,16 @@ class Reward_model extends CI_Model {
 
 	public function get_reward($id) {
 	
-		$query = $this->db->get_where('reward', array('user_id' => $id)); //modified ID number
+		$query = $this->db->get_where('reward', array('userId' => $id)); //modified ID number
 		
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $row) {
 				$data[] = array( //[] makes a dynamic array so that it's an array of an array
 
 					'id'				=> $row->id,
-					'user_id'			=> $row->user_id,
-					'title_of_reward'	=> $row->title_of_reward,
-					'ribbon_cost'		=> $row->ribbon_cost,
+					'userId'			=> $row->userId,
+					'titleOfReward'		=> $row->titleOfReward,
+					'ribbonCost'		=> $row->ribbonCost,
 				);
 			}
 			return $data;
@@ -92,7 +92,7 @@ class Reward_model extends CI_Model {
 	public function delete_reward($id) {
   		
   		$this->db->where('id', $id);
-  		// $this->db->where('user_id', $data['user_id']):
+  		// $this->db->where('userId', $data['userId']):
   		$this->db->delete('reward');
   		
   		if($this->db->affected_rows() > 0){

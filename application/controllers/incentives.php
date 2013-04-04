@@ -15,15 +15,15 @@ class Incentives extends CI_Controller {
 		$query = $this->reward_model->get_reward($id);
 
 		if($query){
-			foreach($query as &$reward) { //foreach loop required because input is multiple result array.
-				$reward = output_message_mapper($reward);
-			}
-				$content = $query;
-				$code = 'success';
-				$redirect = '';
+
+			$content = $query;
+			$code = 'success';
+			$redirect = '';
+
 		}else{
+
 			$this->output->set_status_header('404');
-			$content = output_message_mapper($this->reward_model->get_errors());
+			$content = $this->reward_model->get_errors();
 			$code = 'error';
 			$redirect = '';
 		}
@@ -33,13 +33,6 @@ class Incentives extends CI_Controller {
 			'code' => $code,
 			'redirect' => $redirect,
 			);
-
-		// $output = array(
-		// 	'content' => 'Unauthorised',
-		// 	'code' => 'error',
-		// 	);
-
-		// $this->output->set_status_header('401');
 		
 		Template::compose(false, $output, 'json');
 
@@ -50,7 +43,6 @@ class Incentives extends CI_Controller {
     	// $this->authenticated($data);
 
 		$data = $this->input->json(false, true);
-		$data = input_message_mapper($data); // takes camelcased keys and removes prefix and turns them into snake_case
 
 		// $data['user_id'] = $this->ion_auth->get_user_id(); 	// retrieves user id, then inputs it into $data array
 		$query = $this->reward_model->post_reward($data);
@@ -65,7 +57,7 @@ class Incentives extends CI_Controller {
 
 			$this->output->set_status_header('400');
 
-			$content = output_message_mapper($this->reward_model->get_errors());
+			$content = $this->reward_model->get_errors();
 			$code = 'error';
 			$redirect = '';
 		}
@@ -100,7 +92,7 @@ class Incentives extends CI_Controller {
 
 			$this->output->set_status_header('400');
 
-			$content = output_message_mapper($this->reward_model->get_errors());
+			$content = $this->reward_model->get_errors();
 			$code = 'error';
 			$redirect = '';
 		}

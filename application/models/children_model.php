@@ -17,12 +17,12 @@ class Children_model extends CI_Model {
 	public function add_child($data) {
 
 		$this->validator->setup_rules(array(
-			'user_id' => array(
+			'userId' => array(
 				'set_label:User Id',
 				'NotEmpty',
 				'Number',
 			),
-			'name_of_child' => array(
+			'nameOfChild' => array(
 				'set_label:Childs Name',
 				'NotEmpty',
 				'AlphaNumericSpace',
@@ -65,8 +65,8 @@ class Children_model extends CI_Model {
 
 		// Retrieves unique id from database, and returns id
 		$this->db->select('id'); 
-		$this->db->where('user_id', $data['user_id']); 
-		$this->db->where('name_of_child', $data['name_of_child']); 
+		$this->db->where('userId', $data['userId']); 
+		$this->db->where('nameOfChild', $data['nameOfChild']); 
 		$query = $this->db->get('children');
 
 
@@ -95,20 +95,20 @@ class Children_model extends CI_Model {
 	public function get_child($data) {
 	  	
 	  	$this->db->select(); 
-		$this->db->where('user_id', $data['user_id']);
-		$this->db->where('id', $data['child_id']);
+		$this->db->where('userId', $data['userId']);
+		$this->db->where('id', $data['childId']);
 		$query=$this->db->get('children');
 		
 		if($query->num_rows() > 0){
 			$row = $query->row();
 			$data = array(
 				'id'				=> $id,
-				'user_id'			=> $row->user_id,
-				'name_of_child'		=> $row->name_of_child,
-				'total_ribbon'		=> $row->total_ribbon,
-				'spent_ribbon'		=> $row->spent_ribbon,
-				'net_ribbon'		=> $row->net_ribbon,
-				'total_plan'		=> $row->total_plan,
+				'userId'			=> $row->userId,
+				'nameOfChild'		=> $row->nameOfChild,
+				'totalRibbon'		=> $row->totalRibbon,
+				'spentRibbon'		=> $row->spentRibbon,
+				'netRibbon'			=> $row->netRibbon,
+				'totalPlan'			=> $row->totalPlan,
 			);
 			return $data;
 		}else{
@@ -121,8 +121,8 @@ class Children_model extends CI_Model {
 
 	public function delete_child($data) { //May not be required
   		
-  		$this->db->where('user_id', $data['user_id'])
-  		$this->db->where('id', $data['child_id'])
+  		$this->db->where('userId', $data['userId'])
+  		$this->db->where('id', $data['childId'])
   		$this->db->delete('children');
   		
   		if($this->db->affected_rows() > 0){
@@ -138,13 +138,13 @@ class Children_model extends CI_Model {
 
 	public function name_check($data) { // Helper function 	
 
-		// Retrieves any rows from database with the particular user_id 
-  		$query = $this->db->get_where('children', array('user_id' => $data['user_id'])); 
+		// Retrieves any rows from database with the particular userId 
+  		$query = $this->db->get_where('children', array('userId' => $data['userId'])); 
   		$result = $query->result_array();
 
   		// Runs loop to search for particular value, if found returns that value
 		foreach($result as $key => $values) {
-			if ($values['name_of_child'] == $data['name_of_child']) {
+			if ($values['nameOfChild'] == $data['nameOfCchild']) {
 			return true;
 			}else{
 				return false;

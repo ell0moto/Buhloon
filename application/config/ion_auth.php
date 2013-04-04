@@ -42,8 +42,8 @@ $config['tables']['login_attempts']  = 'login_attempts';
  | Joins from users.id
  | Joins from groups.id
  */
-$config['join']['users']  = 'user_id';
-$config['join']['groups'] = 'group_id';
+$config['join']['users']  = 'userId';
+$config['join']['groups'] = 'groupId';
 
 /*
  | -------------------------------------------------------------------------
@@ -81,11 +81,11 @@ $config['max_rounds']     = 9;
  | The controller should check this function and act
  | appropriately. If this variable set to 0, there is no maximum.
  */
-$config['site_title']                 = "buhloon.com";       // Site Title, example.com
-$config['admin_email']                = "matthew.alexander.maher@gmail.com"; // Admin Email, admin@example.com
+$config['site_title']                 = "Polycademy2";       // Site Title, example.com
+$config['admin_email']                = "roger.qiu@polycademy.com"; // Admin Email, admin@example.com
 $config['default_group']              = 'members';           // Default group, use name
 $config['admin_group']                = 'admin';             // Default administrators group, use name
-$config['identity']                   = 'username';             // A database column which is used to login with
+$config['identity']                   = 'email';             // A database column which is used to login with
 $config['min_password_length']        = 8;                   // Minimum Required Length of Password
 $config['max_password_length']        = 20;                  // Maximum Allowed Length of Password
 $config['email_activation']           = FALSE;               // Email Activation for registration
@@ -95,7 +95,7 @@ $config['user_expire']                = 86500;               // How long to reme
 $config['user_extend_on_login']       = TRUE;               // Extend the users cookies everytime they auto-login
 $config['track_login_attempts']       = TRUE;               // Track the number of failed login attempts for each user or ip.
 $config['maximum_login_attempts']     = 3;                   // The maximum number of failed login attempts.
-$config['lockout_time']               = 60000;                 // The number of miliseconds to lockout an account due to exceeded attempts
+$config['lockout_time']               = 10;                 // The number of miliseconds to lockout an account due to exceeded attempts
 $config['forgot_password_expiration'] = 0;                   // The number of miliseconds after which a forgot password request will expire. If set to 0, forgot password requests will not expire.
 
 
@@ -107,7 +107,7 @@ $config['forgot_password_expiration'] = 0;                   // The number of mi
  | 	  'file' = Use the default CI config or use from a config file
  | 	  array  = Manually set your email config settings
  */
-$config['use_ci_email'] = FALSE; // Send Email using the builtin CI email class, if false it will return the code and the identity
+$config['use_ci_email'] = TRUE; // Send Email using the builtin CI email class, if false it will return the code and the identity
 $config['email_config'] = array(
 	'mailtype' => 'html',
 );

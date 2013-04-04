@@ -17,17 +17,17 @@ class Obligation_model extends CI_Model {
 	public function add_obligation($data) {
 		
 		$this->validator->setup_rules(array(
-			'user_id' => array(
+			'userId' => array(
 				'set_label:User Id',
 				'NotEmpty',
 				'Number',
 			),
-			'child_id' => array(
+			'childId' => array(
 				'set_label:Child Id',
 				'NotEmpty',
 				'Number',
 			),
-			'name_of_child' => array(
+			'nameOfChild' => array(
 				'set_label:Childs Name',
 				'NotEmpty',
 				'AlphaNumericSpace',
@@ -79,7 +79,7 @@ class Obligation_model extends CI_Model {
 	public function get_obligation($data) {
 	  	
 	  	$this->db->select(); 
-		$this->db->where('user_id', $data['user_id']);
+		$this->db->where('userId', $data['userId']);
 		$this->db->where('active'), $data);
 		$query=$this->db->get('obligation');
 
@@ -87,9 +87,9 @@ class Obligation_model extends CI_Model {
 			$row = $query->row();
 			$data = array(
 				'id'				=> $id,
-				'user_id'			=> $row->user_id,
-				'child_id'			=> $row->child_id,
-				'name_of_child'		=> $row->name_of_child,
+				'userId'			=> $row->userId,
+				'childId'			=> $row->childId,
+				'nameOfChild'		=> $row->nameOfChild,
 				'reward'			=> $row->reward,
 				'active'			=> $row->active,
 			);
@@ -106,11 +106,11 @@ class Obligation_model extends CI_Model {
 	public function soft_delete_obligation($data) { //Update obligation to be no longer active
 
 		$this->validator->setup_rules(array(
-			'user_id' => array(
+			'userId' => array(
 				'set_label:User Id',
 				'Number',
 			),
-			'child_id' => array(
+			'childId' => array(
 				'set_label:Child Id',
 				'Number',
 			),
@@ -129,8 +129,8 @@ class Obligation_model extends CI_Model {
 		}
   		
   		$this->db->where('id', $data['id']);
-  		$this->db->where('user_id', $data['user_id']);
-  		$this->db->where('child_id', $data['child_id']);
+  		$this->db->where('userId', $data['userId']);
+  		$this->db->where('childId', $data['childId']);
 		$this->db->update('obligation', $data);
   		
   		if($this->db->affected_rows() > 0){

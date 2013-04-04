@@ -177,6 +177,11 @@
 		<script>window.angular || document.write('<script src="js/vendor/angular.min.js"><\/script>')</script>
 		<script src="js/vendor/angular-resource.min.js"></script>
 		<script src="js/vendor/angular-cookies.min.js"></script>
+
+        <!-- Shims and Shivs and Other Useful Things -->
+        <!--[if lt IE 9]><script src="js/vendor/es5-shim.min.js"></script><![endif]-->
+        <script src="js/vendor/es6-shim.min.js"></script>
+        <!--[if lt IE 9]><script src="js/vendor/json3.min.js"></script><![endif]-->
         
         <!-- AngularJS Front Controller, Bootstrap and Router -->
         <script src="js/app.js"></script>

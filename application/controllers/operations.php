@@ -13,18 +13,25 @@ class Operations extends CI_Controller {
 		$data['user_id'] = $this->ion_auth->get_user_id(); 
     	$query = $this->plan_model->get_plan($data);
 
-    	if($query){
-			foreach($query as &$course){ //Will need to be modified as $course gets processed by message mapper
-				$course = output_message_mapper($course);
-			}
-			$output = $query;
+		if($query){
+
+			$content = $query;
+			$code = 'success';
+			$redirect = '';
+
 		}else{
+
 			$this->output->set_status_header('404');
-			$output = array(
-				'error'			=> output_message_mapper($this->children_model->get_errors()),
-				'error'			=> output_message_mapper($this->plan_model->get_errors()),
-			);
+			$content = $this->plan_model->get_errors();
+			$code = 'error';
+			$redirect = '';
 		}
+
+		$output = array( //Client Side .query is expecting an array, that is why we have done it like this.
+			'content' => $content,
+			'code' => $code,
+			'redirect' => $redirect,
+			);
 		
 		Template::compose(false, $output, 'json');
 
@@ -35,7 +42,6 @@ class Operations extends CI_Controller {
     	$this->authenticated();
 
     	$data = $this->input->json(false, true);
-		$data = input_message_mapper($data); // takes camelcased keys and removes prefix and turns them into snake_case
 
 		$data['user_id'] = $this->ion_auth->get_user_id(); 	// retrieves user id, then inputs it into $data array
 		$data['child_id'] = $this->children_model->add_child($data); // Send input to children_model, returns child_id required for plan_model.
@@ -44,28 +50,38 @@ class Operations extends CI_Controller {
 
 			$query = $this->plan_model->add_plan($data); // Children_model returned an id to $child_id successfully
 
-			if($query) {
+			if($query){
 
-				$output = array(
-				'status'		=> 'Created',
-				'resourceId'	=> $query,
-				);
+				$content = $query;
+				$code = 'success';
+				$redirect = '';
+
 			}else{
 
 				$this->output->set_status_header('400');
-				$output = array(
-				'error'			=> output_message_mapper($this->plan_model->get_errors()),
-				);
-			}
 
-			Template::compose(false, $output, 'json');
-		
+				$content = $this->plan_model->get_errors();
+				$code = 'error';
+				$redirect = '';
+			}
+			
 		}else{
 
-			// Child_id unccessful
-			//put in a error message 
+				$this->output->set_status_header('400');
 
-		}
+				$content = $this->children_model->get_errors();
+				$code = 'error';
+				$redirect = '';
+			}
+
+			$output = array(
+				'content' => $content,
+				'code' => $code,
+				'redirect' => $redirect,
+				);
+
+		Template::compose(false, $output, 'json');
+
 	}
 
 	public function show() { //gets specific child details only
@@ -74,13 +90,24 @@ class Operations extends CI_Controller {
 		$query = $this->children_model->get_child($data);
 
 		if($query){
-			$output = output_message_mapper($query);
+
+			$content = $query;
+			$code = 'success';
+			$redirect = '';
+
 		}else{
+
 			$this->output->set_status_header('404');
-			$output = array(
-				'error'			=> output_message_mapper($this->children_model->get_errors()),
-			);
+			$content = $this->children_model->get_errors();
+			$code = 'error';
+			$redirect = '';
 		}
+
+		$output = array( //Client Side .query is expecting an array, that is why we have done it like this.
+			'content' => $content,
+			'code' => $code,
+			'redirect' => $redirect,
+			);
 		
 		Template::compose(false, $output, 'json');
 	}
@@ -94,16 +121,25 @@ class Operations extends CI_Controller {
 		$query = $this->plan_model->delete_plan($data);
 
 		if($query){
-			$output = array(
-				'status'		=> 'Deleted',
-				'resourceId'	=> $query,
-			);
+
+			$content = $query;
+			$code = 'success';
+			$redirect = '';
+
 		}else{
+
 			$this->output->set_status_header('400');
-			$output = array(
-				'error'			=> output_message_mapper($this->plan_model->get_errors()),
-			);
+
+			$content = $this->plan_model->get_errors();
+			$code = 'error';
+			$redirect = '';
 		}
+
+		$output = array(
+			'content' => $content,
+			'code' => $code,
+			'redirect' => $redirect,
+			);
 		
 		Template::compose(false, $output, 'json');
 	}
