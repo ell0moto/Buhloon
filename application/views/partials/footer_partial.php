@@ -189,6 +189,7 @@
         <!-- Reusable Services -->
         <script src="js/services/Dummy.Service.js"></script>
         <script src="js/services/Incentives.Service.js"></script>
+        <script src="js/services/Auth.Service.js"></script>
 
         <!-- Reusable Directives -->
 

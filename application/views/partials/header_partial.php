@@ -9,8 +9,8 @@
         <title>buhloon</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-<!--         <meta name="google-site-verification" content="<?= $google_site_verification ?>" /> -->
-        
+<!--    <meta name="google-site-verification" content="<?= $google_site_verification ?>" /> -->
+
         <link rel="stylesheet" href="css/main.css" >
         <link rel="shortcut icon" href="favicon.ico">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">

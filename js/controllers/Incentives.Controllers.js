@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Controllers') //
+angular.module('Controllers')
 	.controller('IncentivesIndexCtrl', [
 		'$scope',
 		'IncentivesServ',
@@ -50,7 +50,7 @@ angular.module('Controllers') //
 //Delete
 			IncentivesServ.remove(
 				{
-					id:'8',
+					// id:'8',
 				},
 				function(response){
 					console.log(response, '<- REMOVE');

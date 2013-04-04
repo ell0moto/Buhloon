@@ -33,6 +33,13 @@ class Incentives extends CI_Controller {
 			'code' => $code,
 			'redirect' => $redirect,
 			);
+
+		// $output = array(
+		// 	'content' => 'Unauthorised',
+		// 	'code' => 'error',
+		// 	);
+
+		// $this->output->set_status_header('401');
 		
 		Template::compose(false, $output, 'json');
 
