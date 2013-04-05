@@ -79,6 +79,7 @@ class Reward_model extends CI_Model {
 					'ribbonCost'		=> $row->ribbonCost,
 				);
 			}
+
 			return $data;
 		}else{
 			$this->errors = array(

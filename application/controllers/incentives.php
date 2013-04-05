@@ -11,7 +11,7 @@ class Incentives extends CI_Controller {
 
     	$id = 2; //Modifed at this stage (REMOVE)
 
-    	// $data['user_id'] = $this->ion_auth->get_user_id(); 
+    	//$data['userId'] = $this->ion_auth->get_user_id(); 
 		$query = $this->reward_model->get_reward($id);
 
 		if($query){
@@ -28,7 +28,7 @@ class Incentives extends CI_Controller {
 			$redirect = '';
 		}
 
-		$output = array( //Client Side .query is expecting an array, that is why we have done it like this.
+		$output = array( //Client Side .get will only accept an array of objects or an object. This creates an array of objects
 			'content' => $content,
 			'code' => $code,
 			'redirect' => $redirect,

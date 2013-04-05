@@ -190,6 +190,7 @@
         <script src="js/controllers/Home.Controllers.js"></script>
         <script src="js/controllers/Dummy.Controllers.js"></script>
         <script src="js/controllers/Incentives.Controllers.js"></script>
+        <script src="js/controllers/Sessions.Controllers.js"></script>
 
         <!-- Reusable Services -->
         <script src="js/services/Dummy.Service.js"></script>

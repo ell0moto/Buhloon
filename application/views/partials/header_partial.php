@@ -55,6 +55,13 @@
                             <input class="span2" type="password" name="password" placeholder="Password">
                             <button type="submit" class="btn">Sign in</button>
                         </form>
+                            <div ng-controller="SessionsCtrl">
+                            <form name="myForm">
+                            User name: <input type="text" name="userName" ng-model="user.name" required>
+                            <span class="error" ng-show="myForm.userName.$error.required">Required!</span><br>
+                            </form>
+                            </div>
+
                         <? else: ?>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right">

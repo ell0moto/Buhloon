@@ -1,92 +1,158 @@
 <?php
 
-class Sessions extends CI_Controller {
+use Polycademy\Validation\Validator;
 
-    public function __construct() {
-        parent::__construct();
+class Sessions extends CI_Controller{
 
-		$this->load->library('form_validation');
+	private $validator;
 
-    }
-
-    public function login() {
-
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-
-		$this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-
-		if($this->form_validation->run() == true){
-			
-			if($this->ion_auth->login($username, $password)){ //login input is ran to the ionAuth 'login' model & returns a boolean. 
-			
-				//login successful
-				redirect('main');
-
-			}else{
-			
-				//login not successful
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect($this->input->server('HTTP_REFERER'));
-			}
+	public function __construct(){
 		
-		}else{
-
-			//form validation not successful
-			$errors = trim(validation_errors()); //there's a bug in set_flashdata which dies when there's newline whitespace, we're just trimming it here to prevent any errors
-			$this->session->set_flashdata('message', $errors);
-			redirect($this->input->server('HTTP_REFERER'));
-		}
+		parent::__construct();
+		
+		$this->load->library('ion_auth');
+		$this->load->driver('sessions');
+		$this->validator = new Validator;
+	
 	}
 
+	//give back information about all the user's session (if you're admin)
+	public function index(){}
 
-    public function register() {
-
-    	$username = $this->input->post('username');
-		$password = $this->input->post('password');
-	
-		$this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-
-		if($this->form_validation->run() == true){
-			
-			if($this->ion_auth->register($username, $password)){ //login input is ran to the ionAuth 'login' model & returns a boolean. 
-			
-				//registration successful
-				$this->session->set_flashdata('message2', $this->ion_auth->messages());
-				redirect('home');
-			}else{
-			
-				//registration not successful
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect($this->input->server('HTTP_REFERER'));
-			}
-		
-		}else{
-
-			//form validation not successful
-			$errors = trim(validation_errors()); //there's a bug in set_flashdata which dies when there's newline whitespace, we're just trimming it here to prevent any errors
-			$this->session->set_flashdata('message', $errors);
-			redirect($this->input->server('HTTP_REFERER'));
-		}
-    }
-
-    //log a user with the id of $id
-	//make sure to authenticate the request that the person actually owns the $id
-	public function logout() {
-	
-		$this->ion_auth->logout();
-		redirect('home');
+	//show the the session data relating to session id (not the user, but the session, id refers to the session id!)
+	public function show($id){
+		//not implemented
+		return false;
 	}
 
-	public function index() {}
-	public function create() {}
-	public function show($id) {}
-	public function update($id) {}
-	public function delete($id) {}
+	//create a session! used for login
+	public function create(){
+	
+		//only create a new session, if the person is not logged in
+		if(!$this->ion_auth->logged_in()){
+			
+			//check if data is validated
+			$data = $this->input->json(false, true);
+			
+			$this->validator->setup_rules(array(
+				'username'		=> array(
+					'set_label:Username',
+					'NotEmpty',
+					'AlphaNumericSpace',
+					'MinLength:3',
+					'MaxLength:30',
+				),
+				'password'		=> array(
+					'set_label:Password',
+					'NotEmpty',
+					'AlphaSlug',
+					'MinLength:6',
+					'MaxLength:256'
+				),
+				'rememberMe'	=> array( //<- does not correspond with table column's name
+					'set_label:Remember Me',
+					'Number',
+					'MaxLength:1',
+				),
+			));
+			
+			if(!$this->validator->is_valid($data)){
+			
+				$this->output->set_status_header(400);
+				
+				$output = array(
+					'content'	=> $this->validator->get_errors();
+					'code'		=> 'validation_error',
+				);
+			
+			}else{
+			
+				//validator passed
+				//check if data is authenticated
+				if($this->ion_auth->login($data['username'], $data['password'], (bool) $data['rememberMe'])){
+					
+					$current_user = $this->ion_auth->user()->row();
+					
+					//logged in
+					$this->output->set_status_header(201);
+					
+					$output = array(
+						'content'	=> $current_user->id,
+						'code'		=> 'success',
+					);
+					
+				}else{
+				
+					//not logged in
+					$this->output->set_status_header(400); //fudged, make it a 400 code, cant use 401, and cant use 403 due to redirection possibility
+					
+					$output = array(
+						'content'	=> $this->ion_auth->errors_array(),
+						'code'		=> 'validation_error',
+					);
+				
+				}
+				
+			}
+			
+		}else{
+		
+			//if the person is already logged in, then no need to do it
+			//return the resource ID of the current user
+			$current_user = $this->ion_auth->user()->row();
+			
+			$this->output->set_status_header(204);
+			
+			$output = array(
+				'content'	=> $current_user->id;
+				'code'		=> 'success',
+			);
+		
+		}
+		
+		Template::compose(false, $output, 'json');
+	
+	}
 
-	protected function authenticated(){
+	//not implemented yet (possibly for shopping cart)
+	//$id should be the session id
+	public function update($id){
+		return false;
+	}
+
+	//used to delete a session
+	//only deletes the current person's session without the need for id!
+	public function delete(){
+	
+		//only delete if the person is logged in
+		if($this->ion_auth->logged_in()){
+			
+			$current_user = $this->ion_auth->user()->row();
+			
+			$this->ion_auth->logout();
+			
+			$output = array(
+				'content'	=> $current_user->id;
+				'code'		=> 'success',
+			);
+		
+		}else{
+			
+			//no resource to delete
+			$this->output->set_status_header(204);
+			
+			$output = array(
+				'content'	=> 'You cannot log out when you\'re not logged in!';
+				'code'		=> 'error',
+			);
+		
+		}
+		
+		Template::compose(false, $output, 'json');
+		
+	}
+
+	private function authenticated($id){
 	//check if person was authenticated
 	}
 
