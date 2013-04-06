@@ -40,7 +40,7 @@ class Sessions extends CI_Controller{
 					'set_label:Username',
 					'NotEmpty',
 					'AlphaNumericSpace',
-					'MinLength:4',
+					'MinLength:3',
 					'MaxLength:30',
 				),
 				'password'		=> array(

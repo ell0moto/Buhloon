@@ -26,7 +26,7 @@ angular.module('Controllers')
 
 						console.log('Successfully Logged In');
 						UsersServ.setUserData('id', successResponse.content);
-						$location.path('/');
+						$location.path('/main');
 					},
 
 					function(failureResponse) {
@@ -46,6 +46,7 @@ angular.module('Controllers')
 				if(typeof userId !== 'undefined'){
 					console.log(userId, 'Successfully logged out');
 					UsersServ.logout(userId);
+					$location.path('/');
 				}
 			};
 

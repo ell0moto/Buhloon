@@ -160,6 +160,7 @@
         <? Template::partial('home/home_index'); ?>
         <? Template::partial('dummy/dummy_index') ?>
         <? Template::partial('incentives/incentives_index') ?>
+        <? Template::partial('main/main_index') ?>
 
         <!-- Pass in PHP variables to Javascript -->
         <script>
@@ -190,6 +191,9 @@
         <script src="js/controllers/Home.Controllers.js"></script>
         <script src="js/controllers/Dummy.Controllers.js"></script>
         <script src="js/controllers/Incentives.Controllers.js"></script>
+        <script src="js/controllers/Main.Controllers.js"></script>
+
+        <!-- Sub Level Controllers -->
         <script src="js/controllers/Login.Controllers.js"></script>
 
         <!-- Reusable Services -->
@@ -198,6 +202,7 @@
         <script src="js/services/Auth.Service.js"></script>
         <script src="js/services/Sessions.Service.js"></script>
         <script src="js/services/Users.Service.js"></script>
+        <script src="js/services/Plans.Service.js"></script>
 
         <!-- Reusable Directives -->
 

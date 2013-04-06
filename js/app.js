@@ -49,6 +49,13 @@ app.config(
 					}
 				)
 				.when(
+					'/main',
+					{
+						templateUrl: 'main_index.html',
+						controller: 'MainIndexCtrl',
+					}
+				)
+				.when(
 					'/dummy',
 					{
 						templateUrl: 'dummy_index.html',

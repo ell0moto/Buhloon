@@ -73,7 +73,7 @@ Pigeon::map(function($r){
 
 	$r->resources('main');
 	$r->resources('sessions'); //for registering & loggin in
-	$r->resources('operations'); //for childrens goals
+	$r->resources('operations'); //for childrens plans
 	$r->resources('incentives'); //for rewards
 	$r->resources('dummy');
 
