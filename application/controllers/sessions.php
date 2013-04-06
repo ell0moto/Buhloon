@@ -34,26 +34,26 @@ class Sessions extends CI_Controller{
 			//check if data is validated
 			$data = $this->input->json(false, true);
 			
+			//THIS depends on the fact that you set the username as the identity field in the config
 			$this->validator->setup_rules(array(
 				'username'		=> array(
 					'set_label:Username',
 					'NotEmpty',
 					'AlphaNumericSpace',
-					'MinLength:3',
+					'MinLength:4',
 					'MaxLength:30',
 				),
 				'password'		=> array(
 					'set_label:Password',
 					'NotEmpty',
 					'AlphaSlug',
-					'MinLength:6',
+					'MinLength:8',
 					'MaxLength:256'
 				),
-				'rememberMe'	=> array( //<- does not correspond with table column's name
-					'set_label:Remember Me',
-					'Number',
-					'MaxLength:1',
-				),
+				// 'rememberMe'	=> array( //<- does not correspond with table column's name
+				// 	'set_label:Remember Me',
+				// 	'MaxLength:1',
+				// ),
 			));
 			
 			if(!$this->validator->is_valid($data)){
@@ -61,7 +61,7 @@ class Sessions extends CI_Controller{
 				$this->output->set_status_header(400);
 				
 				$output = array(
-					'content'	=> $this->validator->get_errors();
+					'content'	=> $this->validator->get_errors(),
 					'code'		=> 'validation_error',
 				);
 			
@@ -69,7 +69,11 @@ class Sessions extends CI_Controller{
 			
 				//validator passed
 				//check if data is authenticated
-				if($this->ion_auth->login($data['username'], $data['password'], (bool) $data['rememberMe'])){
+				
+				// $remember_me = (isset($data['rememberMe'])) ? (bool) $data['rememberMe'] : false;
+				
+				if($this->ion_auth->login($data['username'], $data['password'])){
+					// , $remember_me INSERT BACK TO PARAMETERS
 					
 					$current_user = $this->ion_auth->user()->row();
 					
@@ -101,10 +105,10 @@ class Sessions extends CI_Controller{
 			//return the resource ID of the current user
 			$current_user = $this->ion_auth->user()->row();
 			
-			$this->output->set_status_header(204);
+			$this->output->set_status_header(200);
 			
 			$output = array(
-				'content'	=> $current_user->id;
+				'content'	=> $current_user->id,
 				'code'		=> 'success',
 			);
 		
@@ -122,7 +126,7 @@ class Sessions extends CI_Controller{
 
 	//used to delete a session
 	//only deletes the current person's session without the need for id!
-	public function delete(){
+	public function delete($id){
 	
 		//only delete if the person is logged in
 		if($this->ion_auth->logged_in()){
@@ -132,17 +136,17 @@ class Sessions extends CI_Controller{
 			$this->ion_auth->logout();
 			
 			$output = array(
-				'content'	=> $current_user->id;
+				'content'	=> $current_user->id,
 				'code'		=> 'success',
 			);
 		
 		}else{
 			
 			//no resource to delete
-			$this->output->set_status_header(204);
+			$this->output->set_status_header(200);
 			
 			$output = array(
-				'content'	=> 'You cannot log out when you\'re not logged in!';
+				'content'	=> 'You cannot log out when you\'re not logged in!',
 				'code'		=> 'error',
 			);
 		

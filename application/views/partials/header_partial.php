@@ -23,7 +23,7 @@
         <![endif]-->
     <div class="header">
         <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
+            <div class="navbar-inner" ng-controller="LoginIndexCtrl">
                 <div class="container">
                     <!-- <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
@@ -49,32 +49,33 @@
                                 </ul>
                             </li>
                         </ul> -->
-                        <? if(!$this->ion_auth->logged_in()): ?> <!-- Condition statement showing login or header text -->
-                        <form class = "navbar-form pull-right" >
+                        
+<!--                    <form class = "navbar-form pull-right" >
                             <input class="span2" type="text" name="username" placeholder="User Name">
                             <input class="span2" type="password" name="password" placeholder="Password">
                             <button type="submit" class="btn">Sign in</button>
-                        </form>
-                            <div ng-controller="SessionsCtrl">
+                        </form> -->
+
+                            <div ng-show="state()" ng-submit="submit()">
                             <form name="myForm">
-                            User name: <input type="text" name="userName" ng-model="user.name" required>
-                            <span class="error" ng-show="myForm.userName.$error.required">Required!</span><br>
+                                <input type="text" name="userName" ng-model="username" required>
+    <!--                             <span class="error" ng-show="myForm.userName.$error.required">Required!</span><br> -->
+                                <input type="password" name="passWord" ng-model="password" required>
+                                <input type="submit" id="submit" value="Sign in" />
                             </form>
                             </div>
 
-                        <? else: ?>
-                        <div class="nav-collapse collapse">
+                        <div ng-hide="state()" class="nav-collapse collapse">
                             <ul class="nav pull-right">
                                 <li><a href="#rewards" data-toggle="modal">Rewards</a></li>
                                 <li><a href="#add-new" data-toggle="modal">Add New</a></li>
                                 <li><a href="#activity" data-toggle="modal">Activity</a></li>
-                                <li><a href="<?= base_url() ?>/sessions/logout">Logout</a></li>
+                                <li><a href="" ng-click="logout()">Logout</a></li>
                                 <!-- <li><a href="#contact">Contact</a></li> -->
                             </ul>
                         </div> 
-                        <? endif; ?>
+
                     </div>
                 </div>
             </div>
-        </div>
     </div> <!-- End of header -->

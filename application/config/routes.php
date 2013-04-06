@@ -82,10 +82,10 @@ Pigeon::map(function($r){
 	
 	//SESSION ROUTES
 	// first paramater 'URL', second 'controller method'
-	$r->post('sessions', 'sessions/login');
-	$r->post('sessions/register', 'sessions/register');
-	//$r->delete('sessions', 'user_sessions/logout');
-	$r->get('sessions/logout', 'sessions/logout'); //FALLBACK BECAUSE WE DONT HAVE AJAX YET
+	// $r->post('sessions', 'sessions/login');
+	// $r->post('sessions/register', 'sessions/register');
+	// //$r->delete('sessions', 'user_sessions/logout');
+	// $r->get('sessions/logout', 'sessions/logout'); //FALLBACK BECAUSE WE DONT HAVE AJAX YET
 
 	$r->get('migrate', 'migrate/index');
 	$r->get('migrate/revert', 'migrate/revert');

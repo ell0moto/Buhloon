@@ -190,12 +190,14 @@
         <script src="js/controllers/Home.Controllers.js"></script>
         <script src="js/controllers/Dummy.Controllers.js"></script>
         <script src="js/controllers/Incentives.Controllers.js"></script>
-        <script src="js/controllers/Sessions.Controllers.js"></script>
+        <script src="js/controllers/Login.Controllers.js"></script>
 
         <!-- Reusable Services -->
         <script src="js/services/Dummy.Service.js"></script>
         <script src="js/services/Incentives.Service.js"></script>
         <script src="js/services/Auth.Service.js"></script>
+        <script src="js/services/Sessions.Service.js"></script>
+        <script src="js/services/Users.Service.js"></script>
 
         <!-- Reusable Directives -->
 
