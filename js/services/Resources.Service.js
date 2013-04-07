@@ -17,4 +17,20 @@ angular.module('Services') //.factory is a more configurable but .provider is mo
 			);
 			
 		}
+	])
+
+	.factory('PlansServ', [ 
+
+		'$resource', 
+		function($resource){
+			
+			return $resource('api/operations/:id',
+				{},
+				{
+					update:{ 
+						method: 'PUT', 
+					}
+				}
+			);
+		}
 	]);

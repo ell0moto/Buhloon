@@ -23,20 +23,20 @@
         <![endif]-->
     <div class="header">
         <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner" ng-controller="LoginIndexCtrl">
+            <div class="navbar-inner" ng-controller="LogInOutSubCtrl">
                 <div class="container">
                     <a class="brand" href="#"><img src ="<?= base_url() ?>/img/buhloonlogo_icon.png" /></a>
 
-                        <form name="myForm" ng-show="state()" ng-submit="submit()" class = "navbar-form pull-right" >
+                        <form name="myForm" ng-show="state()" ng-submit="login()" class = "navbar-form pull-right" >
                             <input class="span2" type="text" name="userName" ng-model="username" >
 <!--                        <span class="error" ng-show="myForm.userName.$error.required">Required!</span><br> -->
                             <input class="span2" type="password" name="passWord" ng-model="password" >
-                            <button type="submit" class="btn" id="submit">Sign in</button>
+                            <button type="submit" class="btn" id="login">Sign in</button>
                         </form>
 
                         <div ng-hide="state()" class="nav-collapse collapse">
                             <ul class="nav pull-right">
-                                <li><a href="main/#rewards" data-toggle="modal">Rewards</a></li>
+                                <li><a ng-controller="IncentivesSubCtrl" ng-click="get()" href="main/#rewards" data-toggle="modal">Rewards</a></li>
                                 <li><a href="main/#add-new" data-toggle="modal">Add New</a></li>
                                 <li><a href="main/#activity" data-toggle="modal">Activity</a></li>
                                 <li><a href="" ng-click="logout()">Logout</a></li>

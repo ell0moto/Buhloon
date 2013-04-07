@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('Controllers')
-	.controller('LoginIndexCtrl', [
+
+	.controller('LogInOutSubCtrl', [
 		'$scope',
 		'$location',
 		'UsersServ',
 		function($scope, $location, UsersServ) {
 
-			$scope.submit = function() { //function expression
+			$scope.login = function() { //function expression
 
 				var payload = {
 					username: $scope.username,
@@ -58,6 +59,62 @@ angular.module('Controllers')
 				}else{
 					return false;
 				}
+			};
+
+		}
+	])
+
+	.controller('IncentivesSubCtrl', [
+		'$scope',
+		'IncentivesServ',
+		function($scope, IncentivesServ){
+
+			//get
+			$scope.get = function() {
+
+				IncentivesServ.get( 
+					{
+						// id:'9',
+					},
+					function(response){
+						$scope.incentivesData = response.content; //references object .content and passes in it's array.
+						console.log(response, '<- QUERY');
+					},
+					function(response){
+						console.log('Error! Well this is hawkard'); //this comes from the failure function
+					}
+				);
+
+			};
+
+			//Post (create)
+			$scope.submit = function() {
+
+				var payload = {
+					username: $scope.username,
+					password: $scope.password,
+				};
+
+				IncentivesServ.save( 
+					{}, //parameter passes in through URL
+					payload,
+					function(response){
+						console.log(response, '<- SAVE');
+					}
+				);
+			};
+
+			//Delete
+			$scope.remove = function() { 
+
+				IncentivesServ.remove(
+					{
+						// id:'8',
+					},
+					function(response){
+						console.log(response, '<- REMOVE');
+					}
+				);
 			};
 
 		}

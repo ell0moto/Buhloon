@@ -43,6 +43,21 @@
                                         <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
                                         <button class="btn btn-primary" type='submit' value='true' name='submit' aria-hidden="true">Create reward</button>
                                     </div>
+
+                                    <table ng-controller="IncentivesSubCtrl">
+                                        <thead>
+                                            <tr>
+                                               <th>Reward</th>
+                                                <th>Ribbon cost</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="rewards in incentivesData">
+                                                <td>{{rewards.titleOfReward}}</td>
+                                                <td>{{rewards.ribbonCost}}</td>
+                                            </tr>
+                                        </body>
+                                    </table>
                             </form>
         </div>
     </div> <!-- End of model -->
@@ -188,21 +203,17 @@
         <script src="js/app.js"></script>
 
         <!-- Page Level Controllers -->
+        <script src="js/controllers/Header.Controllers.js"></script>
         <script src="js/controllers/Home.Controllers.js"></script>
         <script src="js/controllers/Dummy.Controllers.js"></script>
-        <script src="js/controllers/Incentives.Controllers.js"></script>
         <script src="js/controllers/Main.Controllers.js"></script>
-
-        <!-- Sub Level Controllers -->
-        <script src="js/controllers/Login.Controllers.js"></script>
 
         <!-- Reusable Services -->
         <script src="js/services/Dummy.Service.js"></script>
-        <script src="js/services/Incentives.Service.js"></script>
+        <script src="js/services/Resources.Service.js"></script> <!-- Resources Routing -->
         <script src="js/services/Auth.Service.js"></script>
         <script src="js/services/Sessions.Service.js"></script>
         <script src="js/services/Users.Service.js"></script>
-        <script src="js/services/Plans.Service.js"></script>
 
         <!-- Reusable Directives -->
 
