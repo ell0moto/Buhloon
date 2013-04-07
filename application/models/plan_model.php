@@ -66,12 +66,12 @@ class Plan_model extends CI_Model {
 				'Number',
 				'NumRange:0,20',
 			),
-			'active' => array(
-				'set_label:Active',
-				'NotEmpty',
-				'Number',
-				'NumRange:0,1',
-			),
+			// 'active' => array(
+			// 	'set_label:Active',
+			// 	'NotEmpty',
+			// 	'Number',
+			// 	'NumRange:0,1',
+			// ),
 		));
 
 		if(!$this->validator->is_valid($data)) {
@@ -111,8 +111,8 @@ class Plan_model extends CI_Model {
 
 		if($query->num_rows() > 0){
 			foreach ($query->result() as $row) {
-				$data[] = array( //[] makes a dynamic array so that it's an array of an array
-				// 'id'				=> $id,
+				$output[] = array( //[] makes a dynamic array so that it's an array of an array
+				'id'				=> $row->id,
 				'userId'			=> $row->userId,
 				'childId'			=> $row->childId,
 				'nameOfChild'		=> $row->nameOfChild,
@@ -125,7 +125,7 @@ class Plan_model extends CI_Model {
 				'active'			=> $row->active,
 				);
 			}
-			return $data;
+			return $output;
 		}else{
 			$this->errors = array(
 				'database'	=> 'Could not find specified plans.',
@@ -159,10 +159,10 @@ class Plan_model extends CI_Model {
 			
 		}
 		
-  		// $this->db->where('id', $data['id']);
-  		// $this->db->where('userId', $data['userId']);
-  		// $this->db->where('childId', $data['childId']);
-		$this->db->update('plan', $data);
+  // 		$this->db->where('id', $data['id']);
+  // 		$this->db->where('userId', $data['userId']);
+  // 		$this->db->where('childId', $data['childId']);
+		// $this->db->update('plan', $data);
 		
 		//greated or equal to zero (means update worked)
 		if($this->db->affected_rows() > 0){
@@ -205,10 +205,10 @@ class Plan_model extends CI_Model {
 			
 		}
   		
-  		// $this->db->where('id', $data['id']);
-  		// $this->db->where('userId', $data['userId']);
-  		// $this->db->where('childId', $data['childId']);
-		$this->db->update('plan', $data);
+  // 		$this->db->where('id', $data['id']);
+  // 		$this->db->where('userId', $data['userId']);
+  // 		$this->db->where('childId', $data['childId']);
+		// $this->db->update('plan', $data);
   		
   		if($this->db->affected_rows() > 0){
 			return true;
@@ -225,7 +225,7 @@ class Plan_model extends CI_Model {
   		// $this->db->where('id', $data['id'])
   		// $this->db->where('userId', $data['userId'])
   		// $this->db->where('childId', $data['childId'])
-  		$this->db->delete('plan');
+  		// $this->db->delete('plan');
 
   		if($this->db->affected_rows() > 0){
 			return true;

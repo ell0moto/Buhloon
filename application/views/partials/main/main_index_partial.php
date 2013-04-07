@@ -1,5 +1,6 @@
 <script type="text/ng-template" id="main_index.html">
 	<h3>{{data}}</h3>
+	<button type="button" ng-controller="MainIndexCtrl" ng-click="get()">refresh</button>
 	<table>
 		<thead>
 			<tr>

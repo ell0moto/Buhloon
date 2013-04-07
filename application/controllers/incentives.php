@@ -9,9 +9,7 @@ class Incentives extends CI_Controller {
 
     public function index() {
 
-    	$id = 2; //Modifed at this stage (REMOVE)
-
-    	//$data['userId'] = $this->ion_auth->get_user_id(); 
+    	$id = $this->ion_auth->get_user_id(); 
 		$query = $this->reward_model->get_reward($id);
 
 		if($query){
@@ -44,7 +42,7 @@ class Incentives extends CI_Controller {
 
 		$data = $this->input->json(false, true);
 
-		// $data['user_id'] = $this->ion_auth->get_user_id(); 	// retrieves user id, then inputs it into $data array
+		$data['userId'] = $this->ion_auth->get_user_id(); 	// retrieves user id, then inputs it into $data array
 		$query = $this->reward_model->post_reward($data);
 
 		if($query){

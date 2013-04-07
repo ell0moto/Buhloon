@@ -10,8 +10,7 @@ class Operations extends CI_Controller {
 
     public function index() { //gets all plans according to ID
 
-		// $data['userId'] = $this->ion_auth->get_user_id(); 
-		$data['userId'] = 4;
+		$data['userId'] = $this->ion_auth->get_user_id(); 
     	$query = $this->plan_model->get_plan($data);
 
 		if($query){
@@ -40,16 +39,14 @@ class Operations extends CI_Controller {
 
     public function create() { //creates child & plan
 
-    	$this->authenticated();
+    	// $this->authenticated();
 
     	$data = $this->input->json(false, true);
 
 		$data['userId'] = $this->ion_auth->get_user_id(); 	// retrieves user id, then inputs it into $data array
 		$data['childId'] = $this->children_model->add_child($data); // Send input to children_model, returns child_id required for plan_model.
 
-		if (!empty($child_id)) {
-
-			$query = $this->plan_model->add_plan($data); // Children_model returned an id to $child_id successfully
+		$query = $this->plan_model->add_plan($data); // Children_model returned an id to $child_id successfully
 
 			if($query){
 
@@ -65,21 +62,12 @@ class Operations extends CI_Controller {
 				$code = 'error';
 				$redirect = '';
 			}
-			
-		}else{
 
-				$this->output->set_status_header('400');
-
-				$content = $this->children_model->get_errors();
-				$code = 'error';
-				$redirect = '';
-			}
-
-			$output = array(
-				'content' => $content,
-				'code' => $code,
-				'redirect' => $redirect,
-				);
+		$output = array( 
+			'content' => $content,
+			'code' => $code,
+			'redirect' => $redirect,
+			);
 
 		Template::compose(false, $output, 'json');
 

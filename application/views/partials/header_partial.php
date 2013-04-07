@@ -36,7 +36,7 @@
 
                         <div ng-hide="state()" class="nav-collapse collapse">
                             <ul class="nav pull-right">
-                                <li><a ng-controller="IncentivesSubCtrl" ng-click="get()" href="main/#rewards" data-toggle="modal">Rewards</a></li>
+                                <li><a ng-controller="IncentivesSubCtrl" href="main/#rewards" data-toggle="modal">Rewards</a></li>
                                 <li><a href="main/#add-new" data-toggle="modal">Add New</a></li>
                                 <li><a href="main/#activity" data-toggle="modal">Activity</a></li>
                                 <li><a href="" ng-click="logout()">Logout</a></li>

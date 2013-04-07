@@ -3,33 +3,40 @@
 angular.module('Controllers')
 	.controller('MainIndexCtrl', [
 		'$scope',
-		'PlansServ',
-		function($scope, PlansServ){
+		'OperationsServ',
+		function($scope, OperationsServ){
 			$scope.data = 'Plans!';
-			
+
 //Get all (according to specific id)
-			PlansServ.get( 
-				{
-					// id:'9',
-				},
-				function(response){
-					$scope.plansData = response.content; //references object .content and passes in it's array.
-					console.log(response, '<- QUERY');
-				},
-				function(response){
-					console.log('Error! Well this is hawkard'); //this comes from the failure function
-				}
-			);
+			$scope.get = function() {
+			
+				OperationsServ.get( 
+					{},
+					function(response){
+						$scope.plansData = response.content; //references object .content and passes in it's array.
+						console.log(response, '<- QUERY');
+					},
+					function(response){
+						console.log('Error! Well this is hawkard'); //this comes from the failure function
+					}
+				);
+			};
 
 //Post (create)
 			$scope.submit = function() { //function expression
 
 				var payload = {
-					username: $scope.username,
-					password: $scope.password,
+					titleOfPlan: $scope.titleOfPlan,
+					description: $scope.description,
+					nameOfChild: $scope.nameOfChild,
+					totalIteration: $scope.totalIteration,
+					specificReward: $scope.specificReward,
+					noRibbon: $scope.noRibbon,
 				};
 
-				PlansServ.save( 
+				console.log(payload);
+
+				OperationsServ.save( 
 					{}, //parameter passes in through URL
 					payload,
 					function(response){
@@ -40,27 +47,31 @@ angular.module('Controllers')
 			
 
 //Put
-			PlansServ.update(
-				{},
-				{
-					// userId:'',
-					// titleOfReward: '',
-					// ribbonCost: '',
-				},
-				function(response){
-					console.log(response, '<- UPDATE');
-				}
-			);
+			$scope.update = function() {
+				OperationsServ.update(
+					{},
+					{
+						// userId:'',
+						// titleOfReward: '',
+						// ribbonCost: '',
+					},
+					function(response){
+						console.log(response, '<- UPDATE');
+					}
+				);
+			};
 
 //Delete
-			PlansServ.remove(
-				{
-					// id:'8',
-				},
-				function(response){
-					console.log(response, '<- REMOVE');
-				}
-			);
+			$scope.remove = function() {
+				OperationsServ.remove(
+					{
+						// id:'8',
+					},
+					function(response){
+						console.log(response, '<- REMOVE');
+					}
+				);
+			};
 	
 		}
 	]);

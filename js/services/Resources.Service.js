@@ -19,7 +19,7 @@ angular.module('Services') //.factory is a more configurable but .provider is mo
 		}
 	])
 
-	.factory('PlansServ', [ 
+	.factory('OperationsServ', [ 
 
 		'$resource', 
 		function($resource){

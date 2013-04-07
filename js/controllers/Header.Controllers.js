@@ -91,8 +91,8 @@ angular.module('Controllers')
 			$scope.submit = function() {
 
 				var payload = {
-					username: $scope.username,
-					password: $scope.password,
+					titleOfReward: $scope.titleOfReward,
+					ribbonCost: $scope.ribbonCost,
 				};
 
 				IncentivesServ.save( 
@@ -105,11 +105,13 @@ angular.module('Controllers')
 			};
 
 			//Delete
-			$scope.remove = function() { 
+			$scope.remove = function(id) { 
+
+				console.log(id);
 
 				IncentivesServ.remove(
 					{
-						// id:'8',
+						id: id,
 					},
 					function(response){
 						console.log(response, '<- REMOVE');

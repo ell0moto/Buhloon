@@ -43,7 +43,9 @@ class Children_model extends CI_Model {
 		// If child name does not already exists, insert child name & user id to create unique id. 
 		if (!$this->name_check($data)) {
 
-			$query = $this->db->insert('children', $data);
+			$this->db->set('userId', $data['userId']);
+			$this->db->set('nameOfChild', $data['nameOfChild']);
+			$query = $this->db->insert('children');
 
 				if(!$query) {
 	 
@@ -64,9 +66,9 @@ class Children_model extends CI_Model {
 		}
 
 		// Retrieves unique id from database, and returns id
-		// $this->db->select('id'); 
-		// $this->db->where('userId', $data['userId']); 
-		// $this->db->where('nameOfChild', $data['nameOfChild']); 
+		$this->db->select('id'); 
+		$this->db->where('userId', $data['userId']); 
+		$this->db->where('nameOfChild', $data['nameOfChild']); 
 		$query = $this->db->get('children');
 
 
@@ -121,8 +123,8 @@ class Children_model extends CI_Model {
 
 	public function delete_child($data) { //May not be required
   		
-  		// $this->db->where('userId', $data['userId'])
-  		// $this->db->where('id', $data['childId'])
+  		// $this->db->where('userId', $data['userId']);
+  		// $this->db->where('id', $data['childId']);
   		$this->db->delete('children');
   		
   		if($this->db->affected_rows() > 0){
@@ -142,12 +144,10 @@ class Children_model extends CI_Model {
   		$query = $this->db->get_where('children', array('userId' => $data['userId'])); 
   		$result = $query->result_array();
 
-  		// Runs loop to search for particular value, if found returns that value
+  		// Runs loop to search for particular value, if found returns true
 		foreach($result as $key => $values) {
-			if ($values['nameOfChild'] == $data['nameOfCchild']) {
+			if ($values['nameOfChild'] == $data['nameOfChild']) {
 			return true;
-			}else{
-				return false;
 			}
 		}
 	}
