@@ -76,6 +76,7 @@ Pigeon::map(function($r){
 	$r->resources('operations'); //for childrens plans
 	$r->resources('incentives'); //for rewards
 	$r->resources('dummy');
+	$r->resources('accounts');
 
 
 

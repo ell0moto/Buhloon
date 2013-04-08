@@ -1,61 +1,59 @@
 <script type="text/ng-template" id="home_index.html">
 
+    <div id="myCarousel" class="carousel slide" data-interval="0"> <!-- Carousel -->
+    
+    <!-- Missing content -->
 
-        <div id="myCarousel" class="carousel slide" data-interval="0"> <!-- Carousel -->
-        
-        <!-- Missing content -->
-
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-            </ol>
-      <!-- Carousel items -->
-            <div class="carousel-inner">
-                <div class="active item">
-                    <div class="vertical">
-                        <div class="centered">
-                            <h1>A tool to</h1>
-                            <h1>encourage children</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="vertical">
-                        <div class="centered">
-                                <!-- Start of forms -->
-                            <form class="form-horizontal">
-                                <fieldset>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <div class="input-prepend">
-                                                <span class="add-on"><i class="icon-user"></i></span>
-                                                <input type="text" id="form_username" name="username" placeholder="Enter a username" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <div class="input-prepend">
-                                                <span class="add-on"><i class="icon-lock"></i></span>
-                                                <input type="password" id="form_password" name="password" placeholder="Enter a password" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-actions"> <!-- button -->
-                                        <button type="submit" class="btn btn-primary" name="submit">Register</button>
-                                    </div>
-                                </fieldset>
-                            </form>
-                                <!-- End of forms -->
-                        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+  <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="active item">
+                <div class="vertical">
+                    <div class="centered">
+                        <h1>A tool to</h1>
+                        <h1>encourage children</h1>
                     </div>
                 </div>
             </div>
-      <!-- Carousel nav -->
-            <!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a> -->
-            <a class="carousel-control right" href="#myCarousel" data-slide="next"><p>Get started</p><p> its free &rsaquo;</p></a>
-        </div>  <!-- End of Carousel -->
-    </div>
+            <div class="item">
+                <div class="vertical">
+                    <div class="centered">
+                            <!-- Start of forms -->
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="input-prepend">
+                                            <span class="add-on"><i class="icon-user"></i></span>
+                                            <input type="text" id="form_username" name="username" placeholder="Enter a username" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="input-prepend">
+                                            <span class="add-on"><i class="icon-lock"></i></span>
+                                            <input type="password" id="form_password" name="password" placeholder="Enter a password" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions"> <!-- button -->
+                                    <button type="submit" class="btn btn-primary" name="submit">Register</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                            <!-- End of forms -->
+                    </div>
+                </div>
+            </div>
+        </div>
+  <!-- Carousel nav -->
+        <!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a> -->
+        <a class="carousel-control right" href="#myCarousel" data-slide="next"><p>Get started</p><p> its free &rsaquo;</p></a>
+    </div>  <!-- End of Carousel -->
 
     <div class="home-section2"> <!-- Start of second section -->
         <div class="top-bottom-pattern">
@@ -78,5 +76,7 @@
                     <li><img src="<?= base_url() ?>/img/reward_icon.png" /></li>
                 </ul>
             </div>
-        </div> <!-- End of third section -->
+        </div>
+    </div> <!-- End of third section -->
+    
 </script>

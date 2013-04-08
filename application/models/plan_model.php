@@ -220,12 +220,12 @@ class Plan_model extends CI_Model {
 		}
 	}
 
-	public function delete_plan($data) {
+	public function delete_plan($id) {
   		
-  		// $this->db->where('id', $data['id'])
-  		// $this->db->where('userId', $data['userId'])
-  		// $this->db->where('childId', $data['childId'])
-  		// $this->db->delete('plan');
+  		$this->db->where('id', $id);
+  		// $this->db->where('userId', $data['userId']);
+  		// $this->db->where('childId', $data['childId']);
+  		$this->db->delete('plan');
 
   		if($this->db->affected_rows() > 0){
 			return true;

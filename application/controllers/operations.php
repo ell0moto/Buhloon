@@ -136,7 +136,7 @@ class Operations extends CI_Controller {
 
 	public function delete($data) {
 
-		$this->authenticated();
+		// $this->authenticated();
 
 		$query = $this->plan_model->delete_plan($data);
 

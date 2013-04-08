@@ -9,7 +9,7 @@
         <title>buhloon</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-<!--    <meta name="google-site-verification" content="<?= $google_site_verification ?>" /> -->
+
 
         <link rel="stylesheet" href="css/main.css" >
         <link rel="shortcut icon" href="favicon.ico">
@@ -27,16 +27,16 @@
                 <div class="container">
                     <a class="brand" href="#"><img src ="<?= base_url() ?>/img/buhloonlogo_icon.png" /></a>
 
-                        <form name="myForm" ng-show="state()" ng-submit="login()" class = "navbar-form pull-right" >
+                        <form name="myForm" ng-show="state" ng-submit="login()" class = "navbar-form pull-right" >
                             <input class="span2" type="text" name="userName" ng-model="username" >
 <!--                        <span class="error" ng-show="myForm.userName.$error.required">Required!</span><br> -->
                             <input class="span2" type="password" name="passWord" ng-model="password" >
                             <button type="submit" class="btn" id="login">Sign in</button>
                         </form>
 
-                        <div ng-hide="state()" class="nav-collapse collapse">
+                        <div ng-hide="state" class="nav-collapse collapse">
                             <ul class="nav pull-right">
-                                <li><a ng-controller="IncentivesSubCtrl" href="main/#rewards" data-toggle="modal">Rewards</a></li>
+                                <li><a href="main/#rewards" data-toggle="modal">Rewards</a></li>
                                 <li><a href="main/#add-new" data-toggle="modal">Add New</a></li>
                                 <li><a href="main/#activity" data-toggle="modal">Activity</a></li>
                                 <li><a href="" ng-click="logout()">Logout</a></li>

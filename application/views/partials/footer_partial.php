@@ -213,9 +213,9 @@
         <!-- Reusable Services -->
         <script src="js/services/Dummy.Service.js"></script>
         <script src="js/services/Resources.Service.js"></script> <!-- Resources Routing -->
-        <script src="js/services/Auth.Service.js"></script>
         <script src="js/services/Sessions.Service.js"></script>
         <script src="js/services/Users.Service.js"></script>
+        <script src="js/services/Accounts.Service.js"></script>
 
         <!-- Reusable Directives -->
         <script src="js/directives/PlaceHolder.Directive.js"></script>

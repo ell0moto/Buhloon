@@ -2,6 +2,7 @@
 
 use Polycademy\Validation\Validator;
 
+//in this class, $ids refer to the user ids, not the session ids!
 class Sessions extends CI_Controller{
 
 	private $validator;
@@ -11,20 +12,46 @@ class Sessions extends CI_Controller{
 		parent::__construct();
 		
 		$this->load->library('ion_auth');
-		$this->load->driver('sessions');
+		$this->load->driver('session');
 		$this->validator = new Validator;
 	
 	}
-
+	
 	//give back information about all the user's session (if you're admin)
-	public function index(){}
-
-	//show the the session data relating to session id (not the user, but the session, id refers to the session id!)
+	public function index() {}
+	
+	//show the the session data relating to user id
+	//can only show current person's session, $id is just for REST
+	//this is the function that will be utilised at startup!
 	public function show($id){
-		//not implemented
-		return false;
+	
+		if($id == 0){
+		
+			//if $id is 0, just grab the current session
+			$output = array(
+				'content'	=> $this->session->all_userdata(),
+				'code'		=> 'success',
+			);
+			
+			$user_data = $this->ion_auth->user()->row();
+			
+			if(!empty($user_data)){
+				$user_id = $user_data->id;
+				//we want to store the userId in a different place, as this could overwrite the session id
+				$output['content']['userId'] = $user_id;
+			}
+		
+		}else{
+		
+			//grab a specified session, either the person must own it, or the person is an admin
+			//not yet implemented
+		
+		}
+		
+		Template::compose(false, $output, 'json');
+		
 	}
-
+	
 	//create a session! used for login
 	public function create(){
 	
@@ -50,10 +77,10 @@ class Sessions extends CI_Controller{
 					'MinLength:8',
 					'MaxLength:256'
 				),
-				// 'rememberMe'	=> array( //<- does not correspond with table column's name
-				// 	'set_label:Remember Me',
-				// 	'MaxLength:1',
-				// ),
+				'rememberMe'	=> array( //<- does not correspond with table column's name
+					'set_label:Remember Me',
+					'MaxLength:1',
+				),
 			));
 			
 			if(!$this->validator->is_valid($data)){
@@ -70,10 +97,9 @@ class Sessions extends CI_Controller{
 				//validator passed
 				//check if data is authenticated
 				
-				// $remember_me = (isset($data['rememberMe'])) ? (bool) $data['rememberMe'] : false;
+				$remember_me = (isset($data['rememberMe'])) ? (bool) $data['rememberMe'] : false;
 				
-				if($this->ion_auth->login($data['username'], $data['password'])){
-					// , $remember_me INSERT BACK TO PARAMETERS
+				if($this->ion_auth->login($data['username'], $data['password'], $remember_me)){
 					
 					$current_user = $this->ion_auth->user()->row();
 					
@@ -117,15 +143,16 @@ class Sessions extends CI_Controller{
 		Template::compose(false, $output, 'json');
 	
 	}
-
+	
 	//not implemented yet (possibly for shopping cart)
-	//$id should be the session id
+	//$id should be the user id, session id is encrypted
 	public function update($id){
 		return false;
 	}
-
+	
 	//used to delete a session
-	//only deletes the current person's session without the need for id!
+	//logout only works for the person who is logged in, you cannot log somebody else out!
+	//$id is only for REST currently
 	public function delete($id){
 	
 		//only delete if the person is logged in
@@ -146,7 +173,7 @@ class Sessions extends CI_Controller{
 			$this->output->set_status_header(200);
 			
 			$output = array(
-				'content'	=> 'You cannot log out when you\'re not logged in!',
+				'content'	=> 'You cannot log out when you are not logged in.',
 				'code'		=> 'error',
 			);
 		
@@ -154,10 +181,6 @@ class Sessions extends CI_Controller{
 		
 		Template::compose(false, $output, 'json');
 		
-	}
-
-	private function authenticated($id){
-	//check if person was authenticated
 	}
 
 }

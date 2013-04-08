@@ -19,22 +19,37 @@ angular.module('Controllers')
 				$scope.loginErrors = [];
 				$scope.validationErrors = {};
 
-				//Post (create)
-				UsersServ.login(
+				UsersServ.loginSession( //passing in arguments
 					payload,
 
-					function(successResponse) {
+					function(successResponse) { //anonomous function call back
 
 						console.log('Successfully Logged In');
 						UsersServ.setUserData('id', successResponse.content);
 						$location.path('/main');
 					},
 
-					function(failureResponse) {
+					function(failResponse) {
 
-						if(failureResponse.data.code === 'validation_error') {
-						console.log(failureResponse, 'Validation error')
-
+						console.log('Could not log in');
+						
+						//check if it is a validation error
+						if(failResponse.data.code === 'validation_error'){
+							
+							if(Array.isArray(failResponse.data.content)){
+							
+								//if it is an array
+								$scope.loginErrors = failResponse.data.content;
+							
+							}else{
+							
+								//else it's an object
+								$scope.validationErrors = {
+									username: failResponse.data.content.username,
+									password: failResponse.data.content.password,
+									rememberMe: failResponse.data.content.rememberMe
+								};
+							}
 						}
 					}
 				);
@@ -42,17 +57,26 @@ angular.module('Controllers')
 			};
 
 			$scope.logout = function(){
-				//get the id
-				var userId = UsersServ.getUserData().id;
-				if(typeof userId !== 'undefined'){
-					console.log(userId, 'Successfully logged out');
-					UsersServ.logout(userId);
-					$location.path('/');
-				}
+				
+				UsersServ.logoutSession(UsersServ.getUserData().id);
+				//$scope.$emit('authenticationDestroy', Us);
 			};
 
+			$scope.$on('authenticationProvided', function(event,args) { //authenticationProvided is a global event that is being listen to
 
+				$scope.state = false; //anything attached to $scope.state is a model
+			});
+
+			$scope.$on('authenticationLogout', function(event,args) {
+				$scope.state = true; //anything attached to $scope.state is a model
+			});
+
+
+
+
+			
 			$scope.state = function(){
+				console.log(UsersServ.getUserData());
 				var userId = UsersServ.getUserData().id;
 				if(typeof userId == 'undefined'){
 					return true;
@@ -81,7 +105,7 @@ angular.module('Controllers')
 						console.log(response, '<- QUERY');
 					},
 					function(response){
-						console.log('Error! Well this is hawkard'); //this comes from the failure function
+						console.log('Error! Well this is hawkard'); //this comes from the fail function
 					}
 				);
 

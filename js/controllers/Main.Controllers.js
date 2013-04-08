@@ -48,6 +48,7 @@ angular.module('Controllers')
 
 //Put
 			$scope.update = function() {
+				
 				OperationsServ.update(
 					{},
 					{
@@ -62,10 +63,13 @@ angular.module('Controllers')
 			};
 
 //Delete
-			$scope.remove = function() {
+			$scope.remove = function(id) {
+
+				console.log(id);
+
 				OperationsServ.remove(
 					{
-						// id:'8',
+						id:id,
 					},
 					function(response){
 						console.log(response, '<- REMOVE');
