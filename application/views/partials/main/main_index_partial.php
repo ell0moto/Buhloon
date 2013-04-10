@@ -10,9 +10,11 @@
 				<th>Description</th>
 				<th>Progress</th>
 				<th>Update</th>
+				<th>Total Iteration</th>
 				<th>Reward</th>
 				<th>Ribbons</th>
 				<th>Active</th>
+				<th>Complete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,11 +22,13 @@
 				<td>{{columns.nameOfChild}}</td>
 				<td>{{columns.titleOfPlan}}</td>
 				<td>{{columns.description}}</td>
-				<td>{{columns.progresss}}</td>
-				<td><button type="button" ng-click="update(columns.id)">&rsaquo</button></td>
+				<td>{{columns.progress}}</td>
+				<td><button type="button" ng-click="addItem(columns)">+1</button></td>
+				<td>{{columns.totalIteration}}</td>
 				<td>{{columns.specificReward}}</td>
 				<td>{{columns.noRibbon}}</td>
 				<td>{{columns.active}}</td>
+				<td>{{columns.complete}}</td>
 				<td>{{columns.id}}</td>
 				<td><button type="button" ng-click="remove(columns.id)">×</button></td>
 			</tr>

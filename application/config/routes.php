@@ -72,21 +72,13 @@ Pigeon::map(function($r){
 
 
 	$r->resources('main');
-	$r->resources('sessions'); //for registering & loggin in
+	$r->resources('sessions'); //for loggin in/out
 	$r->resources('operations'); //for childrens plans
 	$r->resources('incentives'); //for rewards
 	$r->resources('dummy');
-	$r->resources('accounts');
-
-
-
-	
-	//SESSION ROUTES
-	// first paramater 'URL', second 'controller method'
-	// $r->post('sessions', 'sessions/login');
-	// $r->post('sessions/register', 'sessions/register');
-	// //$r->delete('sessions', 'user_sessions/logout');
-	// $r->get('sessions/logout', 'sessions/logout'); //FALLBACK BECAUSE WE DONT HAVE AJAX YET
+	$r->resources('accounts'); //for registering
+	$r->resources('offspring'); //for children
+	$r->resources('notifications'); //for activity
 
 	$r->get('migrate', 'migrate/index');
 	$r->get('migrate/revert', 'migrate/revert');

@@ -3,7 +3,10 @@
 //this migration can only be ran when you have switched off session use tables, then after migrating, switch it back on!
 class Migration_add_sessions extends CI_Migration {
 
+	
+
 	public function up(){
+
 	
 		$this->dbforge->add_field(array(
 			'session_id'	=> array(

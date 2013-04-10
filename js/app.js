@@ -11,7 +11,9 @@ var app = angular.module('App', [
 	'Services',
 	'Directives',
 	'ngResource', //for RESTful resources
-	'ngCookies'
+	'ngCookies',
+	'ui', //from Angular UI
+	'ui.bootstrap'
 ]);
 
 //Define all the page level controllers (Application Logic)
@@ -79,6 +81,16 @@ app.config(
 	]
 );
 
+/* ==========================================================================
+   CONFIGURE ANGULAR UI
+   ========================================================================== */
+/*
+app.value('ui.config', {
+	select2: {
+		allowClear: true
+	}
+});
+*/
 
 /* ==========================================================================
    GLOBAL FEATURES

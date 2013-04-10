@@ -1,14 +1,13 @@
 <?php
 
-class Operations extends CI_Controller {
+class Offspring extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-		$this->load->model('plan_model');
 		$this->load->model('children_model');
     }
 
-    public function index() { //gets all plans according to ID
+    public function index() { //gets all children according to ID
 
 		$data['userId'] = $this->ion_auth->get_user_id(); 
     	$query = $this->plan_model->get_plan($data);
@@ -42,7 +41,6 @@ class Operations extends CI_Controller {
     	// $this->authenticated();
 
     	$data = $this->input->json(false, true);
-
 		$data['userId'] = $this->ion_auth->get_user_id(); 	// retrieves user id, then inputs it into $data array
 		$data['childId'] = $this->children_model->add_child($data); // Send input to children_model, returns child_id required for plan_model.
 
@@ -58,10 +56,7 @@ class Operations extends CI_Controller {
 
 				$this->output->set_status_header('400');
 
-				$content = array(
-					'Plan Model' => $this->plan_model->get_errors(),
-					'Children Model' => $this->children_model->get_errors(),
-					);
+				$content = $this->plan_model->get_errors();
 				$code = 'error';
 				$redirect = '';
 			}
@@ -78,7 +73,7 @@ class Operations extends CI_Controller {
 
 	public function show() { //gets specific child details only
 
-		$data['userId'] = $this->ion_auth->get_user_id(); 
+		$data = $this->input->json(false, true); 
 		$query = $this->children_model->get_child($data);
 
 		if($query){
@@ -110,7 +105,7 @@ class Operations extends CI_Controller {
 
     	$data = $this->input->json(false, true);
 
-		$query = $this->plan_model->update_plan($data);
+		$query = $this->children_model->get_child($data);
 
 		if($query){
 

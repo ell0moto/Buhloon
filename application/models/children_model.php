@@ -96,9 +96,9 @@ class Children_model extends CI_Model {
 
 	public function get_child($data) {
 	  	
-	 //  	$this->db->select(); 
-		// $this->db->where('userId', $data['userId']);
-		// $this->db->where('id', $data['childId']);
+	  	$this->db->select(); 
+		$this->db->where('userId', $data['userId']);
+		$this->db->where('id', $data['childId']);
 		$query=$this->db->get('children');
 		
 		if($query->num_rows() > 0){
@@ -144,7 +144,7 @@ class Children_model extends CI_Model {
   		$query = $this->db->get_where('children', array('userId' => $data['userId'])); 
   		$result = $query->result_array();
 
-  		// Runs loop to search for particular value, if found returns true
+  		// Runs loop to search for particular name, if name alraedy exists returns true
 		foreach($result as $key => $values) {
 			if ($values['nameOfChild'] == $data['nameOfChild']) {
 			return true;

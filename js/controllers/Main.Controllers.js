@@ -7,7 +7,7 @@ angular.module('Controllers')
 		function($scope, OperationsServ){
 			$scope.data = 'Plans!';
 
-//Get all (according to specific id)
+//Get all plans (according to specific id)
 			$scope.get = function() {
 			
 				OperationsServ.get( 
@@ -22,22 +22,23 @@ angular.module('Controllers')
 				);
 			};
 
-//Post (create)
+//Post (create) plan
 			$scope.submit = function() { //function expression
 
-				var payload = {
+				var payload = { //payload is an object, created via literal notation
 					titleOfPlan: $scope.titleOfPlan,
 					description: $scope.description,
 					nameOfChild: $scope.nameOfChild,
 					totalIteration: $scope.totalIteration,
 					specificReward: $scope.specificReward,
 					noRibbon: $scope.noRibbon,
+					progress: 0,
+					active: 0,
+					complete: 0,
 				};
 
-				console.log(payload);
-
-				OperationsServ.save( 
-					{}, //parameter passes in through URL
+				OperationsServ.save( //.save is a function being called
+					{}, //1st parameter passes in through URL
 					payload,
 					function(response){
 						console.log(response, '<- SAVE');
@@ -45,27 +46,38 @@ angular.module('Controllers')
 				);
 			};
 			
+			
+// Put (update) plan
+			$scope.addItem = function(item) {
 
-//Put
-			$scope.update = function() {
-				
+				var values;
+				for (values in item) {
+					if (values === "progress") {
+						item[values] = (item[values] + 1);
+					}
+					if (values === "active") {
+						item[values] = 1;
+					}
+				};
+
+				if (item["progress"] === item["totalIteration"]) {
+					item["complete"] = 1;
+				};
+
+				console.log(item);
+
 				OperationsServ.update(
-					{},
-					{
-						// userId:'',
-						// titleOfReward: '',
-						// ribbonCost: '',
-					},
+					{id:0,}, //Dummy data to satisfy RESTFUL
+					item,
 					function(response){
 						console.log(response, '<- UPDATE');
 					}
 				);
+
 			};
 
-//Delete
+//Delete plan
 			$scope.remove = function(id) {
-
-				console.log(id);
 
 				OperationsServ.remove(
 					{

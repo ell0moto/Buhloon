@@ -5213,6 +5213,38 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+.ui-resetwrap {
+  position: relative;
+  display: inline-block;
+}
+.ui-reset {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: none;
+  height: 100%;
+  cursor: pointer;
+}
+.ui-resetwrap:hover .ui-reset {
+  display: block;
+}
+.ui-currency-pos {
+  color: #008000;
+}
+.ui-currency-neg {
+  color: #ff0000;
+}
+.ui-currency-zero {
+  color: #0000ff;
+}
+.ui-currency-pos.ui-bignum,
+.ui-currency-neg.ui-smallnum {
+  font-size: 110%;
+}
+.ui-match {
+  background: #ffff00;
+}
 /* ==========================================================================
    MAIN
    ========================================================================== */
@@ -6719,5 +6751,3 @@ body {
     overflow: visible !important;
   }
 }
-
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */

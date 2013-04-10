@@ -33,4 +33,20 @@ angular.module('Services') //.factory is a more configurable but .provider is mo
 				}
 			);
 		}
+	])
+
+	.factory('NotificationsServ', [ 
+
+		'$resource', 
+		function($resource){
+			
+			return $resource('api/notifications/:id',
+				{},
+				{
+					update:{ 
+						method: 'PUT', 
+					}
+				}
+			);
+		}
 	]);

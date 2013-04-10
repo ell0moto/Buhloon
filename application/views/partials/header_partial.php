@@ -16,6 +16,18 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script> <!-- Tests to check if browser can handle types of Java Scrip -->
         <base href="<?= base_url() ?>" />
+
+        <!--[if lte IE 8]>
+        <script>
+        // The ieshiv takes care of our ui.directives, bootstrap module directives and 
+        // AngularJS's ng-view, ng-include, ng-pluralize and ng-switch directives.
+        // However, IF you have custom directives (yours or someone else's) then
+        // enumerate the list of tags in window.myCustomTags
+     
+        </script>
+        <script src="js/vendor/angular-ui-ieshiv.js"></script>
+        <![endif]-->
+
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -27,14 +39,14 @@
                 <div class="container">
                     <a class="brand" href="#"><img src ="<?= base_url() ?>/img/buhloonlogo_icon.png" /></a>
 
-                        <form name="myForm" ng-show="state" ng-submit="login()" class = "navbar-form pull-right" >
+                        <form name="myForm" ng-hide="state" ng-submit="login()" class = "navbar-form pull-right" >
                             <input class="span2" type="text" name="userName" ng-model="username" >
 <!--                        <span class="error" ng-show="myForm.userName.$error.required">Required!</span><br> -->
                             <input class="span2" type="password" name="passWord" ng-model="password" >
                             <button type="submit" class="btn" id="login">Sign in</button>
                         </form>
 
-                        <div ng-hide="state" class="nav-collapse collapse">
+                        <div ng-show="state" class="nav-collapse collapse">
                             <ul class="nav pull-right">
                                 <li><a href="main/#rewards" data-toggle="modal">Rewards</a></li>
                                 <li><a href="main/#add-new" data-toggle="modal">Add New</a></li>

@@ -57,38 +57,23 @@ angular.module('Controllers')
 			};
 
 			$scope.logout = function(){
-				
+
 				UsersServ.logoutSession(UsersServ.getUserData().id);
 				//$scope.$emit('authenticationDestroy', Us);
 			};
 
 			$scope.$on('authenticationProvided', function(event,args) { //authenticationProvided is a global event that is being listen to
-
-				$scope.state = false; //anything attached to $scope.state is a model
-			});
-
-			$scope.$on('authenticationLogout', function(event,args) {
 				$scope.state = true; //anything attached to $scope.state is a model
 			});
 
-
-
-
-			
-			$scope.state = function(){
-				console.log(UsersServ.getUserData());
-				var userId = UsersServ.getUserData().id;
-				if(typeof userId == 'undefined'){
-					return true;
-				}else{
-					return false;
-				}
-			};
+			$scope.$on('authenticationLogout', function(event,args) {
+				$scope.state = false;
+			});
 
 		}
 	])
 
-	.controller('IncentivesSubCtrl', [
+	.controller('RewardsSubCtrl', [
 		'$scope',
 		'IncentivesServ',
 		function($scope, IncentivesServ){
@@ -143,5 +128,105 @@ angular.module('Controllers')
 				);
 			};
 
+		}
+	])
+
+	.controller('ActivitySubCtrl', [
+		'$scope',
+		'NotificationsServ',
+		function($scope, NotificationsServ){
+
+//Get all notices & obligations (according to specific id)
+			$scope.get = function() {
+			
+				NotificationsServ.get( 
+					{},
+					function(response){
+						$scope.noticesData = response.content; //references object .content and passes in it's array.
+						console.log(response, '<- QUERY');
+					},
+					function(response){
+						console.log('Error! Well this is hawkard'); //this comes from the failure function
+					}
+				);
+			};
+
+//Post (create) obligation
+			$scope.submit = function() { //function expression
+
+				// var payload = { //payload is an object, created via literal notation
+				// 	titleOfPlan: $scope.titleOfPlan,
+				// 	description: $scope.description,
+				// 	nameOfChild: $scope.nameOfChild,
+				// 	totalIteration: $scope.totalIteration,
+				// 	specificReward: $scope.specificReward,
+				// 	noRibbon: $scope.noRibbon,
+				// 	progress: 0,
+				// 	active: 0,
+				// 	complete: 0,
+				// };
+
+				// NotificationsServ.save( //.save is a function being called
+				// 	{}, //1st parameter passes in through URL
+				// 	payload,
+				// 	function(response){
+				// 		console.log(response, '<- SAVE');
+				// 	}
+				// );
+			};
+			
+			
+// Put (update) obligation
+			$scope.addItem = function(item) {
+
+				// var values;
+				// for (values in item) {
+				// 	if (values === "progress") {
+				// 		item[values] = (item[values] + 1);
+				// 	}
+				// 	if (values === "active") {
+				// 		item[values] = 1;
+				// 	}
+
+				// };
+
+				// if (item["progress"] === item["totalIteration"]) {
+				// 	item["complete"] = 1;
+				// };
+
+				// console.log(item);
+
+				// NotificationsServ.update(
+				// 	{id:0,}, //Dummy data to satisfy RESTFUL
+				// 	item,
+				// 	function(response){
+				// 		console.log(response, '<- UPDATE');
+				// 	}
+				// );
+
+			};
+
+//Soft delete notices & obligations
+			$scope.remove = function(item) {
+
+				var values;
+				for (values in item) {
+					if (values === "active") {
+						item[values] = 0;
+					}
+
+				};
+
+				console.log(item);
+
+				NotificationsServ.remove(
+					{id:0,}, //Dummy data to satisfy RESTFUL
+					item,
+					function(response){
+						console.log(response, '<- SOFT DELETE');
+					}
+				);
+			};
+	
 		}
 	]);

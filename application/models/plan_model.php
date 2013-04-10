@@ -62,16 +62,24 @@ class Plan_model extends CI_Model {
 			),
 			'noRibbon' => array(
 				'set_label:Number of Ribbons',
-				'NotEmpty',
 				'Number',
 				'NumRange:0,20',
 			),
-			// 'active' => array(
-			// 	'set_label:Active',
-			// 	'NotEmpty',
-			// 	'Number',
-			// 	'NumRange:0,1',
-			// ),
+			'active' => array(
+				'set_label:Active',
+				'Number',
+				'NumRange:0,1',
+			),
+			'progress' => array(
+				'set_label:Progress',
+				'Number',
+				'NumRange:0,20',
+			),
+			'complete' => array(
+				'set_label:Complete',
+				'Number',
+				'NumRange:0,1',
+			),
 		));
 
 		if(!$this->validator->is_valid($data)) {
@@ -106,7 +114,6 @@ class Plan_model extends CI_Model {
 	  	
 	  	$this->db->select(); 
 		$this->db->where('userId', $data['userId']);
-		// $this->db->where('active'), 1); //Modify to get plans with 0 and 1 active or plans with 1 active.
 		$query=$this->db->get('plan');
 
 		if($query->num_rows() > 0){
@@ -123,6 +130,7 @@ class Plan_model extends CI_Model {
 				'specificReward'	=> $row->specificReward,
 				'noRibbon'			=> $row->noRibbon,
 				'active'			=> $row->active,
+				'complete'			=> $row->complete,
 				);
 			}
 			return $output;
@@ -134,19 +142,102 @@ class Plan_model extends CI_Model {
 		}
 	}
 
-	public function update_plan($id, $data){ //update progress of plan
+	public function get_notices($data) { //*
+	  	
+	  	$this->db->select(); 
+		$this->db->where('userId', $data['userId']);
+		$this->db->where('active', 1);
+		$query=$this->db->get('plan');
+
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $row) {
+				$output[] = array( //[] makes a dynamic array so that it's an array of an array
+				'id'				=> $row->id,
+				'userId'			=> $row->userId,
+				'childId'			=> $row->childId,
+				'nameOfChild'		=> $row->nameOfChild,
+				'titleOfPlan'		=> $row->titleOfPlan,
+				'description'		=> $row->description,
+				'totalIteration'	=> $row->totalIteration,
+				'progress'			=> $row->progress,
+				'specificReward'	=> $row->specificReward,
+				'noRibbon'			=> $row->noRibbon,
+				'active'			=> $row->active,
+				'complete'			=> $row->complete,
+				);
+			}
+			return $output;
+		}else{
+			$this->errors = array(
+				'database'	=> 'Could not find specified plans.',
+			);
+			return false;
+		}
+	}
+
+	public function update_plan($data){ //update progress of plan
 	
 		$this->validator->setup_rules(array(
 			'userId' => array(
 				'set_label:User Id',
+				'NotEmpty',
 				'Number',
 			),
 			'childId' => array(
 				'set_label:Child Id',
+				'NotEmpty',
 				'Number',
 			),
-			'progress' => array(
+			'nameOfChild' => array(
+				'set_label:Childs Name',
+				'NotEmpty',
+				'AlphaNumericSpace',
+				'MinLength:3',
+				'MaxLength:40',
+			),
+			'titleOfPlan' => array(
+				'set_label:Plans title',
+				'NotEmpty',
+				'AlphaNumericSpace',
+				'MinLength:3',
+				'MaxLength:50',
+			),
+			'description' => array(
+				'set_label:Description',
+				'NotEmpty',
+				'AlphaNumericSpace',
+				'MinLength:3',
+				'MaxLength:140',
+			),
+			'totalIteration' => array(
+				'set_label:Iterations',
+				'NotEmpty',
+				'Number',
+				'NumRange:0,20',
+			),
+			'specificReward' => array(
+				'set_label:Specific Reward',
+				'AlphaNumericSpace',
+				'MinLength:3',
+				'MaxLength:20',
+			),
+			'noRibbon' => array(
+				'set_label:Number of Ribbons',
+				'Number',
+				'NumRange:0,20',
+			),
+			'active' => array(
 				'set_label:Active',
+				'Number',
+				'NumRange:0,1',
+			),
+			'progress' => array(
+				'set_label:Progress',
+				'Number',
+				'NumRange:0,20',
+			),
+			'complete' => array(
+				'set_label:Complete',
 				'Number',
 				'NumRange:0,1',
 			),
@@ -159,10 +250,8 @@ class Plan_model extends CI_Model {
 			
 		}
 		
-  // 		$this->db->where('id', $data['id']);
-  // 		$this->db->where('userId', $data['userId']);
-  // 		$this->db->where('childId', $data['childId']);
-		// $this->db->update('plan', $data);
+  		$this->db->where('id', $data['id']);
+		$this->db->update('plan', $data);
 		
 		//greated or equal to zero (means update worked)
 		if($this->db->affected_rows() > 0){
@@ -185,14 +274,64 @@ class Plan_model extends CI_Model {
 		$this->validator->setup_rules(array(
 			'userId' => array(
 				'set_label:User Id',
+				'NotEmpty',
 				'Number',
 			),
 			'childId' => array(
 				'set_label:Child Id',
+				'NotEmpty',
 				'Number',
+			),
+			'nameOfChild' => array(
+				'set_label:Childs Name',
+				'NotEmpty',
+				'AlphaNumericSpace',
+				'MinLength:3',
+				'MaxLength:40',
+			),
+			'titleOfPlan' => array(
+				'set_label:Plans title',
+				'NotEmpty',
+				'AlphaNumericSpace',
+				'MinLength:3',
+				'MaxLength:50',
+			),
+			'description' => array(
+				'set_label:Description',
+				'NotEmpty',
+				'AlphaNumericSpace',
+				'MinLength:3',
+				'MaxLength:140',
+			),
+			'totalIteration' => array(
+				'set_label:Iterations',
+				'NotEmpty',
+				'Number',
+				'NumRange:0,20',
+			),
+			'specificReward' => array(
+				'set_label:Specific Reward',
+				'AlphaNumericSpace',
+				'MinLength:3',
+				'MaxLength:20',
+			),
+			'noRibbon' => array(
+				'set_label:Number of Ribbons',
+				'Number',
+				'NumRange:0,20',
 			),
 			'active' => array(
 				'set_label:Active',
+				'Number',
+				'NumRange:0,1',
+			),
+			'progress' => array(
+				'set_label:Progress',
+				'Number',
+				'NumRange:0,20',
+			),
+			'complete' => array(
+				'set_label:Complete',
 				'Number',
 				'NumRange:0,1',
 			),
@@ -205,16 +344,16 @@ class Plan_model extends CI_Model {
 			
 		}
   		
-  // 		$this->db->where('id', $data['id']);
-  // 		$this->db->where('userId', $data['userId']);
-  // 		$this->db->where('childId', $data['childId']);
-		// $this->db->update('plan', $data);
+  		$this->db->where('id', $data['id']);
+  		// $this->db->where('userId', $data['userId']);
+  		// $this->db->where('childId', $data['childId']);
+		$this->db->update('plan', $data);
   		
   		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
 			$this->errors = array(
-				'database'	=> 'Nothing to delete.',
+				'database'	=> 'Nothing to soft delete.',
 			);
             return false;
 		}
