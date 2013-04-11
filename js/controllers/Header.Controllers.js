@@ -142,6 +142,7 @@ angular.module('Controllers')
 				NotificationsServ.get( 
 					{},
 					function(response){
+
 						$scope.noticesData = response.content; //references object .content and passes in it's array.
 						console.log(response, '<- QUERY');
 					},
@@ -209,13 +210,7 @@ angular.module('Controllers')
 //Soft delete notices & obligations
 			$scope.remove = function(item) {
 
-				var values;
-				for (values in item) {
-					if (values === "active") {
-						item[values] = 0;
-					}
-
-				};
+				item.active = 0;
 
 				console.log(item);
 

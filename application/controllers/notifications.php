@@ -87,10 +87,17 @@ class Notifications extends CI_Controller {
 
 		$data = $this->input->json(false, true);
 
-		FB::log($data,'inside delete function NOTIFICATIONS CONTROLLER');
-		
-		// NEEDS TO BE MODIFIED FOR 2 UNIQUE INPUTS
-		$query = $this->plan_model->soft_delete_plan($data); 
+		foreach($data as $key => $values) {
+			if ($key == 'titleOfPlan') {
+
+				$query = $this->plan_model->soft_delete_plan($data);
+
+			}elseif ($key == 'reward') {
+
+				$query = $this->obligation_model->soft_delete_obligation($data);
+			}
+
+		};
 		
 		if($query){
 
@@ -102,7 +109,10 @@ class Notifications extends CI_Controller {
 
 			$this->output->set_status_header('400');
 
-			$content = $this->plan_model->get_errors();
+			$content = array(
+				'Plan Model' => $this->plan_model->get_errors(),
+				'Obligation Model' => $this->obligation_model->get_errors(),
+				);
 			$code = 'error';
 			$redirect = '';
 		}

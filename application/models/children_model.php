@@ -125,16 +125,16 @@ class Children_model extends CI_Model {
   		
   		// $this->db->where('userId', $data['userId']);
   		// $this->db->where('id', $data['childId']);
-  		$this->db->delete('children');
+  // 		$this->db->delete('children');
   		
-  		if($this->db->affected_rows() > 0){
-			return true;
-		}else{
-			$this->errors = array(
-				'database'	=> 'Nothing to delete.',
-			);
-            return false;
-		}
+  // 		if($this->db->affected_rows() > 0){
+		// 	return true;
+		// }else{
+		// 	$this->errors = array(
+		// 		'database'	=> 'Nothing to delete.',
+		// 	);
+  //           return false;
+		// }
 	}
 
 

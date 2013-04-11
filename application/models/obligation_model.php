@@ -154,10 +154,10 @@ class Obligation_model extends CI_Model {
 			
 		}
   		
-  // 		$this->db->where('id', $data['id']);
-  // 		$this->db->where('userId', $data['userId']);
-  // 		$this->db->where('childId', $data['childId']);
-		// $this->db->update('obligation', $data);
+  		$this->db->where('id', $data['id']);
+  		// $this->db->where('userId', $data['userId']);
+  		// $this->db->where('childId', $data['childId']);
+		$this->db->update('obligation', $data);
   		
   		if($this->db->affected_rows() > 0){
 			return true;

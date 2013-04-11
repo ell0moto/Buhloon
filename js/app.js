@@ -54,7 +54,7 @@ app.config(
 					'/main',
 					{
 						templateUrl: 'main_index.html',
-						controller: 'MainIndexCtrl',
+						controller: 'PlansSubCtrl',
 					}
 				)
 				.when(
