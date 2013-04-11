@@ -42,7 +42,7 @@ angular.module('Controllers')
 					{}, //1st parameter passes in through URL
 					payload,
 					function(response){
-						console.log(response, '<- SAVE');
+						console.log(response, '<- SAVE'); //upon success add payload to plansData
 					}
 				);
 			};

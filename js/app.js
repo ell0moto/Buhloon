@@ -57,20 +57,6 @@ app.config(
 						controller: 'PlansSubCtrl',
 					}
 				)
-				.when(
-					'/dummy',
-					{
-						templateUrl: 'dummy_index.html',
-						controller: 'DummyIndexCtrl',
-					}
-				)
-				.when(
-					'/incentives',
-					{
-						templateUrl: 'incentives_index.html',
-						controller: 'IncentivesIndexCtrl',
-					}
-				)
 				.otherwise(
 					{
 						redirectTo: '/'
