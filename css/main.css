@@ -5660,6 +5660,83 @@ body {
   text-align: left;
   color: #999;
 }
+.planscontainer {
+  height: 290px;
+  width: 960px;
+  display: table;
+}
+.planscontainer .plansbox {
+  height: 260px;
+  width: 790px;
+  border-color: #7a7a7a;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 12px;
+  margin: auto;
+}
+.planscontainer .plansbox .center {
+  display: table-cell;
+  vertical-align: middle;
+}
+.planscontainer .plansbox .center .boxleft {
+  height: 260px;
+  width: 570px;
+  display: inline-block;
+  margin: 0px 0px;
+  background-color: #f2f2f2;
+  border-radius: 10px 0px 0px 10px;
+}
+.planscontainer .plansbox .center .boxleft button {
+  display: inline-block;
+  float: right;
+  margin: 10px 10px;
+}
+.planscontainer .plansbox .center .boxleft h1 {
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -1px;
+  font-family: Myriad Pro;
+  font-weight: bold;
+  color: #7a7a7a;
+  margin: 10px 15px;
+}
+.planscontainer .plansbox .center .boxleft p {
+  font-size: 22px;
+  color: #7a7a7a;
+}
+.planscontainer .plansbox .center .boxleft .progressbox {
+  width: 500px;
+  margin: auto;
+}
+.planscontainer .plansbox .center .boxleft .progressbox .progress {
+  height: 30px;
+  border-radius: 19px 19px 19px 19px;
+  background-image: none;
+  background-color: #e6e6e6;
+  margin: 20px 20px;
+}
+.planscontainer .plansbox .center .boxleft .progressbox .progress .bar {
+  background-image: none;
+  background-color: #ee9c80;
+  box-shadow: none;
+}
+.planscontainer .plansbox .center .boxright {
+  height: 260px;
+  width: 220px;
+  display: inline-block;
+  margin: 0px 0px;
+  background-color: #ffb253;
+  position: absolute;
+  border-radius: 0px 10px 10px 0px;
+}
+.planscontainer .plansbox .center .boxright p {
+  text-align: center;
+  font-size: 35px;
+  line-height: 0px;
+  margin: 15px 0px;
+  color: #ffe3c2;
+  font-family: Myriad Pro;
+}
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
@@ -6751,3 +6828,5 @@ body {
     overflow: visible !important;
   }
 }
+
+/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */

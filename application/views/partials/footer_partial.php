@@ -194,7 +194,7 @@
 
 
         <!-- Client Side Templates -->
-        <? Template::partial('home/home_index'); ?>
+        <? Template::partial('home/home_index') ?>
         <? Template::partial('main/main_index') ?>
 
         <!-- Pass in PHP variables to Javascript -->

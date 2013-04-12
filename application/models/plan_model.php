@@ -110,10 +110,10 @@ class Plan_model extends CI_Model {
 	    return $this->db->insert_id();
 	}
 
-	public function get_plan($data) { //*
+	public function get_plan($id) { //*
 	  	
 	  	$this->db->select(); 
-		$this->db->where('userId', $data['userId']);
+		$this->db->where('childId', $id);
 		$query=$this->db->get('plan');
 
 		if($query->num_rows() > 0){

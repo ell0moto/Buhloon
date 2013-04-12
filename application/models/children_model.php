@@ -98,21 +98,21 @@ class Children_model extends CI_Model {
 	  	
 	  	$this->db->select(); 
 		$this->db->where('userId', $data['userId']);
-		$this->db->where('id', $data['childId']);
 		$query=$this->db->get('children');
 		
 		if($query->num_rows() > 0){
-			$row = $query->row();
-			$data = array(
-				'id'				=> $id,
+			foreach ($query->result() as $row) {
+				$output[] = array(
+				'id'				=> $row->id,
 				'userId'			=> $row->userId,
 				'nameOfChild'		=> $row->nameOfChild,
 				'totalRibbon'		=> $row->totalRibbon,
 				'spentRibbon'		=> $row->spentRibbon,
 				'netRibbon'			=> $row->netRibbon,
 				'totalPlan'			=> $row->totalPlan,
-			);
-			return $data;
+				);
+			}
+			return $output;
 		}else{
 			$this->errors = array(
 				'database'	=> 'Could not find specified child.',

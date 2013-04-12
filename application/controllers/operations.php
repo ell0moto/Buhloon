@@ -8,9 +8,9 @@ class Operations extends CI_Controller {
 		$this->load->model('children_model');
     }
 
-    public function index() { //gets all plans according to ID
+    public function index() { //gets all plans according to user ID
 
-		$data['userId'] = $this->ion_auth->get_user_id(); 
+    	$data['userId'] = $this->ion_auth->get_user_id();
     	$query = $this->plan_model->get_plan($data);
 
 		if($query){
@@ -76,10 +76,9 @@ class Operations extends CI_Controller {
 
 	}
 
-	public function show() { //gets specific child details only
+	public function show($id) { //gets plans according to child ID
 
-		$data['userId'] = $this->ion_auth->get_user_id(); 
-		$query = $this->children_model->get_child($data);
+		$query = $this->plan_model->get_plan($id);
 
 		if($query){
 
@@ -90,7 +89,7 @@ class Operations extends CI_Controller {
 		}else{
 
 			$this->output->set_status_header('404');
-			$content = $this->children_model->get_errors();
+			$content = $this->plan_model->get_errors();
 			$code = 'error';
 			$redirect = '';
 		}

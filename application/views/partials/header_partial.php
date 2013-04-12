@@ -50,7 +50,7 @@
                             <ul class="nav pull-right">
                                 <li><a href="main/#rewards" data-toggle="modal">Rewards</a></li>
                                 <li><a href="main/#add-new" data-toggle="modal">Add New</a></li>
-                                <li><a href="main/#activity" data-toggle="modal">Activity</a></li>
+                                <button ng-controller="ActivitySubCtrl" ng-click="isCollapsed = !isCollapsed">Activity</button>
                                 <li><a href="" ng-click="logout()">Logout</a></li>
                             </ul>
                         </div> 

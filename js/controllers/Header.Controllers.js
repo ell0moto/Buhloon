@@ -136,6 +136,8 @@ angular.module('Controllers')
 		'NotificationsServ',
 		function($scope, NotificationsServ){
 
+			$scope.isCollapsed = true;
+
 //Get all notices & obligations (according to specific id)
 			$scope.get = function() {
 			
