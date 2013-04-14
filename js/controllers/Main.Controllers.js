@@ -4,7 +4,8 @@ angular.module('Controllers')
 	.controller('MainIndexCtrl', [
 		'$scope',
 		'OffspringServ',
-		function($scope, OffspringServ){
+		'OperationsServ',
+		function($scope, OffspringServ, OperationsServ){
 
 			//Get all children (according to specific id)
 			OffspringServ.get( 
@@ -18,6 +19,30 @@ angular.module('Controllers')
 					console.log('Error! No children'); //this comes from the failure function
 				}
 			);
+
+			//Post (create) plan
+			$scope.submit = function() { //function expression
+
+				var payload = { //payload is an object, created via literal notation
+					titleOfPlan: $scope.titleOfPlan,
+					description: $scope.description,
+					nameOfChild: $scope.nameOfChild,
+					totalIteration: $scope.totalIteration,
+					specificReward: $scope.specificReward,
+					noRibbon: $scope.noRibbon,
+					progress: 0,
+					active: 0,
+					complete: 0,
+				};
+
+				OperationsServ.save( //.save is a function being called
+					{}, //1st parameter passes in through URL
+					payload,
+					function(response){
+						console.log(response, '<- SAVE'); //upon success add payload to plansData
+					}
+				);
+			};
 		}
 	])
 
@@ -25,8 +50,6 @@ angular.module('Controllers')
 		'$scope',
 		'OperationsServ',
 		function($scope, OperationsServ){
-
-			$scope.child.id
 
 			//Get all plans (according to child id)
 			OperationsServ.get( 
@@ -48,8 +71,52 @@ angular.module('Controllers')
 
 	.controller('PlansSubCtrl', [
 		'$scope',
-		'OffspringServ',
-		function($scope, OffspringServ){
+		'OperationsServ',
+		function($scope, OperationsServ){
+
+			$scope.myInterval = 5000;
+
+			var keys = Object.keys($scope.plans);
+			var count = keys.length;
+			for (var i=0; i<count; i++) {
+				$scope.plans[i].percent = (($scope.plans[i].progress)/($scope.plans[i].totalIteration)*100 + "%");
+				$scope.plans[i].colour = ('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
+			};
+
+			// Put (update) plan
+			$scope.addItem = function(item) {
+
+				item.progress = (item.progress + 1);
+				item.active = 1;
+				if (item.progress === item.totalIteration) {
+					item.complete = 1;
+				};
+
+				console.log(item);
+
+				OperationsServ.update(
+					{id:0,}, //Dummy data to satisfy RESTFUL
+					item,
+					function(response){
+						console.log(response, '<- UPDATE');
+					}
+				);
+
+			};
+
+
+			//Delete plan
+			$scope.remove = function(id) {
+
+				OperationsServ.remove(
+					{
+						id:id,
+					},
+					function(response){
+						console.log(response, '<- REMOVE');
+					}
+				);
+			};
 
 		}
 	]);
@@ -58,29 +125,7 @@ angular.module('Controllers')
 
 
 
-// //Post (create) plan
-// 			$scope.submit = function() { //function expression
 
-// 				var payload = { //payload is an object, created via literal notation
-// 					titleOfPlan: $scope.titleOfPlan,
-// 					description: $scope.description,
-// 					nameOfChild: $scope.nameOfChild,
-// 					totalIteration: $scope.totalIteration,
-// 					specificReward: $scope.specificReward,
-// 					noRibbon: $scope.noRibbon,
-// 					progress: 0,
-// 					active: 0,
-// 					complete: 0,
-// 				};
-
-// 				OperationsServ.save( //.save is a function being called
-// 					{}, //1st parameter passes in through URL
-// 					payload,
-// 					function(response){
-// 						console.log(response, '<- SAVE'); //upon success add payload to plansData
-// 					}
-// 				);
-// 			};
 			
 			
 // // Put (update) plan
@@ -104,15 +149,3 @@ angular.module('Controllers')
 
 // 			};
 
-// //Delete plan
-// 			$scope.remove = function(id) {
-
-// 				OperationsServ.remove(
-// 					{
-// 						id:id,
-// 					},
-// 					function(response){
-// 						console.log(response, '<- REMOVE');
-// 					}
-// 				);
-// 			};

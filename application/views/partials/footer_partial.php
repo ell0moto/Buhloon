@@ -100,13 +100,13 @@
     </div> <!-- End of model -->
 
             <!-- Add New Modal -->
-    <div id="add-new" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="PlansSubCtrl">
+    <div id="add-new" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="MainIndexCtrl">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myModalLabel">Add new goal<span>  (enter details for each form)</span></h3>
         </div>
         <div class="modal-body">
-            <form class="form-horizontal" id = "add-new-forms" ng-submit="submit()">
+            <form class="form-horizontal" id = "add-new-forms">
             <!-- <form id="add-new-forms" class="form-horizontal" accept-charset="utf-8" method="post" action="#"> -->
                 <fieldset>
                     <div class="control-group">
@@ -188,7 +188,7 @@
         </div>
         <div class="modal-footer">
             <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
-            <button class="btn btn-primary" data-dismiss="modal" ng-click="submit()">Create goal</button>
+            <button class="btn btn-primary" ng-click="submit()">Create goal</button>
         </div>
     </div> <!-- End of model -->
 
@@ -227,11 +227,9 @@
         <!-- Page Level Controllers -->
         <script src="js/controllers/Header.Controllers.js"></script>
         <script src="js/controllers/Home.Controllers.js"></script>
-        <script src="js/controllers/Dummy.Controllers.js"></script>
         <script src="js/controllers/Main.Controllers.js"></script>
 
         <!-- Reusable Services -->
-        <script src="js/services/Dummy.Service.js"></script>
         <script src="js/services/Resources.Service.js"></script> <!-- Resources Routing -->
         <script src="js/services/Sessions.Service.js"></script>
         <script src="js/services/Users.Service.js"></script>

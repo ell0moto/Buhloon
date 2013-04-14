@@ -18,17 +18,18 @@
 					<div class="center">
 
 						<div class="boxleft">
-							<button type="button" ng-click="style={width:'60%'}">×</button>
+							<button type="button" ng-click="remove(plan.id)">×</button>
 							<h1>{{plan.titleOfPlan}}</h1>
 								<div class="progressbox">
 								    <div class="progress">
-	    								<div class="bar" ng-style="style"></div>
+	    								<div class="bar" ng-style="{width:plan.percent}"></div>
+	    								<a class="clickBox" href="/main"><a>
 	    							</div>
     							</div>
 							<p>{{plan.description}}</p>
 							<p>{{plan.noRibbon}}</p>
 						</div>
-						<div class="boxright">
+						<div class="boxright" ng-style="{backgroundColor:plan.colour}">
 							<img src="<?= base_url() ?>/img/gift_icon.png" />
 							<p>{{plan.specificReward}}</p>
 							

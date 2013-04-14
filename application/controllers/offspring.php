@@ -40,8 +40,7 @@ class Offspring extends CI_Controller {
 
 	public function show($id) { //gets specific child details only
 
-		$data = $this->input->json(false, true); 
-		$query = $this->children_model->get_child($data);
+		$query = $this->children_model->get_child($id);
 
 		if($query){
 

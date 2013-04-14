@@ -135,11 +135,11 @@ class Operations extends CI_Controller {
 		Template::compose(false, $output, 'json');
 	}
 
-	public function delete($data) {
+	public function delete($id) {
 
 		// $this->authenticated();
 
-		$query = $this->plan_model->delete_plan($data);
+		$query = $this->plan_model->delete_plan($id);
 
 		if($query){
 
