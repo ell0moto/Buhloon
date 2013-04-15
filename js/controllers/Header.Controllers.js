@@ -81,12 +81,13 @@ angular.module('Controllers')
 			//get
 			$scope.get = function() {
 
+				//get all rewards according to User ID
 				IncentivesServ.get( 
 					{
 						// id:'9',
 					},
 					function(response){
-						$scope.incentivesData = response.content; //references object .content and passes in it's array.
+						$scope.rewards = response.content; //references object .content and passes in it's array.
 						console.log(response, '<- QUERY');
 					},
 					function(response){

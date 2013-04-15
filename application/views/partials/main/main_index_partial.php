@@ -2,8 +2,37 @@
 
 	<div class="childplans" ng-controller="ChildrenSubCtrl" ng-repeat="child in children" ng-show="plans">
 
-		<div collapse="isCollapsed">
-			<div class="well well-large">Some more content</div> 
+	
+		<div class="collapseContainer" collapse="isCollapsed">
+			<div class="well well-large">
+				<div class="accountContainer">
+					<div class="childTop">
+						<img class="avataricon" src="<?= base_url() ?>/img/avatar_icon.png"/>
+						<div class="childDetails">
+							<h1>{{child.nameOfChild}}</h1>
+							<hr>
+							<h5>Ribbons</h5>
+							<div class="detailsBox"><h6>{{child.totalRibbon}}</h6><p>Total</p></div>
+							<div class="detailsBox"><h6>{{child.spentRibbon}}</h6><p>Spent</p></div>
+							<div class="detailsBox"><h6>{{child.netRibbon}}</h6><p>Available</p></div>
+						</div>
+					</div>
+					<div class="rewardBottom">
+						<div class="rewardContainer">
+							<h3>Rewards</h3>
+							<table>
+							<tbody>
+	                    		<tr ng-repeat="reward in rewards">
+	                        		<td>{{reward.titleOfReward}}</td>
+	                        		<td>{{reward.ribbonCost}}</td>
+	                        		<td><button type="button" ng-click="">buy</button></td>
+	                    		</tr>
+	                		</tbody>
+	                		</table>
+	                	</div>
+					</div>
+				</div>
+			</div> 
 		</div>
 
 		<div class="childcontainer">

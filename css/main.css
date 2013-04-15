@@ -5647,23 +5647,106 @@ body {
   margin-left: 0px;
 }
 .control-label.iterations-label {
+  /*Modal box MAY DELETE*/
+
   margin-left: 15px;
   text-align: left;
   color: #999;
 }
 #form_service.iterations-form {
+  /*Modal box MAY DELETE*/
+
   width: 60px;
   margin-left: 27px;
 }
 .control-label.ribbins-label {
+  /*Modal box MAY DELETE*/
+
   margin-left: 15px;
   text-align: left;
   color: #999;
 }
 .childplans .carousel-control {
+  /*Main page Carousel mods*/
+
   top: 45%;
   background: none;
   opacity: 1.0;
+}
+.collapseContainer .accountContainer {
+  width: 400px;
+  margin: auto;
+}
+.collapseContainer .accountContainer .childTop {
+  height: 180px;
+  background-color: #ecd0b7;
+}
+.collapseContainer .accountContainer .childTop .avataricon {
+  display: inline-block;
+  vertical-align: top;
+}
+.collapseContainer .accountContainer .childTop .childDetails {
+  display: inline-block;
+  height: 180px;
+  width: 235px;
+}
+.collapseContainer .accountContainer .childTop .childDetails .detailsBox {
+  display: inline-block;
+  width: 75px;
+  text-align: center;
+}
+.collapseContainer .accountContainer .childTop .childDetails .detailsBox p {
+  /*Specifics*/
+
+  margin: 2px 0px 0px 0px;
+}
+.collapseContainer .accountContainer .childTop .childDetails .detailsBox h6 {
+  /*Specifics*/
+
+  margin: 2px 0px 0px 0px;
+  font-size: 25px;
+}
+.collapseContainer .accountContainer .childTop .childDetails h1 {
+  /*Specifics*/
+
+  margin-top: 10px;
+}
+.collapseContainer .accountContainer .childTop .childDetails h5 {
+  /*Specifics*/
+
+  margin: 2px 0px 10px 0px;
+  font-size: 17px;
+  font-weight: normal;
+}
+.collapseContainer .accountContainer .rewardBottom {
+  margin-top: 3px;
+  background-color: #ecd0b7;
+}
+.collapseContainer .accountContainer .rewardBottom .rewardContainer {
+  margin: auto;
+  width: 380px;
+  padding-bottom: 20px;
+}
+.collapseContainer .accountContainer .rewardBottom .rewardContainer h3 {
+  /*Specifics*/
+
+  margin: 0px 0px 0px 15px;
+  padding: 5px 0px 0px 0px;
+}
+.collapseContainer .accountContainer .rewardBottom .rewardContainer table {
+  width: 100%;
+}
+.collapseContainer .accountContainer .rewardBottom .rewardContainer td {
+  font-size: 17px;
+  border-bottom: 1px solid grey;
+  padding: 5px 0px;
+}
+.collapseContainer .well.well-large {
+  /*Specific to Main Page 'well large'*/
+
+  padding: 5px;
+  background-color: #bcd8e6;
+  border: none;
 }
 .childplans .carousel-control.right {
   right: 6px;
@@ -5794,8 +5877,9 @@ body {
   font-size: 35px;
   line-height: 0px;
   margin: 15px 0px;
-  color: #ffe3c2;
+  color: #fafafa;
   font-family: Myriad Pro;
+  opacity: 0.8;
 }
 /* ==========================================================================
    RESPONSIVE

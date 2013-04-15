@@ -5,7 +5,8 @@ angular.module('Controllers')
 		'$scope',
 		'OffspringServ',
 		'OperationsServ',
-		function($scope, OffspringServ, OperationsServ){
+		'IncentivesServ',
+		function($scope, OffspringServ, OperationsServ, IncentivesServ){
 
 			//Get all children (according to specific id)
 			OffspringServ.get( 
@@ -20,7 +21,19 @@ angular.module('Controllers')
 				}
 			);
 
-			  	
+			//Get all rewards (according to specific id)
+			IncentivesServ.get(
+				{
+					// id:'9',
+				},
+				function(response){
+					$scope.rewards = response.content; //references object .content and passes in it's array.
+					console.log(response, '<- QUERY');
+				},
+				function(response){
+					console.log('Error! Well this is hawkard'); //this comes from the fail function
+				}
+			);  	
 
 
 			//Post (create) plan
