@@ -5675,6 +5675,14 @@ body {
   /*Childs name (main page)*/
 
 }
+.childcontainer .usericon {
+  float: right;
+  margin: 0px 50px 0px 0px;
+}
+.childcontainer .messageicon {
+  float: right;
+  margin: 0px 120px 0px 0px;
+}
 .childcontainer h1 {
   font-size: 60px;
   margin: 17px 100px;

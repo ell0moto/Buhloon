@@ -1,15 +1,16 @@
 <script type="text/ng-template" id="main_index.html">
 
-    <div ng-controller="ActivitySubCtrl" >
-        <div collapse="isCollapsed">
-           <div class="well well-large">Some content</div>
-        </div>
-    </div>
-
-
 	<div class="childplans" ng-controller="ChildrenSubCtrl" ng-repeat="child in children" ng-show="plans">
+
+		<div collapse="isCollapsed">
+			<div class="well well-large">Some more content</div> 
+		</div>
+
 		<div class="childcontainer">
+			<img class="messageicon" src="<?= base_url() ?>/img/message_icon.png"/>
+			<img class="usericon" src="<?= base_url() ?>/img/user_icon.png"/>
 			<h1>{{child.nameOfChild}}</h1>
+			<button class="btn" ng-click="isCollapsed = !isCollapsed">Account</button>
 		</div>
 		<carousel interval="myInterval">
 			<slide active="slide.active" ng-repeat="plan in plans" >
@@ -45,6 +46,8 @@
 			</slide>
 
 		</carousel>
+
+	</div>
 
 	</div>
 	

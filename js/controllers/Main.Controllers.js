@@ -20,6 +20,9 @@ angular.module('Controllers')
 				}
 			);
 
+			  	
+
+
 			//Post (create) plan
 			$scope.submit = function() { //function expression
 
@@ -47,10 +50,13 @@ angular.module('Controllers')
 		}
 	])
 
+
 	.controller('ChildrenSubCtrl', [
 		'$scope',
 		'OperationsServ',
 		function($scope, OperationsServ){
+
+			$scope.isCollapsed = true;
 
 			//Get all plans (according to child id)
 			OperationsServ.get( 
