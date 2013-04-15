@@ -5376,6 +5376,24 @@ body {
 #myCarousel .carousel-indicators {
   right: 40px;
 }
+#myCarousel .carousel-control {
+  /* Adjusts 'button' of carousel */
+
+  top: 50%;
+  width: 120px;
+  height: 50px;
+  font-size: 17px;
+}
+#myCarousel .carousel-control.right {
+  /* Adjusts vertical placement & text inside 'button' of carousel */
+
+  right: 90px;
+}
+#myCarousel .carousel-control.right p {
+  line-height: 80%;
+  text-align: center;
+  margin: 8px 5px 0px;
+}
 .item {
   /* Carousel */
 
@@ -5406,24 +5424,6 @@ body {
   color: inherit;
   margin-left: 60px;
   color: #404040;
-}
-.carousel-control {
-  /* Adjusts 'button' of carousel */
-
-  top: 50%;
-  width: 120px;
-  height: 50px;
-  font-size: 17px;
-}
-.carousel-control.right {
-  /* Adjusts vertical placement & text inside 'button' of carousel */
-
-  right: 90px;
-}
-.carousel-control.right p {
-  line-height: 80%;
-  text-align: center;
-  margin: 8px 5px 0px;
 }
 .form-actions {
   background: none repeat scroll 0% 0% transparent;
@@ -5660,6 +5660,26 @@ body {
   text-align: left;
   color: #999;
 }
+.childplans .carousel-control {
+  top: 45%;
+  background: none;
+  opacity: 1.0;
+}
+.childplans .carousel-control.right {
+  right: 6px;
+}
+.childplans .carousel-control.left {
+  left: 27px;
+}
+.childcontainer {
+  /*Childs name (main page)*/
+
+}
+.childcontainer h1 {
+  font-size: 60px;
+  margin: 17px 100px;
+  font-weight: normal;
+}
 .planscontainer {
   height: 290px;
   width: 960px;
@@ -5698,11 +5718,25 @@ body {
   font-family: Myriad Pro;
   font-weight: bold;
   color: #7a7a7a;
-  margin: 10px 15px;
+  margin: 15px 15px;
 }
-.planscontainer .plansbox .center .boxleft p {
-  font-size: 22px;
-  color: #7a7a7a;
+.planscontainer .plansbox .center .boxleft .ribbonsbox {
+  background-color: #d6d6d6;
+  height: 70px;
+  width: 570px;
+  margin: auto;
+  display: table;
+  display: table-cell;
+  vertical-align: middle;
+}
+.planscontainer .plansbox .center .boxleft .ribbonsbox img {
+  display: inline-block;
+  margin: 0px 0px 0px 11px;
+}
+.planscontainer .plansbox .center .boxleft .ribbonsbox p {
+  display: inline-block;
+  font-size: 25px;
+  color: #6c99dc;
 }
 .planscontainer .plansbox .center .boxleft .progressbox {
   width: 500px;
@@ -5720,9 +5754,22 @@ body {
   background-color: #ee9c80;
   box-shadow: none;
 }
-.planscontainer .plansbox .center .boxleft .progressbox .progress .clickBox {
+.planscontainer .plansbox .center .boxleft .clickBox {
   width: 460px;
   height: 30px;
+  position: absolute;
+  margin: 0px 20px;
+}
+.planscontainer .plansbox .center .boxleft p {
+  /*Goal Description*/
+
+  font-size: 22px;
+  color: #7a7a7a;
+  margin: 0px 15px;
+  height: 50px;
+  text-align: center;
+}
+.planscontainer .plansbox .center .completedicon {
   position: absolute;
 }
 .planscontainer .plansbox .center .boxright {

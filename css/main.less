@@ -123,6 +123,20 @@ body {
 	.carousel-indicators {
 		right: 40px;
 	}
+	.carousel-control { /* Adjusts 'button' of carousel */
+	top: 50%;
+	width: 120px;
+	height: 50px;
+	font-size: 17px;
+	}
+	.carousel-control.right { /* Adjusts vertical placement & text inside 'button' of carousel */
+	right: 90px;
+	p {
+		line-height: 80%;
+		text-align: center;
+		margin: 8px 5px 0px;
+	}
+}
 }
 
 
@@ -153,21 +167,9 @@ body {
 	}
 }
 
-.carousel-control { /* Adjusts 'button' of carousel */
-	top: 50%;
-	width: 120px;
-	height: 50px;
-	font-size: 17px;
-}
 
-.carousel-control.right { /* Adjusts vertical placement & text inside 'button' of carousel */
-	right: 90px;
-	p {
-		line-height: 80%;
-		text-align: center;
-		margin: 8px 5px 0px;
-	}
-}
+
+
 
 .form-actions {
 	background: none repeat scroll 0% 0% transparent;
@@ -395,6 +397,29 @@ body {
 	color: #999;
 }
 
+.childplans .carousel-control {
+	top:45%;
+	background: none;
+	opacity:1.0;
+}
+
+.childplans .carousel-control.right {
+	right: 6px;
+}
+
+.childplans .carousel-control.left {
+	left: 27px;
+}
+
+.childcontainer { /*Childs name (main page)*/
+
+	h1 {
+		font-size: 60px;
+		margin: 17px 100px;
+		font-weight: normal;
+	}
+}
+
 .planscontainer {
 
 	height: 290px;
@@ -440,14 +465,29 @@ body {
 					  	font-family: Myriad Pro;
 					  	font-weight: bold;
 					  	color: #7a7a7a;
-					  	margin: 10px 15px;
+					  	margin: 15px 15px;
 					  	
 					}				
 
-					p {
-						font-size: 22px;
-						color: #7a7a7a;
+					.ribbonsbox {
+						background-color: #d6d6d6;
+						height: 70px;
+						width: 570px;
+						margin: auto;
+						display: table;
+						display: table-cell;
+						vertical-align: middle;
+						
 					}
+					.ribbonsbox img {
+						display:inline-block;
+						margin: 0px 0px 0px 11px;
+					}
+					.ribbonsbox p {
+						display: inline-block;
+						font-size: 25px;
+						color: #6c99dc;
+						}
 
 					.progressbox {
 						width: 500px;
@@ -464,15 +504,27 @@ body {
 								background-color: rgb(238,156,128);
 								box-shadow: none;
 							}
-
-							.clickBox {
-								width: 460px;
-								height: 30px;
-								position: absolute;
-							}
 						}
+					}
+
+					.clickBox {
+						width: 460px;
+						height: 30px;
+						position: absolute;
+						margin:0px 20px;
+					}
+				}
+
+				.boxleft p { /*Goal Description*/
+						font-size: 22px;
+						color: #7a7a7a;
+						margin: 0px 15px;
+						height:50px;
+						text-align: center;
 
 					}
+				.completedicon {
+					position:absolute;
 				}
 
 				.boxright {

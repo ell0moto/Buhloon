@@ -42,6 +42,7 @@ angular.module('Controllers')
 						console.log(response, '<- SAVE'); //upon success add payload to plansData
 					}
 				);
+
 			};
 		}
 	])
@@ -54,7 +55,7 @@ angular.module('Controllers')
 			//Get all plans (according to child id)
 			OperationsServ.get( 
 				{
-					id:$scope.child.id
+					id:$scope.child.id,
 				},
 				function(response){
 
@@ -74,14 +75,8 @@ angular.module('Controllers')
 		'OperationsServ',
 		function($scope, OperationsServ){
 
-			$scope.myInterval = 5000;
-
-			var keys = Object.keys($scope.plans);
-			var count = keys.length;
-			for (var i=0; i<count; i++) {
-				$scope.plans[i].percent = (($scope.plans[i].progress)/($scope.plans[i].totalIteration)*100 + "%");
-				$scope.plans[i].colour = ('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
-			};
+			$scope.plan.percent = (($scope.plan.progress)/($scope.plan.totalIteration)*100 + "%");
+			$scope.plan.colour = ('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
 
 			// Put (update) plan
 			$scope.addItem = function(item) {
@@ -91,8 +86,6 @@ angular.module('Controllers')
 				if (item.progress === item.totalIteration) {
 					item.complete = 1;
 				};
-
-				console.log(item);
 
 				OperationsServ.update(
 					{id:0,}, //Dummy data to satisfy RESTFUL
