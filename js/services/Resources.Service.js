@@ -51,18 +51,18 @@ angular.module('Services') //.factory is a more configurable but .provider is mo
 		}
 	])
 
-	.factory('OffspringServ', [ 
+	// .factory('OffspringServ', [ 
 
-		'$resource', 
-		function($resource){
+	// 	'$resource', 
+	// 	function($resource){
 			
-			return $resource('api/offspring/:id',
-				{},
-				{
-					update:{ 
-						method: 'PUT', 
-					}
-				}
-			);
-		}
-	]);
+	// 		return $resource('api/offspring/:id',
+	// 			{},
+	// 			{
+	// 				update:{ 
+	// 					method: 'PUT', 
+	// 				}
+	// 			}
+	// 		);
+	// 	}
+	// ]);

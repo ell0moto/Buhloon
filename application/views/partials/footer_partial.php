@@ -220,32 +220,23 @@
         <!--[if lt IE 9]><script src="js/vendor/es5-shim.min.js"></script><![endif]-->
         <script src="js/vendor/es6-shim.min.js"></script>
         <!--[if lt IE 9]><script src="js/vendor/json3.min.js"></script><![endif]-->
-        
-        <!-- AngularJS Front Controller, Bootstrap and Router -->
-        <script src="js/app.js"></script>
 
-        <!-- Page Level Controllers -->
-        <script src="js/controllers/Header.Controllers.js"></script>
-        <script src="js/controllers/Home.Controllers.js"></script>
-        <script src="js/controllers/Main.Controllers.js"></script>
-
-        <!-- Reusable Services -->
-        <script src="js/services/Resources.Service.js"></script> <!-- Resources Routing -->
-        <script src="js/services/Sessions.Service.js"></script>
-        <script src="js/services/Users.Service.js"></script>
-        <script src="js/services/Accounts.Service.js"></script>
-
-        <!-- Reusable Directives -->
-        <script src="js/directives/PlaceHolder.Directive.js"></script>
-
-        <!-- Reusable Filters -->
-
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+        <? if(ENVIRONMENT == 'development'){ ?>
+            <?
+                Template::asset('js', 'js', array(
+                    'js/vendor',
+                    'js/main.min.js'
+                ));
+            ?>
+        <? }elseif(ENVIRONMENT == 'production'){ ?>
+            <script src="js/main.min.js"></script>
+            <script>
+                var _gaq=[['_setAccount','<?= $google_analytics_key ?>'],['_trackPageview']];
+                (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+                g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+                s.parentNode.insertBefore(g,s)}(document,'script'));
+            </script>
+        <? } ?>
 
     </body>
 </html>

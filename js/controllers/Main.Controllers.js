@@ -3,21 +3,28 @@
 angular.module('Controllers')
 	.controller('MainIndexCtrl', [
 		'$scope',
-		'OffspringServ',
+		'ChildrenServ',
 		'OperationsServ',
 		'IncentivesServ',
-		function($scope, OffspringServ, OperationsServ, IncentivesServ){
+		function($scope, ChildrenServ, OperationsServ, IncentivesServ){
 
-			//Get all children (according to specific id)
-			OffspringServ.get( 
+			// Get all children (according to specific id)
+			ChildrenServ.server.get( 
 				{},
 				function(response){
+					 
+					ChildrenServ.setChildren(response.content); //children data from DB being injected into .factory function
+					console.log(response, '<- QUERY');
 
-					$scope.children = response.content; //references object .content and passes in it's array.
-					console.log($scope.children, '<- QUERY');
 				},
 				function(response){
 					console.log('Error! No children'); //this comes from the failure function
+				}
+			);
+
+			$scope.$watch (
+				function() {
+					$scope.children=(ChildrenServ.getChildren());
 				}
 			);
 
@@ -104,7 +111,7 @@ angular.module('Controllers')
 				item.active = 1;
 				if (item.progress === item.totalIteration) {
 					item.complete = 1;
-				};
+				}
 
 				OperationsServ.update(
 					{id:0,}, //Dummy data to satisfy RESTFUL

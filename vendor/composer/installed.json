@@ -122,39 +122,6 @@
         "homepage": "https://github.com/firephp/firephp-core"
     },
     {
-        "name": "polycademy/citemplating",
-        "version": "1.0.5",
-        "version_normalized": "1.0.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Polycademy/CiTemplating.git",
-            "reference": "1.0.5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Polycademy/CiTemplating/zipball/1.0.5",
-            "reference": "1.0.5",
-            "shasum": ""
-        },
-        "time": "2013-03-12 05:22:57",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "src/"
-            ]
-        },
-        "notification-url": "http://packagist.org/downloads/",
-        "license": [
-            "WTFPL"
-        ],
-        "description": "Simple Templating Static Helper Class for Codeigniter Provides Partials and Layouts - Convention over configuration",
-        "keywords": [
-            "codeigniter",
-            "templating"
-        ]
-    },
-    {
         "name": "pimple/pimple",
         "version": "v1.0.2",
         "version_normalized": "1.0.2.0",
@@ -256,6 +223,39 @@
             "rules",
             "services",
             "validation"
+        ]
+    },
+    {
+        "name": "polycademy/citemplating",
+        "version": "1.0.6",
+        "version_normalized": "1.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Polycademy/CiTemplating.git",
+            "reference": "1.0.6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Polycademy/CiTemplating/zipball/1.0.6",
+            "reference": "1.0.6",
+            "shasum": ""
+        },
+        "time": "2013-03-28 03:44:23",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "http://packagist.org/downloads/",
+        "license": [
+            "WTFPL"
+        ],
+        "description": "Simple Templating Static Helper Class for Codeigniter Provides Partials and Layouts - Convention over configuration",
+        "keywords": [
+            "codeigniter",
+            "templating"
         ]
     }
 ]

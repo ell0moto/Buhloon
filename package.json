@@ -1,0 +1,17 @@
+{
+  "name": "Buhloon",
+  "version": "0.0.1",
+  "description": "Buhloon Project made by Matthew Maher, a platform to encourage children to complete goals & chores",
+  "author": "Matthew Maher <matthew.alexander.maher@gmail.com",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-concat": "~0.2.0",
+    "grunt-contrib-less": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-text-replace": "~0.3.2",
+    "grunt-shell": "~0.2.2",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-jshint": "~0.4.3"
+  }
+}
