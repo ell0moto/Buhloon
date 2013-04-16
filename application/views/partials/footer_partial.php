@@ -15,8 +15,8 @@
         </div>
     </footer>
 
-    <!-- Rewards Modal -->
-    <div id="rewards" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="RewardsSubCtrl">
+    <!-- Rewards Modal --> <!-- Rewards Modal no longer has ng-controller -->
+    <div id="rewards" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myModalLabel">Specific rewards<span>  (enter details for each form)</span></h3>

@@ -25,7 +25,7 @@
 	                    		<tr ng-repeat="reward in rewards">
 	                        		<td>{{reward.titleOfReward}}</td>
 	                        		<td>{{reward.ribbonCost}}</td>
-	                        		<td><button type="button" ng-click="">buy</button></td>
+	                        		<td><button type="button" ng-click="purchase(reward.id,child.id)">buy</button></td>
 	                    		</tr>
 	                		</tbody>
 	                		</table>

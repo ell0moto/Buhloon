@@ -69,32 +69,32 @@ class Offspring extends CI_Controller {
 
 		// $this->authenticated();
 
-  //   	$data = $this->input->json(false, true);
+    	$data = $this->input->json(false, true);
 
-		// $query = $this->children_model->get_child($data);
+		$query = $this->children_model->update_child($data);
 
-		// if($query){
+		if($query){
 
-		// 	$content = $query;
-		// 	$code = 'success';
-		// 	$redirect = '';
+			$content = $query;
+			$code = 'success';
+			$redirect = '';
 
-		// }else{
+		}else{
 
-		// 	$this->output->set_status_header('400');
+			$this->output->set_status_header('400');
 
-		// 	$content = $this->plan_model->get_errors();
-		// 	$code = 'error';
-		// 	$redirect = '';
-		// }
+			$content = $this->plan_model->get_errors();
+			$code = 'error';
+			$redirect = '';
+		}
 
-		// $output = array(
-		// 	'content' => $content,
-		// 	'code' => $code,
-		// 	'redirect' => $redirect,
-		// 	);
+		$output = array(
+			'content' => $content,
+			'code' => $code,
+			'redirect' => $redirect,
+			);
 		
-		// Template::compose(false, $output, 'json');
+		Template::compose(false, $output, 'json');
 	}
 
 	public function delete($data) {}

@@ -73,64 +73,64 @@ angular.module('Controllers')
 		}
 	])
 
-	.controller('RewardsSubCtrl', [
-		'$scope',
-		'IncentivesServ',
-		function($scope, IncentivesServ){
+	// .controller('RewardsSubCtrl', [
+	// 	// '$scope',
+	// 	// 'IncentivesServ',
+	// 	// function($scope, IncentivesServ){
 
-			//get
-			$scope.get = function() {
+	// 	// 	// //get
+	// 	// 	// $scope.get = function() {
 
-				//get all rewards according to User ID
-				IncentivesServ.get( 
-					{
-						// id:'9',
-					},
-					function(response){
-						$scope.rewards = response.content; //references object .content and passes in it's array.
-						console.log(response, '<- QUERY');
-					},
-					function(response){
-						console.log('Error! Well this is hawkard'); //this comes from the fail function
-					}
-				);
+	// 	// 	// 	//get all rewards according to User ID
+	// 	// 	// // 	IncentivesServ.get( 
+	// 	// 	// // 		{
+	// 	// 	// // 			// id:'9',
+	// 	// 	// // 		},
+	// 	// 	// // 		function(response){
+	// 	// 	// // 			$scope.rewards = response.content; //references object .content and passes in it's array.
+	// 	// 	// // 			console.log(response, '<- QUERY');
+	// 	// 	// // 		},
+	// 	// 	// // 		function(response){
+	// 	// 	// // 			console.log('Error! Well this is hawkard'); //this comes from the fail function
+	// 	// 	// // 		}
+	// 	// 	// // 	);
 
-			};
+	// 	// 	// };
 
-			//Post (create)
-			$scope.submit = function() {
+	// 	// 	// //Post (create)
+	// 	// 	// $scope.submit = function() {
 
-				var payload = {
-					titleOfReward: $scope.titleOfReward,
-					ribbonCost: $scope.ribbonCost,
-				};
+	// 	// 	// 	var payload = {
+	// 	// 	// 		titleOfReward: $scope.titleOfReward,
+	// 	// 	// 		ribbonCost: $scope.ribbonCost,
+	// 	// 	// 	};
 
-				IncentivesServ.save( 
-					{}, //parameter passes in through URL
-					payload,
-					function(response){
-						console.log(response, '<- SAVE');
-					}
-				);
-			};
+	// 	// 	// 	IncentivesServ.save( 
+	// 	// 	// 		{}, //parameter passes in through URL
+	// 	// 	// 		payload,
+	// 	// 	// 		function(response){
+	// 	// 	// 			console.log(response, '<- SAVE');
+	// 	// 	// 		}
+	// 	// 	// 	);
+	// 	// 	// };
 
-			//Delete
-			$scope.remove = function(id) { 
+	// 	// 	// //Delete
+	// 	// 	// $scope.remove = function(id) { 
 
-				console.log(id);
+	// 	// 	// 	console.log(id);
 
-				IncentivesServ.remove(
-					{
-						id: id,
-					},
-					function(response){
-						console.log(response, '<- REMOVE');
-					}
-				);
-			};
+	// 	// 	// 	IncentivesServ.remove(
+	// 	// 	// 		{
+	// 	// 	// 			id: id,
+	// 	// 	// 		},
+	// 	// 	// 		function(response){
+	// 	// 	// 			console.log(response, '<- REMOVE');
+	// 	// 	// 		}
+	// 	// 	// 	);
+	// 	// 	// };
 
-		}
-	])
+	// 	// }
+	// ])
 
 	.controller('ActivitySubCtrl', [
 		'$scope',

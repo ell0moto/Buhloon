@@ -5,15 +5,16 @@ angular.module('Controllers')
 		'$scope',
 		'ChildrenServ',
 		'OperationsServ',
-		'IncentivesServ',
-		function($scope, ChildrenServ, OperationsServ, IncentivesServ){
+		'RewardsServ',
+		function($scope, ChildrenServ, OperationsServ, RewardsServ){
 
 			// Get all children (according to specific id)
 			ChildrenServ.server.get( 
 				{},
 				function(response){
-					 
-					ChildrenServ.setChildren(response.content); //children data from DB being injected into .factory function
+					
+					//children data from DB being injected into .factory function setChildren
+					ChildrenServ.setChildren(response.content); 
 					console.log(response, '<- QUERY');
 
 				},
@@ -24,24 +25,28 @@ angular.module('Controllers')
 
 			$scope.$watch (
 				function() {
-					$scope.children=(ChildrenServ.getChildren());
+					$scope.children = ChildrenServ.getChildren();
 				}
 			);
 
 			//Get all rewards (according to specific id)
-			IncentivesServ.get(
-				{
-					// id:'9',
-				},
+			RewardsServ.server.get(
+				{},
 				function(response){
-					$scope.rewards = response.content; //references object .content and passes in it's array.
+					
+					RewardsServ.setRewards(response.content);
 					console.log(response, '<- QUERY');
 				},
 				function(response){
-					console.log('Error! Well this is hawkard'); //this comes from the fail function
+					console.log('Error! rewards');
 				}
-			);  	
+			);
 
+			$scope.$watch (
+				function() {
+					$scope.rewards = RewardsServ.getRewards();
+				}
+			);
 
 			//Post (create) plan
 			$scope.submit = function() { //function expression
@@ -74,9 +79,45 @@ angular.module('Controllers')
 	.controller('ChildrenSubCtrl', [
 		'$scope',
 		'OperationsServ',
-		function($scope, OperationsServ){
+		'ChildrenServ',
+		'RewardsServ',
+		function($scope, OperationsServ, ChildrenServ, RewardsServ){
 
 			$scope.isCollapsed = true;
+
+			$scope.purchase = function(rewardId,childId) {
+
+				if (ChildrenServ.getRibbons(childId) - RewardsServ.getCosts(rewardId) > 0) {
+					
+					//True: item can be paid for
+					var payload = {
+						id: childId,
+						netRibbon: ChildrenServ.getRibbons(childId),
+						ribbonCost: RewardsServ.getCosts(rewardId),
+					};
+
+					ChildrenServ.server.update(
+						{id:0,}, //Dummy data to satisfy RESTFUL
+						payload,
+						function(response){
+							console.log(response, '<- UPDATE');
+
+							if (response) {
+								//Server approves
+								ChildrenServ.setRibbons(payload.id,payload.netRibbon,payload.ribbonCost);
+
+							}else{
+								//Server failed error of some sort
+								console.log('Response did not get picked up');
+							}
+						}
+					);
+
+				}else{
+					//false: item costs too much
+					console.log('failed');
+				}
+			};
 
 			//Get all plans (according to child id)
 			OperationsServ.get( 

@@ -121,6 +121,79 @@ class Children_model extends CI_Model {
 		}
 	}
 
+	public function update_child($data){ //update progress of plan
+	
+		$this->validator->setup_rules(array(
+			'id' => array(
+				'set_label:Child Id',
+				'NotEmpty',
+				'Number',
+			),
+			'netRibbon' => array(
+				'set_label:Net Ribbons',
+				'NotEmpty',
+				'Number',
+			),
+			'ribbonCost' => array(
+				'set_label:Ribbon Cost',
+				'NotEmpty',
+				'Number',
+			),
+		));
+		
+		if(!$this->validator->is_valid($data)){
+		
+			$this->errors = $this->validator->get_errors();
+			return false;
+			
+		}else{
+
+			//following is valid = true
+
+			$query = $this->db->get_where('children', array('id' => $data['id'])); 
+	  		$result = $query->result_array();
+
+			foreach($result as $key => $values) {
+				if (!$values['netRibbon'] == $data['netRibbon']) {
+
+					//netRibbon did not match
+
+					$this->errors = array(
+							'database'	=> 'netRibbon did not match DB',
+						);
+			            return false;
+
+				}else{
+
+					$spentRibbon = ($data['ribbonCost'] + $values['spentRibbon']);
+					$netRibbon = ($data['netRibbon'] - $data['ribbonCost']);
+
+					$newData = array (
+							'spentRibbon' => $spentRibbon,
+							'netRibbon' => $netRibbon
+						);
+				
+					//netRibbon did match
+			  		$this->db->where('id', $data['id']);
+					$this->db->update('children', $newData);
+					
+					if($this->db->affected_rows() > 0){
+					
+					FB::log('After updating DB');
+						return true;
+					
+					}else{
+						
+						$this->errors = array(
+							'database'	=> 'Nothing to update or error updating.',
+						);
+			            return false;
+					}
+				}
+			}
+		}
+	}
+
 	public function delete_child($data) { //May not be required
   		
   		// $this->db->where('userId', $data['userId']);
