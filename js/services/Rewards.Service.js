@@ -14,6 +14,21 @@ angular.module('Services')
 				},
 				setRewards: function(newRewards){
 					rewards = newRewards;
+					// console.log(newRewards);
+					// console.log(rewards);
+				},
+
+				setNewReward: function(newReward) {
+					rewards.push(newReward);
+				},
+
+				deleteReward: function(rewardId) {
+					for(var i=0; i<rewards.length; i++){
+						if(rewards[i].id == rewardId){
+							rewards.splice(i,1);
+							break;
+						}
+					}
 				},
 				// setChildrenProp: function(childId, propname, propvalue){ //future feature to change properties
 				// 	for(var i=0; i<children.length; i++){

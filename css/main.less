@@ -21,6 +21,16 @@ body {
 	background-repeat: repeat-x;
 }
 
+.alertsBar { /*Angular UI Alerts*/
+	margin-left: 205px;
+	opacity: 0.9;
+}
+
+#homeIndexAlert { /*Angular UI Alerts*/
+	margin-left: 0px;
+	margin-top: -135px;
+}
+
 .navbar-form.pull-right {
 	margin-top: 50px; /* Moves User name, Password, Sign in to the bottom of NavBar*/
 /*		p {
@@ -77,6 +87,40 @@ body {
 	}
 } /* Positions alert box */
 
+.tableContainer { /*Activities Table*/
+
+	.activitiesTable {
+
+		margin: auto;
+		width: 350px;
+		border-radius: 4px;
+
+		.activitiesHead {
+			background-color: #eeeeee;
+			border-bottom: 1px solid white;
+			line-height: 30px;
+
+		}
+
+		.activitiesHead th { /*Specific*/
+			font-size: 17px;
+		}
+
+		.activitiesBody {
+			background-color: #e4e4e4;
+		}
+
+		.ribbonCost { /*specific*/
+
+			text-align: center;
+		}
+
+		.ribbonId {
+			color: #e4e4e4;
+		}
+	}
+}
+
 .home-section1 {
 	.vertical{ 
 		/* There are many ways of positioning things vertically, but this is the easiest. It does have a drawback of not working in old IE versions. Furthermore another method for images would be setting it on the background instead. */
@@ -120,6 +164,7 @@ body {
 	background-repeat: no-repeat;
 	height: 420px;
 	width: 940px;
+	margin:auto;
 	.carousel-indicators {
 		right: 40px;
 	}
@@ -131,12 +176,12 @@ body {
 	}
 	.carousel-control.right { /* Adjusts vertical placement & text inside 'button' of carousel */
 	right: 90px;
-	p {
-		line-height: 80%;
-		text-align: center;
-		margin: 8px 5px 0px;
+		p {
+			line-height: 80%;
+			text-align: center;
+			margin: 8px 5px 0px;
+		}
 	}
-}
 }
 
 
@@ -166,10 +211,6 @@ body {
 		}
 	}
 }
-
-
-
-
 
 .form-actions {
 	background: none repeat scroll 0% 0% transparent;

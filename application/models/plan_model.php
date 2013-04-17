@@ -107,13 +107,19 @@ class Plan_model extends CI_Model {
 		            return false;
 	        }
 
-	    return $this->db->insert_id();
+	        $rawOutPut = array( 
+				'id' => $this->db->insert_id(),
+				'childId' => $data['childId'],
+				'userId' => $data['userId'],
+			);
+
+	    return $rawOutPut;
 	}
 
-	public function get_plan($id) { //*
+	public function get_plan($data) {
 	  	
 	  	$this->db->select(); 
-		$this->db->where('childId', $id);
+		$this->db->where('userId', $data['userId']);
 		$query=$this->db->get('plan');
 
 		if($query->num_rows() > 0){
@@ -178,6 +184,11 @@ class Plan_model extends CI_Model {
 	public function update_plan($data){ //update progress of plan
 	
 		$this->validator->setup_rules(array(
+			'id' => array(
+				'set_label:Plan id',
+				'NotEmpty',
+				'Number',
+			),
 			'userId' => array(
 				'set_label:User Id',
 				'NotEmpty',
@@ -272,6 +283,11 @@ class Plan_model extends CI_Model {
 	public function soft_delete_plan($data) { //Update plan to be no longer active
 
 		$this->validator->setup_rules(array(
+			'id' => array(
+				'set_label:Plan id',
+				'NotEmpty',
+				'Number',
+			),
 			'userId' => array(
 				'set_label:User Id',
 				'NotEmpty',

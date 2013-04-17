@@ -62,7 +62,7 @@
     </div> <!-- End of model -->
 
     <!-- Activity Modal -->
-    <div id="activity" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  ng-controller="ActivitySubCtrl">
+    <div id="activity" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myModalLabel">Activity<span>  (oversee what has been happening)</span></h3>

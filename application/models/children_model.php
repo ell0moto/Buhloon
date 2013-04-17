@@ -45,6 +45,10 @@ class Children_model extends CI_Model {
 
 			$this->db->set('userId', $data['userId']);
 			$this->db->set('nameOfChild', $data['nameOfChild']);
+			$this->db->set('totalRibbon', 0);
+			$this->db->set('spentRibbon', 0);
+			$this->db->set('netRibbon', 0);
+			$this->db->set('totalPlan', 0);
 			$query = $this->db->insert('children');
 
 				if(!$query) {

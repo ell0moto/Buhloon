@@ -4,30 +4,45 @@ angular.module('Controllers')
 	.controller('MainIndexCtrl', [
 		'$scope',
 		'ChildrenServ',
-		'OperationsServ',
+		'PlansServ',
 		'RewardsServ',
-		function($scope, ChildrenServ, OperationsServ, RewardsServ){
+		function($scope, ChildrenServ, PlansServ, RewardsServ){
 
 			// Get all children (according to specific id)
 			ChildrenServ.server.get( 
 				{},
-				function(response){
-					
-					//children data from DB being injected into .factory function setChildren
-					ChildrenServ.setChildren(response.content); 
-					console.log(response, '<- QUERY');
+				function(response){					
 
+					var children = response.content; //established to keep the objects inside first response from being overwritten.
+					
+					//Get all plans (according to user id)
+					PlansServ.server.get( 
+						{},
+						function(response){
+
+							ChildrenServ.setChildrenPlans(children, response.content);
+							$scope.children = ChildrenServ.getChildren();
+						
+						},
+						function(response){
+							console.log('Error! rewards');
+						}
+					);
 				},
 				function(response){
 					console.log('Error! No children'); //this comes from the failure function
 				}
 			);
 
+			//Watching Children
 			$scope.$watch (
+				function() {
+					return ChildrenServ.getChildren();
+				},
 				function() {
 					$scope.children = ChildrenServ.getChildren();
 				}
-			);
+			);			
 
 			//Get all rewards (according to specific id)
 			RewardsServ.server.get(
@@ -42,49 +57,29 @@ angular.module('Controllers')
 				}
 			);
 
+			//Watching rewards
 			$scope.$watch (
+				function() {
+					return RewardsServ.getRewards();
+				},
 				function() {
 					$scope.rewards = RewardsServ.getRewards();
 				}
 			);
-
-			//Post (create) plan
-			$scope.submit = function() { //function expression
-
-				var payload = { //payload is an object, created via literal notation
-					titleOfPlan: $scope.titleOfPlan,
-					description: $scope.description,
-					nameOfChild: $scope.nameOfChild,
-					totalIteration: $scope.totalIteration,
-					specificReward: $scope.specificReward,
-					noRibbon: $scope.noRibbon,
-					progress: 0,
-					active: 0,
-					complete: 0,
-				};
-
-				OperationsServ.save( //.save is a function being called
-					{}, //1st parameter passes in through URL
-					payload,
-					function(response){
-						console.log(response, '<- SAVE'); //upon success add payload to plansData
-					}
-				);
-
-			};
 		}
 	])
 
 
 	.controller('ChildrenSubCtrl', [
 		'$scope',
-		'OperationsServ',
+		'PlansServ',
 		'ChildrenServ',
 		'RewardsServ',
-		function($scope, OperationsServ, ChildrenServ, RewardsServ){
+		function($scope, PlansServ, ChildrenServ, RewardsServ){
 
 			$scope.isCollapsed = true;
 
+			//Purchase reward
 			$scope.purchase = function(rewardId,childId) {
 
 				if (ChildrenServ.getRibbons(childId) - RewardsServ.getCosts(rewardId) > 0) {
@@ -119,31 +114,41 @@ angular.module('Controllers')
 				}
 			};
 
-			//Get all plans (according to child id)
-			OperationsServ.get( 
-				{
-					id:$scope.child.id,
-				},
-				function(response){
+			//Delete
+			$scope.removePlan = function(id) { 
 
-					$scope.plans = response.content; //references object .content and passes in it's array.
-					console.log(response, '<- QUERY');
-				},
-				function(response){
-					console.log('Error! No plans'); //this comes from the failure function
-				}
-			);
+				ChildrenServ.deletePlan(id);
+				console.log(id);
+
+				// PlansServ.server.remove(
+				// 	{
+				// 		id: id,
+				// 	},
+				// 	function(response){
+				// 		console.log(response, '<- REMOVE');
+
+				// 		if (response) {
+				// 				//Server approves
+				// 				ChildrenServ.deletePlan(id);
+
+				// 		}else{
+				// 				//Server failed error of some sort
+				// 				console.log('Response did not get picked up');
+				// 		}
+				// 	}
+				// );
+			};
 
 		}
 	])
 
 	.controller('PlansSubCtrl', [
 		'$scope',
-		'OperationsServ',
-		function($scope, OperationsServ){
+		'PlansServ',
+		function($scope, PlansServ){
 
-			$scope.plan.percent = (($scope.plan.progress)/($scope.plan.totalIteration)*100 + "%");
-			$scope.plan.colour = ('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
+			// $scope.plan.percent = (($scope.plan.progress)/($scope.plan.totalIteration)*100 + "%");
+			// $scope.plan.colour = ('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
 
 			// Put (update) plan
 			$scope.addItem = function(item) {
@@ -154,7 +159,7 @@ angular.module('Controllers')
 					item.complete = 1;
 				}
 
-				OperationsServ.update(
+				PlansServ.server.update(
 					{id:0,}, //Dummy data to satisfy RESTFUL
 					item,
 					function(response){
@@ -166,46 +171,17 @@ angular.module('Controllers')
 
 
 			//Delete plan
-			$scope.remove = function(id) {
+			// $scope.remove = function(id) {
 
-				OperationsServ.remove(
-					{
-						id:id,
-					},
-					function(response){
-						console.log(response, '<- REMOVE');
-					}
-				);
-			};
+			// 	PlansServ.server.remove(
+			// 		{
+			// 			id:id,
+			// 		},
+			// 		function(response){
+			// 			console.log(response, '<- REMOVE');
+			// 		}
+			// 	);
+			// };
 
 		}
 	]);
-
-
-
-
-
-
-			
-			
-// // Put (update) plan
-// 			$scope.addItem = function(item) {
-
-// 				item.progress = (item.progress + 1);
-// 				item.active = 1;
-// 				if (item.progress === item.totalIteration) {
-// 					item.complete = 1;
-// 				};
-
-// 				console.log(item);
-
-// 				OperationsServ.update(
-// 					{id:0,}, //Dummy data to satisfy RESTFUL
-// 					item,
-// 					function(response){
-// 						console.log(response, '<- UPDATE');
-// 					}
-// 				);
-
-// 			};
-
