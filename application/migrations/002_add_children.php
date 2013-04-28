@@ -16,7 +16,7 @@ class Migration_add_children extends CI_Migration {
                                     'type' => 'INT',
                                     'auto_increment' => FALSE,
                 ),
-                'name' => array(
+                'name_of_child' => array(
                                     'type' => 'VARCHAR',
                                     'constraint' => '40',
                 ),

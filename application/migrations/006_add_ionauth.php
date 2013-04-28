@@ -5,46 +5,46 @@ class Migration_add_ionauth extends CI_Migration {
     public function up()
     {
         // Drop table 'groups' if it exists     
-        $this->dbforge->drop_table('groups');
+        // $this->dbforge->drop_table('groups');
 
         // Table structure for table 'groups'
-        $this->dbforge->add_field(array(
-            'id' => array(
-                'type' => 'MEDIUMINT',
-                'constraint' => '8',
-                'unsigned' => TRUE,
-                'auto_increment' => TRUE
-            ),
-            'name' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '20',
-            ),
-            'description' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('groups');
+        // $this->dbforge->add_field(array(
+        //     'id' => array(
+        //         'type' => 'MEDIUMINT',
+        //         'constraint' => '8',
+        //         'unsigned' => TRUE,
+        //         'auto_increment' => TRUE
+        //     ),
+        //     'name' => array(
+        //         'type' => 'VARCHAR',
+        //         'constraint' => '20',
+        //     ),
+        //     'description' => array(
+        //         'type' => 'VARCHAR',
+        //         'constraint' => '100',
+        //     )
+        // ));
+        // $this->dbforge->add_key('id', TRUE);
+        // $this->dbforge->create_table('groups');
 
         // Dumping data for table 'groups'
-        $data = array(
-            array(
-                'id' => '1',
-                'name' => 'admin',
-                'description' => 'Administrator'
-            ),
-            array(
-                'id' => '2',
-                'name' => 'members',
-                'description' => 'General User'
-            )
-        );
-        $this->db->insert_batch('groups', $data);
+        // $data = array(
+        //     array(
+        //         'id' => '1',
+        //         'name' => 'admin',
+        //         'description' => 'Administrator'
+        //     ),
+        //     array(
+        //         'id' => '2',
+        //         'name' => 'members',
+        //         'description' => 'General User'
+        //     )
+        // );
+        // $this->db->insert_batch('groups', $data);
 
 
         // Drop table 'users' if it exists
-        $this->dbforge->drop_table('users');
+        // $this->dbforge->drop_table('users');
 
         // Table structure for table 'users'
         $this->dbforge->add_field(array(

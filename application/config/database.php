@@ -103,39 +103,18 @@ if(ENVIRONMENT == 'development'){
 		'failover' => array()
 	);
 
-}elseif(ENVIRONMENT == 'cloud9'){
-
-	$db['default'] = array(
-		'dsn'	=> '',
-		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'buhloon',
-		'dbdriver' => 'mysqli',
-		'dbprefix' => '',
-		'pconnect' => TRUE,
-		'db_debug' => TRUE,
-		'cache_on' => FALSE,
-		'cachedir' => '',
-		'char_set' => 'utf8',
-		'dbcollat' => 'utf8_general_ci',
-		'swap_pre' => '',
-		'autoinit' => TRUE,
-		'encrypt' => FALSE,
-		'compress' => FALSE,
-		'stricton' => FALSE,
-		'failover' => array(),
-		'port' => 1234,
-	);
-
 }elseif(ENVIRONMENT == 'production'){
 
+	$services_json = json_decode(getenv("VCAP_SERVICES"),true);
+	$mysql_config = $services_json["mysql-5.1"][0]["credentials"];
+
 	$db['default'] = array(
-		'dsn'	=> '',
-		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'buhloon',
+		'dsn'		=> '',
+		'hostname' => $mysql_config["hostname"],
+		'username' => $mysql_config["username"],
+		'password' => $mysql_config["password"],
+		'port'		=> $mysql_config["port"],
+		'database' => $mysql_config["name"],
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => TRUE,

@@ -50,10 +50,10 @@
 
                     <div ng-show="state" class="nav-collapse collapse">
                         <ul class="nav pull-right">
-                            <li><button ng-click="openRewards()">Rewards</button></li>
-                            <li><button ng-click="openPlans()">Add New</button></li>
-                            <li><a href="main/#activity" data-toggle="modal">Activity</a></li>
-                            <li><a href="" ng-click="logout()">Logout</a></li>
+                            <li><div class="clickBoxRewards" ng-click="openRewards()"></div><p>Rewards</p></li>
+                            <li><div class="clickBoxPlans" ng-click="openPlans()"></div><p class="pNew">Add New</p></li>
+                            <li><div class="clickBoxActivities" ng-click="openActivity()"></div><div class="redBarActivity" ng-show="notifications"></div><p class="pNew2">Activity</p></li>
+                            <li><div class="clickBoxLogout" ng-click="logout()"></div><p>Logout</p></li>
                         </ul>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
         <div modal="rewardsBox" options="opts">
             <div class="modal-header">
                 <button type="button" class="close" ng-click="closeRewards()">×</button>
-                <h3 id="myModalLabel">Specific rewards<span>  (enter details for each form)</span></h3>
+                <h3 id="myModalLabel">Set rewards<span>  (enter details for each form)</span></h3>
             </div>
             <div class="modal-body">
                 <form class = "form-horizontal" id = "add-new-forms">
@@ -106,7 +106,6 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn">Refresh</button>
                 <button class="btn btn-primary" ng-click="submitReward()">Create reward</button>
             </div>
         </div>
@@ -199,6 +198,35 @@
             <div class="modal-footer">
                 <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
                 <button class="btn btn-primary" ng-click="submitPlan()" >Create goal</button>
+            </div>
+        </div>
+
+        <div modal="activityBox" options="opts">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeActivity()">×</button>
+                <h3 id="myModalLabel">Activity<span>  (oversee what has been happening)</span></h3>
+            </div>
+            <div class="modal-body">
+                <div class="activityBox">
+                    <div class="activityContainer">
+                        <table class="activityTable">
+                            <tbody>
+                                <tr ng-repeat="note in notifications">
+                                    <td>{{note.nameOfChild}}</td>
+                                    <td>{{note.titleOfPlan}}</td>
+                                    <td>{{note.percent}}</td>
+                                    <td>{{note.specificReward}}</td>
+                                    <td><button type="button" ng-click="removeNotification(note.id)">Seen</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <!-- <button class="btn" ng-click="get()" >Refresh</button> -->
+                <!-- <button class="btn btn-primary" class="close" data-dismiss="modal" aria-hidden="true">Activity</button> -->
             </div>
         </div>
 

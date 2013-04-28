@@ -288,66 +288,8 @@ class Plan_model extends CI_Model {
 				'NotEmpty',
 				'Number',
 			),
-			'userId' => array(
-				'set_label:User Id',
-				'NotEmpty',
-				'Number',
-			),
-			'childId' => array(
-				'set_label:Child Id',
-				'NotEmpty',
-				'Number',
-			),
-			'nameOfChild' => array(
-				'set_label:Childs Name',
-				'NotEmpty',
-				'AlphaNumericSpace',
-				'MinLength:3',
-				'MaxLength:40',
-			),
-			'titleOfPlan' => array(
-				'set_label:Plans title',
-				'NotEmpty',
-				'AlphaNumericSpace',
-				'MinLength:3',
-				'MaxLength:50',
-			),
-			'description' => array(
-				'set_label:Description',
-				'NotEmpty',
-				'AlphaNumericSpace',
-				'MinLength:3',
-				'MaxLength:140',
-			),
-			'totalIteration' => array(
-				'set_label:Iterations',
-				'NotEmpty',
-				'Number',
-				'NumRange:0,20',
-			),
-			'specificReward' => array(
-				'set_label:Specific Reward',
-				'AlphaNumericSpace',
-				'MinLength:3',
-				'MaxLength:20',
-			),
-			'noRibbon' => array(
-				'set_label:Number of Ribbons',
-				'Number',
-				'NumRange:0,20',
-			),
 			'active' => array(
 				'set_label:Active',
-				'Number',
-				'NumRange:0,1',
-			),
-			'progress' => array(
-				'set_label:Progress',
-				'Number',
-				'NumRange:0,20',
-			),
-			'complete' => array(
-				'set_label:Complete',
 				'Number',
 				'NumRange:0,1',
 			),
@@ -361,8 +303,6 @@ class Plan_model extends CI_Model {
 		}
   		
   		$this->db->where('id', $data['id']);
-  		// $this->db->where('userId', $data['userId']);
-  		// $this->db->where('childId', $data['childId']);
 		$this->db->update('plan', $data);
   		
   		if($this->db->affected_rows() > 0){

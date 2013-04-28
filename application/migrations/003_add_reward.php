@@ -16,7 +16,7 @@ class Migration_add_reward extends CI_Migration {
                                     'type' => 'INT',
                                     'auto_increment' => FALSE,
                 ),
-                'title' => array(
+                'title_of_reward' => array(
                                     'type' => 'VARCHAR',
                                     'constraint' => '40',
                 ),

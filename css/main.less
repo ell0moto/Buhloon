@@ -13,7 +13,7 @@
    ========================================================================== */
 
 body {
-    padding-top: 95px;
+    padding-top: 92px;
     padding-bottom: 0px;
     background-image: url('../img/homebackground_icon.jpg');
 	background-position: center;
@@ -31,15 +31,78 @@ body {
 	margin-top: -135px;
 }
 
+.nav {
+
+	p {
+
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+		color: #777777;
+		padding: 6px 15px;
+	}
+
+	.clickBoxRewards {
+		position: absolute;
+		cursor: hand;
+		cursor: pointer;
+		margin-left: 16px;
+		height: 35px;
+		width: 55px;
+
+	}
+
+	.clickBoxPlans {
+		position: absolute;
+		cursor: hand;
+		cursor: pointer;
+		margin-left: 15px;
+		height: 35px;
+		width: 55px;
+	}
+
+	.clickBoxActivities {
+		position: absolute;
+		cursor: hand;
+		cursor: pointer;
+		margin-left: 10px;
+		height: 35px;
+		width: 55px;
+	}
+
+	.clickBoxLogout {
+		position: absolute;
+		cursor: hand;
+		cursor: pointer;
+		margin-left: 12px;
+		height: 35px;
+		width: 50px;
+	}
+
+	.redBarActivity {
+		position: absolute;
+		background-color: red;
+		opacity: 0.4;
+		margin-left: 12px;
+		height: 5px;
+		width: 50px;
+		margin-top: 30px;
+	}
+
+	.pNew { /*Annonying but required for nav bar dividers*/
+		border-right:1px solid grey;
+		border-left:1px solid grey;
+	}
+	.pNew2 {
+		border-right:1px solid grey;
+	}
+}
+
+.navbar .pull-right {
+	margin-top: 50px;
+}
+
+
 .navbar-form.pull-right {
 	margin-top: 50px; /* Moves User name, Password, Sign in to the bottom of NavBar*/
-/*		p {
-			color: #a3a3a3;
-			font-family: Myriad Pro;
-			margin: 10px;
-			float: left;
-			font-style: italic;
-		}*/          /*Was used to style error messages*/
 } 
 
 .navbar-inner {
@@ -336,7 +399,7 @@ body {
 	background-attachment: inherit;
 	background-repeat: repeat-x;
 		.vertical{ 
-			height: 150px;
+			height: 110px;
 			width: 940px;
 			margin: auto;
 			display: table; 
@@ -387,17 +450,26 @@ body {
    ========================================================================== */
 
 .main-body {
-    padding-top: 95px;
+    padding-top: 92px;
     padding-bottom: 0px;
-    background-image: url('../img/homebackground_icon.jpg');
+/*    background-image: url('../img/homebackground_icon.jpg');
 	background-attachment: inherit;
-	background-position: center;
-	
+	background-position: center;*/
+	background-color: #c4e0ee;
 }
 
-.navbar .pull-right {
-	margin-top: 50px;
+.welcomeBox {
+	background-color: #c4e0ee;
+	height:450px;
 }
+
+#mainBody {
+	background-image: none;
+	background-color: #c4e0ee;
+
+}
+
+
 
 .main-section {
 	height: 410px;
@@ -542,6 +614,26 @@ body {
 
 .childcontainer { /*Childs name (main page)*/
 
+	.clickBoxChild {
+		position: absolute;
+		cursor: hand;
+		cursor: pointer;
+		height: 50px;
+		width: 300px;
+		margin-left:100px;
+
+	}
+
+	.clickBoxAccount {
+		position: absolute;
+		cursor: hand;
+		cursor: pointer;
+		height: 40px;
+		width: 45px;
+		margin-left:690px;
+
+	}
+
 	.usericon {
 		float: right;
 		margin: 0px 50px 0px 0px;
@@ -626,6 +718,7 @@ body {
 						display: inline-block;
 						font-size: 25px;
 						color: #6c99dc;
+						font-style: italic;
 						}
 
 					.progressbox {
@@ -638,19 +731,21 @@ body {
 							background-color: rgb(230,230,230);
 							margin: 20px 20px;
 
-							.bar {
-								background-image: none;
-								background-color: rgb(238,156,128);
+							.bar { /*PROGRESS BAR TRY TO CHANGE COLOUR*/
+								/*background-image: none;
+								background-image: linear-gradient(to bottom, rgb(238,200,200), rgb(238,156,128));
+								background-color: rgb(238,156,128);*/
 								box-shadow: none;
 							}
 						}
 					}
 
-					.clickBox {
+					.clickBoxProgress {
 						width: 460px;
 						height: 30px;
 						position: absolute;
-						margin:0px 20px;
+						cursor: hand;
+						cursor: pointer;
 					}
 				}
 
@@ -693,6 +788,29 @@ body {
 
 				}
 			}
+	}
+}
+
+.activityBox {
+
+
+	.activityContainer {
+
+		vertical-align: middle;
+		margin: auto;
+		background-color: #e4e4e4;
+
+
+		.activityTable {
+
+			margin: auto;
+			width: 500px;
+
+		}
+
+		.activityTable tr {
+			border-bottom: 1px solid white;
+		}
 	}
 }
 

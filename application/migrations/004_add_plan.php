@@ -12,11 +12,11 @@ class Migration_add_plan extends CI_Migration {
  
         $this->dbforge->add_field(
             array(
-                'children_id' => array(
+                'child_id' => array(
                                     'type' => 'INT',
                                     'auto_increment' => FALSE,
                 ),
-                'title' => array(
+                'title_of_plan' => array(
                                     'type' => 'VARCHAR',
                                     'constraint' => '40',
                 ),
@@ -24,7 +24,7 @@ class Migration_add_plan extends CI_Migration {
                                     'type' => 'VARCHAR',
                                     'constraint' => '140',
                 ),
-                'iteration' => array(
+                'total_iteration' => array(
                                     'type' => 'INT',
                                     'auto_increment' => FALSE,
                 ),

@@ -86,18 +86,8 @@ class Notifications extends CI_Controller {
 		// $this->authenticated();
 
 		$data = $this->input->json(false, true);
+		$query = $this->plan_model->soft_delete_plan($data);
 
-		foreach($data as $key => $values) {
-			if ($key == 'titleOfPlan') {
-
-				$query = $this->plan_model->soft_delete_plan($data);
-
-			}elseif ($key == 'reward') {
-
-				$query = $this->obligation_model->soft_delete_obligation($data);
-			}
-
-		};
 		
 		if($query){
 
