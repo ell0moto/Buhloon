@@ -16,7 +16,7 @@ angular.module('Controllers')
                 $scope.alerts.splice(index, 1);
             };
 
-            //Modal box
+            //Modal boxes
             $scope.openRewards = function () {
                 $scope.rewardsBox = true;
             };
@@ -55,7 +55,7 @@ angular.module('Controllers')
                 },
                 function() {
                     $scope.rewards = RewardsServ.getRewards();
-                    console.log('rewards Header firing');
+                    
                 }
             );
 
@@ -66,7 +66,7 @@ angular.module('Controllers')
                 },
                 function() {
                     $scope.notifications = NotificationsServ.getNotification();
-                    console.log('notifications Header firing');
+                    
                 }
             );
 
@@ -129,10 +129,16 @@ angular.module('Controllers')
             $scope.submitPlan = function() { //function expression
 
 				var childName;
-                if($scope.existingUser) {
-                    childName = $scope.existingUser;
-                }else{
+                if($scope.nameOfChild) {
                     childName = $scope.nameOfChild;
+                }else{
+                    childName = $scope.existingUser;
+                }
+
+                if(!childName) {
+                    $scope.alerts = [
+                                { type: 'error', msg: "Please enter or re-enter the child's name" }, 
+                            ];
                 }
 
                 var payload = { //payload is an object, created via literal notation
@@ -192,7 +198,7 @@ angular.module('Controllers')
                 },
                 function() {
                     $scope.children = ChildrenServ.getChildren();
-                    console.log('children Header firing');
+                    
                 }
             );
 

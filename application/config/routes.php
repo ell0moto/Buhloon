@@ -80,7 +80,7 @@ Pigeon::map(function($r){
 	$r->resources('notifications'); //for activity
 
 	$r->get('migrate', 'migrate/index');
-	$r->get('migrate/revert', 'migrate/revert');
+	$r->get('migrate/version/(:num)', 'migrate/version/$1');
 
 	
 	});

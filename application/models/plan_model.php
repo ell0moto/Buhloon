@@ -30,21 +30,18 @@ class Plan_model extends CI_Model {
 			'nameOfChild' => array(
 				'set_label:Childs Name',
 				'NotEmpty',
-				'AlphaNumericSpace',
 				'MinLength:3',
 				'MaxLength:40',
 			),
 			'titleOfPlan' => array(
 				'set_label:Plans title',
 				'NotEmpty',
-				'AlphaNumericSpace',
 				'MinLength:3',
 				'MaxLength:50',
 			),
 			'description' => array(
 				'set_label:Description',
 				'NotEmpty',
-				'AlphaNumericSpace',
 				'MinLength:3',
 				'MaxLength:140',
 			),
@@ -56,7 +53,6 @@ class Plan_model extends CI_Model {
 			),
 			'specificReward' => array(
 				'set_label:Specific Reward',
-				'AlphaNumericSpace',
 				'MinLength:3',
 				'MaxLength:20',
 			),

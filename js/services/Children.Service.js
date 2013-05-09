@@ -84,14 +84,12 @@ angular.module('Services')
 
                             if(plans[j].id === plan.id){
                                 children[i].plans[j] = plan;
-                                // return;
                             }
                         }
                     }
-                    console.log(children);
                 },
 
-                getRibbons: function(childId){ //gets net ribbons
+                getNetRibbons: function(childId){ //gets net ribbons
                     for(var i=0; i<children.length; i++){
                         if(children[i].id === childId){
                             return children[i].netRibbon;
@@ -99,11 +97,22 @@ angular.module('Services')
                     }
                 },
 
-                setRibbons: function(childId,netRibbon,ribbonCost){
+                setPurchaseRibbons: function(childId,netRibbon,ribbonCost){
                     for(var i=0; i<children.length; i++){
                         if(children[i].id === childId){
                             children[i].spentRibbon = (children[i].spentRibbon + ribbonCost);
                             children[i].netRibbon = (children[i].netRibbon - ribbonCost);
+                        }
+                    }
+                },
+
+                setCompletionRibbons: function(childId, noRibbon){
+                    for(var i=0; i<children.length; i++){
+                        if(children[i].id === childId){
+                            children[i].totalRibbon = (children[i].totalRibbon + noRibbon);
+                            children[i].netRibbon = (children[i].netRibbon + noRibbon);
+
+                            console.log(children[i]);
                         }
                     }
                 },

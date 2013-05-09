@@ -65,7 +65,7 @@ angular.module('Controllers')
                 },
                 function() {
                     $scope.children = ChildrenServ.getChildren();
-                    console.log('children Main firing');
+                    
                 },
                 true
             );      
@@ -90,7 +90,7 @@ angular.module('Controllers')
                 },
                 function() {
                     $scope.rewards = RewardsServ.getRewards();
-                    console.log('rewards Main firing');
+                    
                 }
             );
 
@@ -132,12 +132,12 @@ angular.module('Controllers')
             //Purchase reward
             $scope.purchase = function(rewardId,childId) {
 
-                if (ChildrenServ.getRibbons(childId) - RewardsServ.getCosts(rewardId) > 0) {
+                if (ChildrenServ.getNetRibbons(childId) - RewardsServ.getCosts(rewardId) > 0) {
                     
                     //True: item can be paid for
                     var payload = {
                         id: childId,
-                        netRibbon: ChildrenServ.getRibbons(childId),
+                        netRibbon: ChildrenServ.getNetRibbons(childId),
                         ribbonCost: RewardsServ.getCosts(rewardId),
                     };
 
@@ -149,7 +149,7 @@ angular.module('Controllers')
 
                             if (response) {
                                 //Server approves
-                                ChildrenServ.setRibbons(payload.id,payload.netRibbon,payload.ribbonCost);
+                                ChildrenServ.setPurchaseRibbons(payload.id,payload.netRibbon,payload.ribbonCost);
 
                             }else{
                                 //Server failed error of some sort
@@ -200,13 +200,43 @@ angular.module('Controllers')
             $scope.plan.colour = ('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
 
             // Put (update) plan
-            $scope.updateProgress = function(plan) {
+            $scope.updateProgress = function(plan,child) {
 
                 plan.progress = (plan.progress + 1);
                 plan.active = 1;
+
                 if (plan.progress === plan.totalIteration) {
                     plan.complete = 1;
+
+                    //to update completion ribbons
+                    var payload = {
+                        childId: child.id,
+                        planId: plan.id,
+                        totalRibbon: child.totalRibbon,
+                        noRibbon: plan.noRibbon,
+                    };
+
+                    ChildrenServ.server.update(
+                        {id:0,}, //Dummy data to satisfy RESTFUL
+                        payload,
+                        function(response){
+                            console.log(response, '<- UPDATE');
+
+                            if (response) {
+                                //Server approves
+                                ChildrenServ.setCompletionRibbons(child.id,plan.noRibbon);
+
+                            }else{
+                                //Server failed error of some sort
+                                console.log('Response did not get picked up');
+                            }
+                        }
+                    );
                 }
+
+                // console.log(child.id);
+                // console.log(plan.noRibbon);
+                // console.log(child.totalRibbon);
 
                 var keepColour = plan.colour; //required because server side does not accept colour or percent in it's forms.
 
@@ -224,9 +254,9 @@ angular.module('Controllers')
 
                                 plan.colour = keepColour;
                                 plan.percent = ((plan.progress)/(plan.totalIteration)*100 + "%");
-                                ChildrenServ.updateProgress(plan);
+                                ChildrenServ.updateProgress(plan); //updating client side 'database'
 
-                                NotificationsServ.server.get( 
+                                NotificationsServ.server.get( //triggers notifications in header to be updated
                                     {},
                                     function(response){
 

@@ -71,7 +71,20 @@ class Offspring extends CI_Controller {
 
     	$data = $this->input->json(false, true);
 
-		$query = $this->children_model->update_child($data);
+    	// A rough way to route input to correct model method
+    	foreach($data as $key => $values) {
+			if ($key === 'ribbonCost') {
+				$check = true;
+			}
+		};
+
+		if (isset($check)) {
+			$query = $this->children_model->update_purchase($data);
+		}else{
+			$query = $this->children_model->update_completion($data);
+		};
+
+		
 
 		if($query){
 

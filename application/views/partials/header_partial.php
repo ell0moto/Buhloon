@@ -191,6 +191,7 @@
                                     </select>
                                 </div>
                         </div>
+                        <alert class="alertsBar" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
                     </fieldset>
                 </form>
@@ -211,7 +212,7 @@
                     <div class="activityContainer">
                         <table class="activityTable">
                             <tbody>
-                                <tr ng-repeat="note in notifications">
+                                <tr ng-repeat="note in notifications"> <!-- this will display whatever is given to it-->
                                     <td>{{note.nameOfChild}}</td>
                                     <td>{{note.titleOfPlan}}</td>
                                     <td>{{note.percent}}</td>

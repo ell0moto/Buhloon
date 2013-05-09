@@ -125,7 +125,7 @@ class Children_model extends CI_Model {
 		}
 	}
 
-	public function update_child($data){ //update progress of plan
+	public function update_purchase($data){ //update a purchase
 	
 		$this->validator->setup_rules(array(
 			'id' => array(
@@ -183,15 +183,97 @@ class Children_model extends CI_Model {
 					
 					if($this->db->affected_rows() > 0){
 					
-					FB::log('After updating DB');
-						return true;
-					
-					}else{
+							return true;
 						
-						$this->errors = array(
-							'database'	=> 'Nothing to update or error updating.',
+						}else{
+							
+							$this->errors = array(
+								'database'	=> 'Nothing to update or error updating.',
+							);
+				            return false;
+					}
+				}
+			}
+		}
+	}
+
+	public function update_completion($data){ //update a completion
+	
+		$this->validator->setup_rules(array(
+			'childId' => array(
+				'set_label:Child Id',
+				'NotEmpty',
+				'Number',
+			),
+			'planId' => array(
+				'set_label:Plan Id',
+				'NotEmpty',
+				'Number',
+			),
+			'totalRibbon' => array(
+				'set_label:Total Ribbons',
+				'NotEmpty',
+				'Number',
+			),
+			'noRibbon' => array(
+				'set_label:Number of Ribbons',
+				'NotEmpty',
+				'Number',
+			),
+		));
+		
+		if(!$this->validator->is_valid($data)){
+		
+			$this->errors = $this->validator->get_errors();
+			return false;
+			
+		}else{
+
+			//following is valid = true
+
+			$query = $this->db->get_where('plan', array('id' => $data['planId'])); 
+	  		$result = $query->result_array();
+
+			foreach($result as $key => $values) {
+				if (!$values['noRibbon'] == $data['noRibbon']) {
+
+					//noRibbon did not match
+
+					$this->errors = array(
+							'database'	=> 'noRibbon did not match DB',
 						);
 			            return false;
+
+				}else{
+
+					$newQuery = $this->db->get_where('children', array('id' => $data['childId'])); 
+	  				$newResult = $newQuery->result_array();
+
+	  				foreach($newResult as $key => $values) {
+
+						$totalRibbon = ($data['noRibbon'] + $values['totalRibbon']);
+						$netRibbon = ($data['noRibbon'] + $values['netRibbon']);
+
+						$newData = array (
+								'totalRibbon' => $totalRibbon,
+								'netRibbon' => $netRibbon
+							);
+					
+						//netRibbon did match
+				  		$this->db->where('id', $data['childId']);
+						$this->db->update('children', $newData);
+						
+						if($this->db->affected_rows() > 0){
+						
+								return true;
+							
+							}else{
+								
+								$this->errors = array(
+									'database'	=> 'Nothing to update or error updating.',
+								);
+					            return false;
+						}
 					}
 				}
 			}

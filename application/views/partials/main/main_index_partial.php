@@ -53,9 +53,9 @@
 
 							<div class="boxleft">
 								<img class="completedicon" ng-hide="!plan.complete" src="<?= base_url() ?>/img/completed_icon.png" />
-								<button type="button" ng-click="removePlan(plan.id)">×</button>
+								<button type="button" ng-click="removePlan(plan.id)">&times;</button>
 								<h1>{{plan.titleOfPlan}}</h1>
-									<div class="progressbox" ng-click="updateProgress(plan)">
+									<div class="progressbox" ng-click="updateProgress(plan,child)">
 									    <div animate-bar class="progress">
 		    								<div class="bar" ng-style="{width:plan.percent}"></div>
 		    								<div class="clickBoxProgress"></div>
