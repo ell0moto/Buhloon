@@ -75,8 +75,25 @@ angular.module('Controllers')
 
                 var payload = {
                     titleOfReward: $scope.titleOfReward,
-                    ribbonCost: $scope.ribbonCost,
+                    ribbonCost: parseInt($scope.ribbonCost,10),
                 };
+
+                //form validation
+                var query = RewardsServ.formCheck(payload);
+
+                if(!query.status) {
+
+                    //Array of objects required for ng-repeat
+                    var array = [query];
+                    $scope.dialog = array;
+
+                    //Reset $scope.dialog message
+                    setTimeout(function() {
+                        $scope.dialog.splice(0,1);
+                    }, 6000);
+
+                    return;
+                }
 
                 RewardsServ.server.save( 
                     {},
@@ -128,6 +145,7 @@ angular.module('Controllers')
             //Post (create) plan
             $scope.submitPlan = function() { //function expression
 
+                //Checking the form for a new user or an existing
 				var childName;
                 if($scope.nameOfChild) {
                     childName = $scope.nameOfChild;
@@ -135,23 +153,34 @@ angular.module('Controllers')
                     childName = $scope.existingUser;
                 }
 
-                if(!childName) {
-                    $scope.alerts = [
-                                { type: 'error', msg: "Please enter or re-enter the child's name" }, 
-                            ];
-                }
-
                 var payload = { //payload is an object, created via literal notation
                     titleOfPlan: $scope.titleOfPlan,
                     description: $scope.description,
                     nameOfChild: childName,
-                    totalIteration: $scope.totalIteration,
+                    totalIteration: parseInt($scope.totalIteration,10),
                     specificReward: $scope.specificReward,
-                    noRibbon: $scope.noRibbon,
+                    noRibbon: parseInt($scope.noRibbon,10),
                     progress: 0,
                     active: 0,
                     complete: 0,
                 };
+
+                //form validation
+                var query = PlansServ.formCheck(payload);
+
+                if(!query.status) {
+
+                    //Array of objects required for ng-repeat
+                    var array = [query];
+                    $scope.dialog = array;
+
+                    //Reset $scope.dialog message
+                    setTimeout(function() {
+                        $scope.dialog.splice(0,1);
+                    }, 6000);
+
+                    return;
+                }
             
                 PlansServ.server.save( //.save is a function being called
                     {},
@@ -161,16 +190,14 @@ angular.module('Controllers')
 
                         if (response) {
 
-                            console.log(response); //id of new plan
-
                             var extraPayload = {
 
                                 titleOfPlan: $scope.titleOfPlan,
                                 description: $scope.description,
                                 nameOfChild: childName,
-                                totalIteration: $scope.totalIteration,
+                                totalIteration: parseInt($scope.totalIteration,10),
                                 specificReward: $scope.specificReward,
-                                noRibbon: $scope.noRibbon,
+                                noRibbon: parseInt($scope.noRibbon,10),
                                 progress: 0,
                                 active: 0,
                                 complete: 0,
@@ -182,13 +209,15 @@ angular.module('Controllers')
                                 //Server approves
                                 ChildrenServ.createPlanChild(extraPayload);
 
+                                //Closes modal box
+                                $scope.plansBox = false;
+
                         }else{
                                 //Server failed error of some sort
                                 console.log('Response did not get picked up');
                         }
                     }
                 );
-
             };
 
             //watching children
@@ -248,6 +277,7 @@ angular.module('Controllers')
 
                         console.log('Successfully Logged In');
                         UsersServ.setUserData('id', successResponse.content);
+                        $scope.state = true;
                         $location.path('/main');
                     },
 
@@ -288,21 +318,16 @@ angular.module('Controllers')
 
                 UsersServ.logoutSession(UsersServ.getUserData().id);
                 //$scope.$emit('authenticationDestroy', Us);
-
+                $scope.state = false;
                 $location.path('/');
             };
 
             $scope.$on('authenticationProvided', function(event,args) { //authenticationProvided is a global event that is being listen to
                 $scope.state = true; //anything attached to $scope.state is a model
             });
-
-            $scope.$on('authenticationLogout', function(event,args) {
-                $scope.state = false;
-            });
-
             
         }
-    ])
+    ]);
 
 
 
@@ -314,95 +339,95 @@ angular.module('Controllers')
 
 
 
-    .controller('RewardsSubCtrl', [
-        '$scope',
-        'IncentivesServ',
-        function($scope, IncentivesServ){
+    // .controller('RewardsSubCtrl', [
+    //     '$scope',
+    //     'IncentivesServ',
+    //     function($scope, IncentivesServ){
 
 
 
-        //  //get
-        //  $scope.get = function() {
+    //     //  //get
+    //     //  $scope.get = function() {
 
-        //      //get all rewards according to User ID
-        //  //  IncentivesServ.get( 
-        //  //      {
-        //  //          // id:'9',
-        //  //      },
-        //  //      function(response){
-        //  //          $scope.rewards = response.content; //references object .content and passes in it's array.
-        //  //          console.log(response, '<- QUERY');
-        //  //      },
-        //  //      function(response){
-        //  //          console.log('Error! Well this is hawkard'); //this comes from the fail function
-        //  //      }
-        //  //  );
+    //     //      //get all rewards according to User ID
+    //     //  //  IncentivesServ.get( 
+    //     //  //      {
+    //     //  //          // id:'9',
+    //     //  //      },
+    //     //  //      function(response){
+    //     //  //          $scope.rewards = response.content; //references object .content and passes in it's array.
+    //     //  //          console.log(response, '<- QUERY');
+    //     //  //      },
+    //     //  //      function(response){
+    //     //  //          console.log('Error! Well this is hawkard'); //this comes from the fail function
+    //     //  //      }
+    //     //  //  );
 
-        //  };
+    //     //  };
 
-        //  //Post (create)
-        //  $scope.submit = function() {
+    //     //  //Post (create)
+    //     //  $scope.submit = function() {
 
-        //      var payload = {
-        //          titleOfReward: $scope.titleOfReward,
-        //          ribbonCost: $scope.ribbonCost,
-        //      };
+    //     //      var payload = {
+    //     //          titleOfReward: $scope.titleOfReward,
+    //     //          ribbonCost: $scope.ribbonCost,
+    //     //      };
 
-        //      IncentivesServ.save( 
-        //          {}, //parameter passes in through URL
-        //          payload,
-        //          function(response){
-        //              console.log(response, '<- SAVE');
-        //          }
-        //      );
-        //  };
+    //     //      IncentivesServ.save( 
+    //     //          {}, //parameter passes in through URL
+    //     //          payload,
+    //     //          function(response){
+    //     //              console.log(response, '<- SAVE');
+    //     //          }
+    //     //      );
+    //     //  };
 
-            //Delete
-            // $scope.remove = function(id) { 
+    //         //Delete
+    //         // $scope.remove = function(id) { 
 
-            //  console.log(id);
+    //         //  console.log(id);
 
-            //  IncentivesServ.remove(
-            //      {
-            //          id: id,
-            //      },
-            //      function(response){
-            //          console.log(response, '<- REMOVE');
-            //      }
-            //  );
-            // };
+    //         //  IncentivesServ.remove(
+    //         //      {
+    //         //          id: id,
+    //         //      },
+    //         //      function(response){
+    //         //          console.log(response, '<- REMOVE');
+    //         //      }
+    //         //  );
+    //         // };
 
-        }
-    ])
+    //     }
+    // ])
 
-    .controller('ActivitySubCtrl', [
-        '$scope',
-        'NotificationsServ',
-        function($scope, NotificationsServ){
+    // .controller('ActivitySubCtrl', [
+    //     '$scope',
+    //     'NotificationsServ',
+    //     function($scope, NotificationsServ){
 
-            $scope.isCollapsed = true;
+    //         $scope.isCollapsed = true;
 
             
-            $scope.get = function() {
+    //         $scope.get = function() {
                 
-                // Get all notices & obligations (according to specific id)
-                NotificationsServ.get( 
-                    {},
-                    function(response){
+    //             // Get all notices & obligations (according to specific id)
+    //             NotificationsServ.get( 
+    //                 {},
+    //                 function(response){
 
-                        $scope.notifications = response.content; //references object .content and passes in it's array.
-                        console.log(response, '<- QUERY');
-                    },
-                    function(response){
-                        console.log('Error! Well this is hawkard'); //this comes from the failure function
-                    }
-                );
-            };
+    //                     $scope.notifications = response.content; //references object .content and passes in it's array.
+    //                     console.log(response, '<- QUERY');
+    //                 },
+    //                 function(response){
+    //                     console.log('Error! Well this is hawkard'); //this comes from the failure function
+    //                 }
+    //             );
+    //         };
 
             
             
 
 
     
-        }
-    ]);
+    //     }
+    // ]);

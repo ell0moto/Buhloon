@@ -3,18 +3,38 @@
 angular.module('Controllers')
     .controller('MainIndexCtrl', [
         '$scope',
+        '$location',
         'ChildrenServ',
         'PlansServ',
         'RewardsServ',
         'NotificationsServ',
-        function($scope, ChildrenServ, PlansServ, RewardsServ, NotificationsServ){
+        'UsersServ',
+        function($scope, $location, ChildrenServ, PlansServ, RewardsServ, NotificationsServ, UsersServ){
+
+            //Variable, function & logic statement to check if user has logged in
+            var userCheck = UsersServ.getUserData();
+
+            function isEmpty(obj) {
+                for(var key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            if(isEmpty(userCheck)) {
+                $location.path('/');
+            }
 
             //Alert Box
             $scope.closeAlert = function(index) {
                 $scope.alerts.splice(index, 1);
             };
 
-            // $scope.$emit('authenticationFull');
+            //Fill boxes for when there are no plans
+            var largeFill;
+            var smallFill;
 
             // Get all children (according to specific id)
             ChildrenServ.server.get( 
@@ -28,20 +48,34 @@ angular.module('Controllers')
                         {},
                         function(response){
 
+                            //Sending both children & plans to be combined by the setChildrenPlans function
                             ChildrenServ.setChildrenPlans(children, response.content);
                             $scope.children = ChildrenServ.getChildren();
+
+                            var number = ChildrenServ.countPlans();
+
+                            if(number === 0) {
+                                $scope.largeFill = true;
+                                $scope.smallFill = false;
+                            }else if (number === 1) {
+                                $scope.largeFill = false;
+                                $scope.smallFill = true;
+                            }else{
+                                $scope.largeFill = false;
+                                $scope.smallFill = false;
+                            }
                         
                         },
                         function(response){
-                            console.log('Error! rewards');
+                            console.log('No plans');
                         }
                     );
                 },
                 function(response){
-                    console.log('Error! No children'); //this comes from the failure function
+                    console.log('No children');
                     
                     $scope.alerts = [
-                            { type: 'success', msg: "Hey there you are, let's get started by creating a goal or plan with 'Add New' found above this message." }, 
+                            { type: 'success', msg: "Hey, to get started create a goal or plan with 'Add New' found above this very message." }, 
                         ];
                 }
             );
@@ -65,6 +99,19 @@ angular.module('Controllers')
                 },
                 function() {
                     $scope.children = ChildrenServ.getChildren();
+
+                    var number = ChildrenServ.countPlans();
+
+                    if(number === 0) {
+                        $scope.largeFill = true;
+                        $scope.smallFill = false;
+                    }else if (number === 1) {
+                        $scope.largeFill = false;
+                        $scope.smallFill = true;
+                    }else{
+                        $scope.largeFill = false;
+                        $scope.smallFill = false;
+                    }
                     
                 },
                 true
@@ -79,7 +126,7 @@ angular.module('Controllers')
                     console.log(response, '<- QUERY');
                 },
                 function(response){
-                    console.log('Error! rewards');
+                    console.log('Error! No rewards');
                 }
             );
 
@@ -103,7 +150,7 @@ angular.module('Controllers')
                     console.log(response, '<- QUERY');
                 },
                 function(response){
-                    console.log('Error! Well this is hawkard');
+                    console.log('No notifications');
                 }
             );
 
@@ -160,12 +207,15 @@ angular.module('Controllers')
 
                 }else{
                     //false: item costs too much
-                    console.log('failed');
+                    console.log('failed, cannot afford item');
                 }
             };
 
             //Delete plan
             $scope.removePlan = function(id) { 
+
+                var largeFill;
+                var smallFill;
 
                 PlansServ.server.remove(
                     {
@@ -177,6 +227,19 @@ angular.module('Controllers')
                         if (response) {
                                 //Server approves
                                 ChildrenServ.deletePlan(id);
+
+                                var number = ChildrenServ.countPlans();
+
+                                if(number === 0) {
+                                    $scope.largeFill = true;
+                                    $scope.smallFill = false;
+                                }else if (number === 1) {
+                                    $scope.largeFill = false;
+                                    $scope.smallFill = true;
+                                }else{
+                                    $scope.largeFill = false;
+                                    $scope.smallFill = false;
+                                }
 
                         }else{
                                 //Server failed error of some sort
@@ -196,7 +259,23 @@ angular.module('Controllers')
         'NotificationsServ',
         function($scope, PlansServ, ChildrenServ, NotificationsServ){
 
-            $scope.plan.percent = (($scope.plan.progress)/($scope.plan.totalIteration)*100 + "%");
+            //Modal boxes
+            $scope.openProgress = function () {
+                $scope.progressBox = true;
+            };
+
+            $scope.closeProgress = function () {
+                $scope.progressBox = false;
+            };
+
+            $scope.items = ['item1', 'item2'];
+
+            $scope.opts = {
+                backdropFade: true,
+                dialogFade:true
+            };
+
+            $scope.plan.percent = (parseInt((($scope.plan.progress)/($scope.plan.totalIteration)*100),10) + "%");
             $scope.plan.colour = ('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
 
             // Put (update) plan
@@ -226,6 +305,8 @@ angular.module('Controllers')
                                 //Server approves
                                 ChildrenServ.setCompletionRibbons(child.id,plan.noRibbon);
 
+                                $scope.progressBox = false;
+
                             }else{
                                 //Server failed error of some sort
                                 console.log('Response did not get picked up');
@@ -233,10 +314,6 @@ angular.module('Controllers')
                         }
                     );
                 }
-
-                // console.log(child.id);
-                // console.log(plan.noRibbon);
-                // console.log(child.totalRibbon);
 
                 var keepColour = plan.colour; //required because server side does not accept colour or percent in it's forms.
 
@@ -253,8 +330,10 @@ angular.module('Controllers')
                             //Server approves
 
                                 plan.colour = keepColour;
-                                plan.percent = ((plan.progress)/(plan.totalIteration)*100 + "%");
+                                plan.percent = (parseInt(((plan.progress)/(plan.totalIteration)*100),10) + "%");
                                 ChildrenServ.updateProgress(plan); //updating client side 'database'
+
+                                $scope.progressBox = false;
 
                                 NotificationsServ.server.get( //triggers notifications in header to be updated
                                     {},
@@ -276,22 +355,6 @@ angular.module('Controllers')
                 );
 
             };
-
-
-
-
-            //Delete plan
-            // $scope.remove = function(id) {
-
-            //  PlansServ.server.remove(
-            //      {
-            //          id:id,
-            //      },
-            //      function(response){
-            //          console.log(response, '<- REMOVE');
-            //      }
-            //  );
-            // };
 
         }
     ]);

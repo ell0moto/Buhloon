@@ -33,17 +33,41 @@ angular.module('Services')
                     children = allChildren;
                 },
 
+                countPlans: function() {
+                    var number = 0;
+
+                    for(var i=0; i<children.length; i++) {
+                        if (children[i].plans.length > 0) {
+                            number = number + 1;
+                        }
+                    }
+                    return number;
+                },
+
                 createPlanChild: function(payLoad) {
 
                     for(var i=0; i<children.length; i++) {
                         if (children[i].nameOfChild === payLoad.nameOfChild) {
-                            //Child exists
-                            children[i].plans.push(payLoad);
-                            return;
+                        
+                            //Child exists but if all plans have been deleted then .plans is now a property not object which equals false
+                            if (children[i].plans === false) {
+
+                                delete children[i].plans;
+
+                                children[i].plans = [];
+
+                                children[i].plans.push(payLoad);
+                                return;
+
+                            }else{
+
+                                children[i].plans.push(payLoad);
+                                return;
+                            }
                         }
                     }
 
-                    //Create child
+                    //Child does not exist, create child
                     var child = {
                         id: payLoad.childId,
                         userId: payLoad.userId,
@@ -61,7 +85,6 @@ angular.module('Services')
                     child.plans = plans;//associating plans to .plans inside child
 
                     children.push(child);//Object array child pushed into children array
-
                 },
 
                 deletePlan: function(planId) {
@@ -71,8 +94,11 @@ angular.module('Services')
 
                             if(plans[j].id === planId){
                                 plans.splice(j,1);
-                                break;
                             }
+                        }
+                        //ng-show needs false to accurately display that there are no plans for that child, to remove the child's name from being seen
+                        if(children[i].plans.length === 0) {
+                            children[i].plans = false;
                         }
                     }
                 },
@@ -111,8 +137,6 @@ angular.module('Services')
                         if(children[i].id === childId){
                             children[i].totalRibbon = (children[i].totalRibbon + noRibbon);
                             children[i].netRibbon = (children[i].netRibbon + noRibbon);
-
-                            console.log(children[i]);
                         }
                     }
                 },

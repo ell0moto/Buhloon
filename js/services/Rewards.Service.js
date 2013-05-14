@@ -30,14 +30,7 @@ angular.module('Services')
                         }
                     }
                 },
-                // setChildrenProp: function(childId, propname, propvalue){ //future feature to change properties
-                //  for(var i=0; i<children.length; i++){
-                //      if(children[i].childId == childId){
-                //          children[propname] = propvalue;
-                //          return children[propname];
-                //      }
-                //  }
-                // },
+
                 getCosts: function(rewardId){ //gets cost of reward
                     for(var i=0; i<rewards.length; i++){
                         if(rewards[i].id === rewardId){
@@ -45,14 +38,54 @@ angular.module('Services')
                         }
                     }
                 },
-                // setRibbonsNEEDS TO CHANGE: function(childId, ribbonAmount){
-                //  for(var i=0; i<children.length; i++){
-                //      if(children[i].childId == childId){
-                //          children[i].ribbons = ribbonAmount;
-                //          return children[i].ribbons;
-                //      }
-                //  }
-                // }
+
+                formCheck: function(form) {
+
+                        if(form.titleOfReward === undefined) {
+
+                            var response = {
+                                status: false,
+                                message: 'Please enter a reward name'
+                            };
+
+                        }else if (form.titleOfReward.length < 3 || form.titleOfReward.length > 30) {
+                            
+                            var response = {
+                                status: false,
+                                message: 'Please check your reward name as it may be too long'
+                            };
+
+                        }else if (isNaN(form.ribbonCost)) {
+                            
+                            var response = {
+                                status: false,
+                                message: 'Please enter an amount of ribbons for this reward'
+                            };
+
+                        }else if (form.ribbonCost === 0) {
+                            
+                            var response = {
+                                status: false,
+                                message: 'Though it would be great, rewards can not be free'
+                            };
+
+                        }else if (form.ribbonCost > 99) {
+                            
+                            var response = {
+                                status: false,
+                                message: 'Please keep rewards under 100 ribbons'
+                            };
+
+                        }else{
+                            
+                            var response = {
+                                status: true,
+                            };
+                        }
+
+                        return response;
+                    },
+
                 server: $resource('api/incentives/:id',
                     {},
                     {

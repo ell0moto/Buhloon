@@ -25,7 +25,6 @@ class Reward_model extends CI_Model {
 			'titleOfReward' => array(
 				'set_label:Rewards title',
 				'NotEmpty',
-				'AlphaNumericSpace',
 				'MinLength:3',
 				'MaxLength:40',
 			),

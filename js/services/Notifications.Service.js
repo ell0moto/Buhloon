@@ -15,7 +15,7 @@ angular.module('Services')
 
                 setNotifications: function(newNotice){
                     for(var i=0; i<newNotice.length; i++) {
-                        newNotice[i].percent = ((newNotice[i].progress)/(newNotice[i].totalIteration)*100 + "%");
+                        newNotice[i].percent = (parseInt(((newNotice[i].progress)/(newNotice[i].totalIteration)*100),10) + "%");
                     }
                     notifications = newNotice;
                 },
