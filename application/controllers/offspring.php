@@ -96,7 +96,7 @@ class Offspring extends CI_Controller {
 
 			$this->output->set_status_header('400');
 
-			$content = $this->plan_model->get_errors();
+			$content = $this->children_model->get_errors();
 			$code = 'error';
 			$redirect = '';
 		}

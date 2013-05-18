@@ -135,7 +135,6 @@ class Children_model extends CI_Model {
 			),
 			'netRibbon' => array(
 				'set_label:Net Ribbons',
-				'NotEmpty',
 				'Number',
 			),
 			'ribbonCost' => array(
@@ -210,14 +209,8 @@ class Children_model extends CI_Model {
 				'NotEmpty',
 				'Number',
 			),
-			'totalRibbon' => array(
-				'set_label:Total Ribbons',
-				'NotEmpty',
-				'Number',
-			),
 			'noRibbon' => array(
 				'set_label:Number of Ribbons',
-				'NotEmpty',
 				'Number',
 			),
 		));

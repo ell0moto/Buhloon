@@ -291,7 +291,6 @@ angular.module('Controllers')
                     var payload = {
                         childId: child.id,
                         planId: plan.id,
-                        totalRibbon: child.totalRibbon,
                         noRibbon: plan.noRibbon,
                     };
 

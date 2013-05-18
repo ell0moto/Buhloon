@@ -14,8 +14,6 @@ angular.module('Services')
                 },
                 setRewards: function(newRewards){
                     rewards = newRewards;
-                    // console.log(newRewards);
-                    // console.log(rewards);
                 },
 
                 setNewReward: function(newReward) {
@@ -41,50 +39,54 @@ angular.module('Services')
 
                 formCheck: function(form) {
 
-                        if(form.titleOfReward === undefined) {
+                    if(form.titleOfReward === undefined) {
 
-                            var response = {
-                                status: false,
-                                message: 'Please enter a reward name'
-                            };
-
-                        }else if (form.titleOfReward.length < 3 || form.titleOfReward.length > 30) {
-                            
-                            var response = {
-                                status: false,
-                                message: 'Please check your reward name as it may be too long'
-                            };
-
-                        }else if (isNaN(form.ribbonCost)) {
-                            
-                            var response = {
-                                status: false,
-                                message: 'Please enter an amount of ribbons for this reward'
-                            };
-
-                        }else if (form.ribbonCost === 0) {
-                            
-                            var response = {
-                                status: false,
-                                message: 'Though it would be great, rewards can not be free'
-                            };
-
-                        }else if (form.ribbonCost > 99) {
-                            
-                            var response = {
-                                status: false,
-                                message: 'Please keep rewards under 100 ribbons'
-                            };
-
-                        }else{
-                            
-                            var response = {
-                                status: true,
-                            };
-                        }
-
+                        var response = {
+                            status: false,
+                            message: 'Please enter a reward name'
+                        };
                         return response;
-                    },
+
+                    }else if (form.titleOfReward.length < 3 || form.titleOfReward.length > 30) {
+                        
+                        var response2 = {
+                            status: false,
+                            message: 'Reward name may be too long'
+                        };
+                        return response2;
+
+                    }else if (isNaN(form.ribbonCost)) {
+                        
+                        var response3 = {
+                            status: false,
+                            message: 'Please enter an amount of ribbons for this reward'
+                        };
+                        return response3;
+
+                    }else if (form.ribbonCost === 0) {
+                        
+                        var response4 = {
+                            status: false,
+                            message: 'Though it would be great, rewards can not be free'
+                        };
+                        return response4;
+
+                    }else if (form.ribbonCost > 99) {
+                        
+                        var response5 = {
+                            status: false,
+                            message: 'Please keep rewards under 100 ribbons'
+                        };
+                        return response5;
+
+                    }else{
+                        
+                        var response6 = {
+                            status: true,
+                        };
+                        return response6;
+                    }
+                },
 
                 server: $resource('api/incentives/:id',
                     {},

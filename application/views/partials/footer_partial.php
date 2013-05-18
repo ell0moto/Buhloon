@@ -6,8 +6,8 @@
                 <div class="centered">
                     <h1> buhloon <span>&copy;</span> | 2013</h1>
                     <ul class="footer-links">
-<!--                         <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li>1.02</li>
+<!--                         <li><a href="#">Contact</a></li>
                         <li><a href="#">About</a></li> -->
                     </ul>
                 </div>
